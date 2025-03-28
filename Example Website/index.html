@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link href="bootstrap_theme.min.css" rel="stylesheet">        
+        <title> See the Carbon </title>
+    </head>
+
+    <body>
+        <!--navigation bar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html"> See the Carbon </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="carbon_budget.html">Carbon Budget
+                        <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="emissions.html">Emissions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sinks.html">Sinks</a>
+                    </li>
+                    
+                    </ul>
+                </div>
+            </div>
+          </nav>
+
+        <!--welcome text-->
+        <div class="mx-auto mt-5 col-md-40" style = "width:70%">
+            <h1>Tackling climate change is no easy feat.</h1>
+            <h3 class = "mt-5">Achieving net-zero carbon emissions gives us a sustainable future, but with carbon building up so rapidly in the atmosphere, the need to draw up more accurate carbon budgets is increasing. </h3>
+            <h2 class= "mt-5">The <a href = "https://www.globalcarbonproject.org/"> Global Carbon Project </a>combines information about greenhouse gases, including carbon dioxide and methane. The international science community contributes to this project by analyzing natural and human-driven factors for climate change to develop a complete picture of the global carbon cycle.</h2>
+            <h4 class="mt-5">Learn more about emissions, sinks and the global carbon budget.<strong> See the Carbon.</strong></h4>
+
+            <h3 class = "mt-5"> </h3>
+            <a href = "emissions.html">
+                <button type="button" class="btn btn-danger" id = "emissions">
+                    Emissions
+                </button>
+            </a>
+
+            <a href = "sinks.html" style = "text-align: center" class = "m-5">
+                <button type="button" class="btn btn-success" id = "sinks">
+                    Sinks
+                </button>
+            </a>
+
+            <a href = "carbon_budget.html">
+                <button type="button" class="btn btn-primary" id = "carbon_budget">
+                    Carbon Budget
+                </button>
+            </a>
+        </div>
+      </div>
+    </body>
+</html>
