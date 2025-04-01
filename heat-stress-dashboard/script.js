@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("utci-description").innerText = heatStress;
 
                 // Apply background color based on UTCI category
-                let utciCard = document.querySelector(".bg-danger");
+                let utciCard = document.getElementById("utci-card");
                 utciCard.classList.remove("bg-success", "bg-warning", "bg-orange", "bg-danger", "bg-dark");
                 
                 if (heatStress.includes("No Thermal Stress")) {
@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Update mitigation table
                 let tableBody = document.getElementById("mitigation-table");
                 tableBody.innerHTML = `<tr><td>${heatStress}</td><td>${mitigation}</td></tr>`;
+
+                
             })
             .catch(error => console.error("Error loading CSV:", error));
     }

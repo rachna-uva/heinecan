@@ -11,12 +11,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <!--Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <!-- Sidebar -->
     <div class="d-flex" id="wrapper">
-        <div class="bg-danger text-white" id="sidebar">
+        <div class="bg-dark-grey text-white" id="sidebar">
             <h2 class="text-center p-3">Heat Stress Dashboard</h2>
             <ul class="list-unstyled px-3">
                 <li><a href="index.html" class="text-white"><i class="fas fa-thermometer-half"></i> Dashboard</a></li>
@@ -34,7 +36,7 @@
             <!-- Dashboard Cards -->
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card text-white bg-danger mb-3">
+                    <div class="card text-white bg-dark-grey mb-3" id="utci-card">
                         <div class="card-body">
                             <h5 class="card-title">UTCI Level</h5>
                             <h2 id="utci-value">--</h2>
@@ -103,3 +105,4 @@
 
 </body>
 </html>
+
