@@ -1,0 +1,53 @@
+<h1 class="mb-4">Health and Safety Dashboard</h1>
+
+<!-- Dashboard Cards -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-dark-grey mb-3" id="utci-card">
+            <div class="card-body">
+                <h5 class="card-title">UTCI Group</h5>
+                <h2 id="utci-group">--</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Temperature</h5>
+                <h2 id="temperature">-- °C</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Humidity</h5>
+                <h2 id="humidity">-- %</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- UTCI Chart -->
+<div class="card p-3">
+    <h4 class="mb-3">UTCI Trend</h4>
+    <canvas id="utciChart"></canvas>
+</div>
+
+<!-- Heat Stress Mitigation Table -->
+<div class="card p-3 mt-4">
+    <h4 class="mb-3">Mitigation Measures</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Condition</th>
+                <th>Recommended Action</th>
+            </tr>
+        </thead>
+        <tbody id="mitigation-table">
+            <tr><td colspan="2">Loading...</td></tr>
+        </tbody>
+    </table>
+</div>

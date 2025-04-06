@@ -1,113 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Health and Safety Dashboard</title>
-    
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-    <!--Font-->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Health and Safety Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <div class="d-flex" id="wrapper">
-        <div class="bg-dark-grey text-white" id="sidebar">
-            <h2 class="text-center p-3">Health and Safety Dashboard</h2>
-            <ul class="list-unstyled px-3">
-                <li><a href="index.html" class="text-white"><i class="fas fa-thermometer-half"></i> Dashboard</a></li>
-                <li>
-                    <a href="notifications.html" class="text-white d-flex align-items-center justify-content-between">
-                      <span><i class="fas fa-cloud-sun"></i> Notifications</span>
-                      <span id="notif-badge" class="badge bg-danger ms-2" style="display: none;">●</span>
-                    </a>
-                </li>                   
-                <li><a href="rewards.html" class="text-white"><i class="fas fa-tint"></i> Rewards</a></li>
-            </ul>
-        </div>
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <div class="bg-dark-grey text-white" id="sidebar">
+    <h2 class="text-center p-3">Health and Safety Dashboard</h2>
+    <ul class="list-unstyled px-3">
+      <li>
+        <a href="#" class="text-white" data-page="dashboard">
+          <i class="fas fa-thermometer-half"></i> Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="#" class="text-white d-flex align-items-center justify-content-between" data-page="notifications">
+          <span><i class="fas fa-cloud-sun"></i> Notifications</span>
+          <span id="notif-badge" class="badge bg-danger ms-2" style="display: none;">●</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="text-white" data-page="rewards">
+          <i class="fas fa-tint"></i> Rewards
+        </a>
+      </li>
+    </ul>
+  </div>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper" class="p-4">
-            <div id="dynamic-content">Loading...</div>
-            <h1 class="mb-4">Health and Safety Dashboard</h1>
-            
-            <!-- Dashboard Cards -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card text-white bg-dark-grey mb-3" id="utci-card">
-                        <div class="card-body">
-                            <h5 class="card-title">UTCI Group</h5>
-                            <h2 id="utci-group">--</h2>
-                        </div>
-                    </div>
-                </div>
+  <!-- Page Content -->
+  <div id="page-content-wrapper" class="p-4">
+    <div id="dynamic-content">Loading...</div>
+  </div>
+</div>
 
-                <div class="col-md-4">
-                    <div class="card text-white bg-warning mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Temperature</h5>
-                            <h2 id="temperature">-- °C</h2>
-                        </div>
-                    </div>
-                </div>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="script.js"></script>
 
-                <div class="col-md-4">
-                    <div class="card text-white bg-primary mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Humidity</h5>
-                            <h2 id="humidity">-- %</h2>
-                        </div>
-                    </div>
-                </div>
+<script>
+  function loadPage(page) {
+    fetch(`partials/${page}.html`)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("dynamic-content").innerHTML = html;
 
+        // Load specific JS logic for the loaded partial
+        if (page === "dashboard" && typeof loadCSV === 'function') loadCSV();
+        if (page === "notifications" && typeof initNotifications === 'function') initNotifications();
+        if (page === "rewards" && typeof initRewards === 'function') initRewards();
+      });
+  }
 
-            <!-- UTCI Chart -->
-            <div class="card p-3">
-                <h4 class="mb-3">UTCI Trend</h4>
-                <canvas id="utciChart"></canvas>
-            </div>
+  document.querySelectorAll('#sidebar a[data-page]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const page = link.getAttribute('data-page');
+      loadPage(page);
+    });
+  });
 
-            <!-- Heat Stress Mitigation Table -->
-            <div class="card p-3 mt-4">
-                <h4 class="mb-3">Mitigation Measures</h4>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Condition</th>
-                            <th>Recommended Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="mitigation-table">
-                        <tr><td colspan="2">Loading...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+  window.addEventListener('DOMContentLoaded', () => {
+    const badge = document.getElementById('notif-badge');
+    const saved = JSON.parse(localStorage.getItem('notifications')) || [];
+    if (saved.length > 0 && badge) {
+      badge.style.display = 'inline-block';
+    }
 
-    <!-- Bootstrap & Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="assets/js/papaparse.min.js"></script>
-    <script src="script.js"></script>
-    <!--Noticications-->
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-          const badge = document.getElementById('notif-badge');
-          const saved = JSON.parse(localStorage.getItem('notifications')) || [];
-          if (saved.length > 0 && badge) {
-            badge.style.display = 'inline-block';
-          } else if (badge) {
-            badge.style.display = 'none';
-          }
-        });
-      </script>
+    // Load default view
+    loadPage("dashboard");
+  });
+</script>
+
 </body>
 </html>
-
