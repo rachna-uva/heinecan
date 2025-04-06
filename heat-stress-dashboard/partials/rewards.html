@@ -1,0 +1,33 @@
+<h1 class="mb-4">Manager Rewards</h1>
+
+<!-- Notification Reward Summary -->
+<div class="mb-4">
+    <h4>Notification Activity</h4>
+    <p><strong>Notifications Sent:</strong> <span id="notification-count">0</span></p>
+    <div id="reward-badge" style="display: none;">
+        <div class="alert alert-success d-flex align-items-center">
+            <i class="fas fa-award me-2"></i>
+            Congratulations! You've earned a reward for keeping your team informed!
+        </div>
+    </div>
+</div>
+
+<script>
+function initRewards() {
+    const countEl = document.getElementById("notification-count");
+    const rewardEl = document.getElementById("reward-badge");
+    const badge = document.getElementById("notif-badge");
+
+    const count = parseInt(localStorage.getItem("notifications_sent") || "0");
+    countEl.textContent = count;
+
+    if (count > 0 && rewardEl) {
+        rewardEl.style.display = "block";
+    }
+
+    const saved = JSON.parse(localStorage.getItem('notifications')) || [];
+    if (saved.length > 0 && badge) {
+        badge.style.display = 'inline-block';
+    }
+}
+</script>
