@@ -22,15 +22,19 @@
             <h2 class="text-center p-3">Health and Safety Dashboard</h2>
             <ul class="list-unstyled px-3">
                 <li><a href="index.html" class="text-white"><i class="fas fa-thermometer-half"></i> Dashboard</a></li>
-                <li><a href="#" class="text-white"><i class="fas fa-cloud-sun"></i> Notifications</a></li>
-                <li><a href="#" class="text-white"><i class="fas fa-tint"></i> Rewards</a></li>
-                <li><a href="#" class="text-white"><i class="fas fa-wind"></i> Wind Speed</a></li>
-                <li><a href="#" class="text-white"><i class="fas fa-shield-alt"></i> Mitigation Measures</a></li>
+                <li>
+                    <a href="notifications.html" class="text-white d-flex align-items-center justify-content-between">
+                      <span><i class="fas fa-cloud-sun"></i> Notifications</span>
+                      <span id="notif-badge" class="badge bg-danger ms-2" style="display: none;">●</span>
+                    </a>
+                </li>                   
+                <li><a href="rewards.html" class="text-white"><i class="fas fa-tint"></i> Rewards</a></li>
             </ul>
         </div>
 
         <!-- Page Content -->
         <div id="page-content-wrapper" class="p-4">
+            <div id="dynamic-content">Loading...</div>
             <h1 class="mb-4">Health and Safety Dashboard</h1>
             
             <!-- Dashboard Cards -->
@@ -38,9 +42,8 @@
                 <div class="col-md-4">
                     <div class="card text-white bg-dark-grey mb-3" id="utci-card">
                         <div class="card-body">
-                            <h5 class="card-title">Heat Risk Level</h5>
-                            <h2 id="utci-value">--</h2>
-                            <p id="utci-description">Loading...</p>
+                            <h5 class="card-title">UTCI Group</h5>
+                            <h2 id="utci-group">--</h2>
                         </div>
                     </div>
                 </div>
@@ -63,15 +66,6 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card text-white bg-info mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Wind Speed</h5>
-                            <h2 id="wind-speed">-- km/h</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- UTCI Chart -->
             <div class="card p-3">
@@ -102,7 +96,18 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="assets/js/papaparse.min.js"></script>
     <script src="script.js"></script>
-
+    <!--Noticications-->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+          const badge = document.getElementById('notif-badge');
+          const saved = JSON.parse(localStorage.getItem('notifications')) || [];
+          if (saved.length > 0 && badge) {
+            badge.style.display = 'inline-block';
+          } else if (badge) {
+            badge.style.display = 'none';
+          }
+        });
+      </script>
 </body>
 </html>
 
