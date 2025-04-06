@@ -22,8 +22,22 @@ function loadCSV() {
             }
 
             document.getElementById("utci-group").innerText = utciGroup;
-
             let utciCard = document.getElementById("utci-card");
+
+            // Set card color based on UTCI group
+            utciCard.classList.remove("bg-success", "bg-info", "bg-warning", "bg-danger");
+
+            if (utciGroup === "1") {
+                utciCard.classList.add("bg-success");
+            } else if (utciGroup === "2") {
+                utciCard.classList.add("bg-info");
+            } else if (utciGroup === "3") {
+                utciCard.classList.add("bg-warning");
+            } else if (utciGroup === "5") {
+                utciCard.classList.add("bg-danger");
+            }
+
+
             utciCard.classList.remove("bg-success", "bg-warning", "bg-orange", "bg-danger", "bg-dark");
 
             if (heatStress.includes("No Thermal Stress")) {
@@ -37,6 +51,22 @@ function loadCSV() {
             } else if (heatStress.includes("Extreme Thermal Stress")) {
                 utciCard.classList.add("bg-dark");
             }
+            // Assign UTCI group value
+            document.getElementById("utci-group").innerText = utciGroup;
+            // Remove all group-related background colors
+            utciCard.classList.remove("bg-success", "bg-info", "bg-warning", "bg-danger");
+
+            // Add color based on group
+            if (utciGroup === "1") {
+                utciCard.classList.add("bg-success");
+            } else if (utciGroup === "2") {
+                utciCard.classList.add("bg-info");
+            } else if (utciGroup === "3") {
+                utciCard.classList.add("bg-warning");
+            } else if (utciGroup === "5") {
+                utciCard.classList.add("bg-danger");
+            }
+
 
             let tableBody = document.getElementById("mitigation-table");
             tableBody.innerHTML = `<tr><td>${heatStress}</td><td>${mitigation}</td></tr>`;
