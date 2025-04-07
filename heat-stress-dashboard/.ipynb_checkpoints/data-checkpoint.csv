@@ -1,0 +1,6 @@
+Temperature,Humidity,Wind Speed,UTCI,Heat Stress,Condition,Mitigation
+30,60,10,28,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+35,50,12,34,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+40,45,15,39,Very Strong Thermal Stress,Hot and Humid,Seek shade, use cooling devices
+45,40,8,47,Extreme Thermal Stress,Heatwave,Limit outdoor exposure, emergency cooling centers
+22,70,5,20,No Thermal Stress,Cool Breeze,No immediate precautions needed
