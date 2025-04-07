@@ -87,3 +87,60 @@
   flex: 1;
   min-width: 200px;
 }
+
+/* Heat Risk Level Highlights */
+.low-risk {
+  background-color: #d1fae5; /* soft green */
+  border-left: 6px solid #1DCB91;
+}
+
+.moderate-risk {
+  background-color: #fef3c7; /* soft yellow */
+  border-left: 6px solid #FFE762;
+}
+
+.high-risk {
+  background-color: #fde68a; /* deeper yellow */
+  border-left: 6px solid #EC914F;
+}
+
+.extreme-risk {
+  background-color: #fecaca; /* soft red */
+  border-left: 6px solid #ef4444;
+}
+
+.heat-risk-card {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.mitigation-panel {
+  margin-top: 40px;
+}
+
+.mitigation-title {
+  font-size: 20px;
+  margin-bottom: 16px;
+  font-weight: bold;
+  color: #111;
+}
+
+.mitigation-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mitigation-table th,
+.mitigation-table td {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 16px;
+}
+
+.mitigation-table th {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.mitigation-table td {
+  border-top: 1px solid #eee;
+}

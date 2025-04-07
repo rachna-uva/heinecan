@@ -12,8 +12,9 @@ import SettingsPage from './components/Worker Dashboard/SettingsPage';
 import TutorialPage from './components/Worker Dashboard/TutorialPage';
 import ReportSymptomsPage from './components/Worker Dashboard/ReportSymptomsPage';
 
-// Local Manager Dashboard
+// Local Manager Dashboard Pages
 import LocManagerDashboard from './components/Local Manager Dashboard/LocManagerDashboard';
+import NotificationsPage from './components/Local Manager Dashboard/NotificationsPage';
 
 function App() {
   return (
@@ -35,8 +36,9 @@ function App() {
           <Route path="report-symptoms" element={<ReportSymptomsPage />} />
         </Route>
 
-        {/* Local Manager Dashboard (standalone for now) */}
+        {/* Local Manager Dashboard */}
         <Route path="/local-manager" element={<LocManagerDashboard />} />
+        <Route path="/local-manager/alerts" element={<NotificationsPage />} />
 
       </Routes>
     </Router>
