@@ -65,17 +65,19 @@ const LocManagerDashboard = () => {
               ]
             },
             options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              scales: {
-                y: {
-                  beginAtZero: false,
-                  title: { display: true, text: 'UTCI Value' }
-                },
-                x: {
-                  title: { display: true, text: 'Day of the Week' }
+                responsive: true,
+                maintainAspectRatio: true, 
+                aspectRatio: 2, 
+                scales: {
+                    y: {
+                        min: 20,
+                        max: 50,
+                        title: { display: true, text: 'UTCI Value' }
+                    },
+                    x: {
+                        title: { display: true, text: 'Day of the Week' }
+                    }
                 }
-              }
             }
           });
         }
@@ -125,10 +127,12 @@ const LocManagerDashboard = () => {
         </div>
 
         {/* Chart Section */}
-        <div className="chart-container">
-          <h3>Heat Risk Trend</h3>
-          <canvas id="utciChart" width="600" height="300"></canvas>
-        </div>
+<div className="chart-container">
+  <h3>Heat Risk Trend</h3>
+  <div className="chart-wrapper">
+    <canvas id="utciChart"></canvas>
+  </div>
+</div>
 
         {/* Mitigation Measures */}
         <div className="mitigation-panel">

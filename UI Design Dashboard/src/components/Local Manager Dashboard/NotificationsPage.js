@@ -26,15 +26,34 @@ const NotificationsPage = () => {
     });
 
     const saved = JSON.parse(localStorage.getItem('notifications')) || [];
-    setNotifications(saved);
+    setNotifications(saved.map((note) => ({ message: note, actionTaken: false })));
   }, []);
 
   const handleSendNotification = () => {
-    const updated = [mitigation, ...notifications];
+    if (!mitigation || mitigation === "No mitigation found." || mitigation === "Failed to load mitigation data.") {
+      return;
+    }
+
+    const updated = [{ message: mitigation, actionTaken: false }, ...notifications];
     setNotifications(updated);
-    localStorage.setItem('notifications', JSON.stringify(updated));
+    localStorage.setItem('notifications', JSON.stringify(updated.map(n => n.message)));
     localStorage.setItem('notifications_sent', (parseInt(localStorage.getItem("notifications_sent") || "0") + 1).toString());
     setMitigation('');
+  };
+
+  const handleCheckboxChange = (index) => {
+    const updated = [...notifications];
+    updated[index].actionTaken = !updated[index].actionTaken;
+    setNotifications(updated);
+  };
+
+  const handleClearNotifications = () => {
+    const remaining = notifications.filter(n => !n.actionTaken);
+    if (remaining.length !== notifications.length) {
+      alert("Only notifications with 'Action Taken' checked were removed.");
+    }
+    setNotifications(remaining);
+    localStorage.setItem('notifications', JSON.stringify(remaining.map(n => n.message)));
   };
 
   return (
@@ -63,16 +82,34 @@ const NotificationsPage = () => {
         <button className="report-button" onClick={handleSendNotification}>Send Notification</button>
 
         <h4 style={{ marginTop: '30px' }}>Sent Notifications</h4>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {notifications.length === 0 ? (
             <p>No notifications sent yet.</p>
           ) : (
             notifications.map((note, index) => (
-              <div key={index} style={{ background: '#fff3cd', padding: '10px', borderRadius: '6px' }}>
-                {note}
+              <div key={index} style={{ background: '#fff3cd', padding: '12px', borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span>{note.message}</span>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <input
+                    type="checkbox"
+                    checked={note.actionTaken}
+                    onChange={() => handleCheckboxChange(index)}
+                  />
+                  Action Taken
+                </label>
               </div>
             ))
           )}
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
+          <button
+            className="report-button"
+            style={{ backgroundColor: '#ff4d4f' }}
+            onClick={handleClearNotifications}
+          >
+            Clear Notifications
+          </button>
         </div>
       </div>
     </div>

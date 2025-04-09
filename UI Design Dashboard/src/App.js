@@ -15,6 +15,7 @@ import ReportSymptomsPage from './components/Worker Dashboard/ReportSymptomsPage
 // Local Manager Dashboard Pages
 import LocManagerDashboard from './components/Local Manager Dashboard/LocManagerDashboard';
 import NotificationsPage from './components/Local Manager Dashboard/NotificationsPage';
+import LMCompanyProfilePage from './components/Local Manager Dashboard/CompanyProfilePage';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         {/* Local Manager Dashboard */}
         <Route path="/local-manager" element={<LocManagerDashboard />} />
         <Route path="/local-manager/alerts" element={<NotificationsPage />} />
+        <Route path="/local-manager/company-profile" element={<LMCompanyProfilePage />} />
 
       </Routes>
     </Router>
