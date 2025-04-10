@@ -11,15 +11,18 @@ function loadCSV() {
 
             let utciValue = parseFloat(utci);
             let utciGroup = "";
-            if (utciValue <= 20) {
+            if (utciValue <= 26) {
                 utciGroup = "1";
-            } else if (utciValue <= 30) {
+            } else if (utciValue <= 32) {
                 utciGroup = "2";
-            } else if (utciValue <= 40) {
+            } else if (utciValue <= 38) {
                 utciGroup = "3";
-            } else {
+            } else if (utciValue <= 46){
                 utciGroup = "4";
+            } else {
+                utciGroup = "5";
             }
+
 
             document.getElementById("utci-group").innerText = utciGroup;
 
@@ -53,10 +56,11 @@ function loadCSV() {
 
             let utciGroups = trendRows.map(row => {
                 const utci = parseFloat(row.split(",")[3]);
-                if (utci <= 20) return 1;
-                if (utci <= 30) return 2;
-                if (utci <= 40) return 3;
-                return 4;
+                if (utci <= 26) return 1;
+                if (utci <= 32) return 2;
+                if (utci <= 38) return 3;
+                if (utci <= 46) return 4
+                return 5;
             });
             // UTCI Chart
             const ctx = document.getElementById('utciChart').getContext('2d');
@@ -66,7 +70,7 @@ function loadCSV() {
                     labels: daysOfWeek,
                     datasets :[
                         {
-                            label: 'Heat Risk (Line)',
+                            label: 'Heat Stress Risk',
                             data: utciGroups,
                             type: 'line',
                             fill: false,
@@ -83,14 +87,14 @@ function loadCSV() {
                         y: {
                             beginAtZero: false,
                             min : 1,
-                            max: 4, 
+                            max: 5, 
                             ticks: {
                                 stepSize: 1,
                                 callback : value => `${value}`
                             },
                             title: {
                                 display: true,
-                                text: 'Heat Risk Value'
+                                text: 'Heat Stress Risk Value'
                             }
                         },
                         x: {
