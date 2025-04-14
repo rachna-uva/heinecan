@@ -29,7 +29,7 @@ const LocManagerSidebar = () => {
         <ul>
           <li><Link to="/local-manager/zone-monitoring" className={getLinkClass('/local-manager/zone-monitoring')}>Zone Monitoring</Link></li>
           <li><Link to="/local-manager/performance-metrics" className={getLinkClass('/local-manager/performance-metrics')}>Performance Metrics</Link></li>
-          <li><Link to="/local-manager/training" className={getLinkClass('/local-manager/training')}>Training</Link></li>
+          <li><Link to="/local-manager/rewards" className={getLinkClass('/local-manager/rewards')}>Rewards</Link></li>
           <li><Link to="/local-manager/alerts" className={getLinkClass('/local-manager/alerts')}>Alerts & Notifications</Link></li>
         </ul>
       </div>
