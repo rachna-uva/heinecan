@@ -1,5 +1,5 @@
 function loadCSV() {
-    fetch("data.csv")
+    fetch("monterrey_utci_inputs.csv")
         .then(response => response.text())
         .then(csvText => {
             let rows = csvText.trim().split("\n").slice(1);
