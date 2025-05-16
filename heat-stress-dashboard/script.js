@@ -20,25 +20,7 @@ function loadCSV() {
             document.getElementById("temperature").innerText = `${now.temp} °C`;
             document.getElementById("humidity").innerText = `${now.humidity} %`;
 
-            // Basic UTCI estimation using temperature, humidity, and wind speed
-            forecastRows.forEach(row => {
-                const t = parseFloat(row.temp);
-                const rh = parseFloat(row.humidity);
-                const v = parseFloat(row.wind_speed);
-
-                const utci = t +
-                    0.607562 +
-                    -0.022771 * t +
-                    0.000806 * rh +
-                    -0.002 * v +
-                    0.0000012 * t * t +
-                    -0.0000028 * rh * rh +
-                    0.0000035 * v * v;
-
-                row.utci = utci;
-            });
-
-            const utciValue = parseFloat(forecastRows[0].utci);
+            const utciValue = parseFloat(now.utci);
             let utciGroup = "";
             if (utciValue <= 26) utciGroup = "1";
             else if (utciValue <= 32) utciGroup = "2";
@@ -60,12 +42,11 @@ function loadCSV() {
 
             const labels = forecastRows.map(r => {
                 const [date, time] = r.datetime.split(" ");
-                return `${date} ${time.slice(0, 5)}`; // e.g., 2025-05-17 06:00
+                return `${date} ${time.slice(0, 5)}`; // e.g., "2025-05-16 06:00"
             });
 
-
             const utciGroups = forecastRows.map(r => {
-                const utci = r.utci;
+                const utci = parseFloat(r.utci);
                 if (utci <= 26) return 1;
                 if (utci <= 32) return 2;
                 if (utci <= 38) return 3;
@@ -76,7 +57,7 @@ function loadCSV() {
             const temps = forecastRows.map(r => parseFloat(r.temp));
             const humidities = forecastRows.map(r => parseFloat(r.humidity));
 
-            // Heat Stress Chart
+            // Heat Stress Group Chart
             const ctx = document.getElementById('utciChart').getContext('2d');
             new Chart(ctx, {
                 type: 'line',
