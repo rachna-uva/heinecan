@@ -23,7 +23,7 @@ function login(event) {
     if (userData.password === password) {
       localStorage.setItem("loggedInUser", username);
       localStorage.setItem("selectedCountry", userData.country);
-      window.location.href = "dashboard.html";
+      window.location.href = "index.html";
       return;
     }
   }

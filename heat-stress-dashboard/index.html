@@ -46,7 +46,7 @@
 
 <script>
   function loadPage(page) {
-    fetch(`partials/${page}.html`)
+    fetch(`${page}.html`)
       .then(res => res.text())
       .then(html => {
         document.getElementById("dynamic-content").innerHTML = html;
