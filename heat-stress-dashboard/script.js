@@ -30,11 +30,13 @@ function loadCSV() {
             document.getElementById("utci-group").innerText = utciGroup;
 
             const utciCard = document.getElementById("utci-card");
-            utciCard.classList.remove("bg-success", "bg-info", "bg-warning", "bg-danger");
+            utciCard.className = "dashboard-card text-white";
             if (utciGroup === "1") utciCard.classList.add("bg-success");
             else if (utciGroup === "2") utciCard.classList.add("bg-info");
             else if (utciGroup === "3") utciCard.classList.add("bg-warning");
             else if (utciGroup === "4") utciCard.classList.add("bg-danger");
+            else utciCard.classList.add("bg-dark");
+
 
             // Add help icon
             const helpIcon = document.createElement("div");
@@ -84,8 +86,19 @@ function loadCSV() {
             tooltip.style.display = (tooltip.style.display === "none") ? "block" : "none";
             });
 
+            // Mitigations
+            const mitigationMap = {
+                "1": "No specific measures needed. Normal conditions.",
+                "2": "Drink water regularly. Wear light clothing.",
+                "3": "Limit direct sun exposure. Seek shade when possible.",
+                "4": "Reduce outdoor activity. Stay hydrated and rest frequently.",
+                "5": "Avoid outdoor activity. Use cooling shelters if available."
+            };
+
+            const mitigationMessage = mitigationMap[utciGroup] || "No data available";
+
             document.getElementById("mitigation-table").innerHTML =
-                `<tr><td>Forecasted</td><td>Stay hydrated and avoid prolonged sun exposure</td></tr>`;
+                `<tr><td>Forecasted</td><td>${mitigationMessage}</td></tr>`;
 
             const chartlabels = forecastRows.map(r => {
                 const [date, time] = r.datetime.split(" ");
