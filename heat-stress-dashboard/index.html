@@ -30,11 +30,6 @@
           <span id="notif-badge" class="badge bg-danger ms-2" style="display: none;">●</span>
         </a>
       </li>
-      <li>
-        <a href="#" class="text-white" data-page="rewards">
-          <i class="fas fa-tint"></i> Rewards
-        </a>
-      </li>
     </ul>
   </div>
 
@@ -51,7 +46,7 @@
 
 <script>
   function loadPage(page) {
-    fetch(`partials/${page}.html`)
+    fetch(`${page}.html`)
       .then(res => res.text())
       .then(html => {
         document.getElementById("dynamic-content").innerHTML = html;
