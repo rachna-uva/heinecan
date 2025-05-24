@@ -4,7 +4,6 @@ function register(event) {
   const password = document.getElementById("register-password").value;
   const country = document.getElementById("register-country").value;
 
-  // Store both password and country
   const userData = { password: password, country: country };
   localStorage.setItem("user_" + username, JSON.stringify(userData));
 
@@ -16,6 +15,7 @@ function login(event) {
   event.preventDefault();
   const username = document.getElementById("login-username").value;
   const password = document.getElementById("login-password").value;
+  const shift = document.getElementById("login-shift").value;
 
   const stored = localStorage.getItem("user_" + username);
   if (stored) {
@@ -23,6 +23,7 @@ function login(event) {
     if (userData.password === password) {
       localStorage.setItem("loggedInUser", username);
       localStorage.setItem("selectedCountry", userData.country);
+      localStorage.setItem("selectedShift", shift);
       window.location.href = "index.html";
       return;
     }
@@ -34,6 +35,7 @@ function login(event) {
 function logout() {
   localStorage.removeItem("loggedInUser");
   localStorage.removeItem("selectedCountry");
+  localStorage.removeItem("selectedShift");
   window.location.href = "index.html";
 }
 

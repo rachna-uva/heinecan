@@ -1,69 +1,68 @@
-<h1 class="mb-4">Notifications</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Measures Table</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
 
-<!-- Auto-mitigation area -->
-<div class="mb-4">
-    <h4>Suggested Mitigation Based on Today’s Heat Risk</h4>
-    <div class="alert alert-info" id="mitigation-message">Loading...</div>
-    <button class="btn btn-primary" id="send-mitigation">Send Notification</button>
-</div>
+<h2>Measures for Today</h2>
 
-<!-- Notifications List -->
-<div>
-    <h4>Sent Notifications</h4>
-    <div id="notification-list" class="mt-3">
-        <!-- Notifications will appear here -->
-    </div>
-</div>
-
+<table border="1" cellpadding="6" cellspacing="0" id="measures-table">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Measure 1</th>
+      <th>Measure 2</th>
+      <th>Measure 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Data rows will go here -->
+  </tbody>
+</table>
+<h3>Sent Notifications</h3>
+<div id="notification-list"></div>
 <script>
-function initNotifications() {
-    const mitigationBox = document.getElementById('mitigation-message');
-    const sendBtn = document.getElementById('send-mitigation');
-    const notificationList = document.getElementById('notification-list');
-    const badge = document.getElementById("notif-badge");
-    let currentMitigation = "";
+// Load CSV and populate table
+Papa.parse("monterrey_utci_with_measures.csv", {
+  download: true,
+  header: true,
+  skipEmptyLines: true,
+  complete: function(results) {
+    const data = results.data;
+    const table = document.getElementById('measures-table').getElementsByTagName('tbody')[0];
 
-    Papa.parse("data.csv", {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-            const data = results.data;
-            const randomRow = data[Math.floor(Math.random() * data.length)];
-            currentMitigation = randomRow["Mitigation"] || "No mitigation found.";
-            mitigationBox.textContent = currentMitigation;
-        },
-        error: function(err) {
-            mitigationBox.classList.replace("alert-info", "alert-danger");
-            mitigationBox.textContent = "Failed to load mitigation suggestion.";
-            console.error("PapaParse error:", err);
-        }
+    data.forEach(row => {
+      // Safely access column values and make sure to match actual header names from CSV
+      const datetime = row['datetime'] || '';
+      const utci = row['utci'] || '';
+      const score = row['heat_risk_score'] || '';
+      const shift = row['shift'] === "1" ? "Day" : "Night";
+      const m1 = row['Measure 1'] || '';
+      const m2 = row['Measure 2'] || '';
+      const m3 = row['Measure 3'] || '';
+
+      // Convert time format
+      const time = datetime ? new Date(datetime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${time}</td>
+        <td>${utci}</td>
+        <td>${score}</td>
+        <td>${shift}</td>
+        <td>${m1}</td>
+        <td>${m2}</td>
+        <td>${m3}</td>
+      `;
+      table.appendChild(tr);
     });
-
-    function saveNotification(message) {
-        const existing = JSON.parse(localStorage.getItem('notifications')) || [];
-        existing.push(message);
-        localStorage.setItem('notifications', JSON.stringify(existing));
-    }
-
-    function displayNotification(message) {
-        const alert = document.createElement('div');
-        alert.className = 'alert alert-warning';
-        alert.textContent = message;
-        notificationList.prepend(alert);
-    }
-
-    sendBtn.addEventListener('click', () => {
-        if (currentMitigation) {
-            saveNotification(currentMitigation);
-            displayNotification(currentMitigation);
-            localStorage.setItem("notifications_sent", (parseInt(localStorage.getItem("notifications_sent") || "0") + 1).toString());
-            localStorage.removeItem('notifications');
-            if (badge) badge.style.display = "none";
-        }
-    });
-
-    const saved = JSON.parse(localStorage.getItem('notifications')) || [];
-    saved.forEach(displayNotification);
-}
+  }
+});
 </script>
+
+</body>
+</html>
+

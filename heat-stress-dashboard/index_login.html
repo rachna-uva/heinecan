@@ -16,6 +16,14 @@
         <label for="login-password" class="form-label">Password</label>
         <input type="password" class="form-control" id="login-password" required>
       </div>
+      <div class="mb-3">
+        <label for="login-shift" class="form-label">Select Shift</label>
+        <select class="form-select" id="login-shift" required>
+          <option value="">-- Choose a shift --</option>
+          <option value="day">Morning Shift (08:00–18:00)</option>
+          <option value="night">Night Shift (18:00–03:00)</option>
+        </select>
+      </div>
       <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
     <p class="text-center mt-3">Don't have an account? <a href="register.html">Register here</a></p>

@@ -13,8 +13,9 @@ function loadCSV() {
 
             // Sort by datetime and select first 7 entries
             dataRows.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
-            const forecastRows = dataRows.slice(0, 7);
-
+            const filteredRows = filterByShift(dataRows);
+            const forecastRows = filterByShift(dataRows);
+            
             const now = forecastRows[0];
             document.getElementById("temperature").innerText = `${now.temp} °C`;
             document.getElementById("humidity").innerText = `${now.humidity} %`;
@@ -86,19 +87,11 @@ function loadCSV() {
             tooltip.style.display = (tooltip.style.display === "none") ? "block" : "none";
             });
 
-            // Mitigations
-            const mitigationMap = {
-                "1": "No specific measures needed. Normal conditions.",
-                "2": "Drink water regularly. Wear light clothing.",
-                "3": "Limit direct sun exposure. Seek shade when possible.",
-                "4": "Reduce outdoor activity. Stay hydrated and rest frequently.",
-                "5": "Avoid outdoor activity. Use cooling shelters if available."
-            };
+            const tableBody = document.getElementById("mitigation-table");
+            if (tableBody) {
+              tableBody.innerHTML = `<tr><td>Forecasted</td><td>${mitigationMessage}</td></tr>`;
+            }
 
-            const mitigationMessage = mitigationMap[utciGroup] || "No data available";
-
-            document.getElementById("mitigation-table").innerHTML =
-                `<tr><td>Forecasted</td><td>${mitigationMessage}</td></tr>`;
 
             const chartlabels = forecastRows.map(r => {
                 const [date, time] = r.datetime.split(" ");
@@ -196,3 +189,122 @@ function loadCSV() {
         })
         .catch(error => console.error("Error loading CSV:", error));
 }
+function initNotifications() {
+  Papa.parse("monterrey_utci_with_measures.csv", {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+      const data = results.data;
+      const table = document.getElementById('measures-table')?.getElementsByTagName('tbody')[0];
+      const list = document.getElementById('notification-list');
+      if (!table || !list) return;
+
+      const now = new Date();
+
+      // Filter to show only next 7 hours
+      //const filtered = filterByShift(data);
+      const filtered = filterByShift(data); // 
+
+
+      // Load existing from localStorage
+      const saved = JSON.parse(localStorage.getItem('notifications')) || [];
+
+      // Display a notification
+      function displayNotification(message) {
+        const div = document.createElement('div');
+        div.className = "alert alert-warning mt-2";
+        div.innerText = message;
+        div.dataset.key = message;
+        list.prepend(div);
+      }
+
+      // Remove a notification from UI and storage
+      function removeNotification(message) {
+        const alerts = [...list.querySelectorAll('.alert')];
+        alerts.forEach(alert => {
+          if (alert.dataset.key === message) {
+            alert.remove();
+          }
+        });
+        const updated = saved.filter(msg => msg !== message);
+        localStorage.setItem('notifications', JSON.stringify(updated));
+      }
+
+      // Restore saved
+      saved.forEach(displayNotification);
+
+      function toggleNotification(message, button) {
+        const current = JSON.parse(localStorage.getItem('notifications')) || [];
+        const isSent = current.includes(message);
+
+        if (isSent) {
+          removeNotification(message);
+          button.classList.remove("btn-success");
+          button.classList.add("btn-primary");
+          button.innerText = message.split('] ')[1];
+        } else {
+          current.push(message);
+          localStorage.setItem('notifications', JSON.stringify(current));
+          displayNotification(message);
+          button.classList.remove("btn-primary");
+          button.classList.add("btn-success");
+          button.innerText = "✔ " + message.split('] ')[1];
+        }
+      }
+
+      upcoming.forEach(row => {
+        const datetime = row['datetime'] || '';
+        const time = datetime ? new Date(datetime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+        const m1 = row['Measure 1'] || '';
+        const m2 = row['Measure 2'] || '';
+        const m3 = row['Measure 3'] || '';
+
+        function makeButton(text) {
+          const btn = document.createElement('button');
+          btn.className = "btn btn-sm btn-primary";
+          btn.textContent = text;
+          const message = `[${time}] ${text}`;
+          if (saved.includes(message)) {
+            btn.classList.replace("btn-primary", "btn-success");
+            btn.textContent = "✔ " + text;
+          }
+          btn.onclick = () => toggleNotification(message, btn);
+          return btn;
+        }
+
+        const tr = document.createElement('tr');
+        const tdTime = document.createElement('td');
+        tdTime.textContent = time;
+
+        const td1 = document.createElement('td');
+        const td2 = document.createElement('td');
+        const td3 = document.createElement('td');
+
+        if (m1) td1.appendChild(makeButton(m1));
+        if (m2) td2.appendChild(makeButton(m2));
+        if (m3) td3.appendChild(makeButton(m3));
+
+        tr.appendChild(tdTime);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        table.appendChild(tr);
+      });
+    }
+  });
+}
+function filterByShift(dataRows) {
+  const shift = localStorage.getItem("selectedShift");
+  if (!shift) return dataRows;
+  return dataRows.filter(row => {
+    const hour = new Date(row.datetime).getHours();
+    if (shift === "day") {
+      return hour >= 8 && hour < 18;
+    } else if (shift === "night") {
+      return hour >= 18 || hour < 4;
+    }
+    return false;
+  });
+}
+
