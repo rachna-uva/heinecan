@@ -196,3 +196,113 @@ function loadCSV() {
         })
         .catch(error => console.error("Error loading CSV:", error));
 }
+function initNotifications() {
+  Papa.parse("monterrey_utci_with_measures.csv", {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+      const data = results.data;
+      const table = document.getElementById('measures-table')?.getElementsByTagName('tbody')[0];
+      const list = document.getElementById('notification-list');
+      if (!table || !list) return;
+
+      const now = new Date();
+
+      // Filter to show only next 7 hours
+      const upcoming = data
+        .filter(row => {
+          const rowTime = new Date(row['datetime']);
+          return rowTime >= now && rowTime <= new Date(now.getTime() + 7 * 60 * 60 * 1000);
+        })
+        .slice(0, 7);
+
+      // Load existing from localStorage
+      const saved = JSON.parse(localStorage.getItem('notifications')) || [];
+
+      // Display a notification
+      function displayNotification(message) {
+        const div = document.createElement('div');
+        div.className = "alert alert-warning mt-2";
+        div.innerText = message;
+        div.dataset.key = message;
+        list.prepend(div);
+      }
+
+      // Remove a notification from UI and storage
+      function removeNotification(message) {
+        const alerts = [...list.querySelectorAll('.alert')];
+        alerts.forEach(alert => {
+          if (alert.dataset.key === message) {
+            alert.remove();
+          }
+        });
+        const updated = saved.filter(msg => msg !== message);
+        localStorage.setItem('notifications', JSON.stringify(updated));
+      }
+
+      // Restore saved
+      saved.forEach(displayNotification);
+
+      function toggleNotification(message, button) {
+        const current = JSON.parse(localStorage.getItem('notifications')) || [];
+        const isSent = current.includes(message);
+
+        if (isSent) {
+          removeNotification(message);
+          button.classList.remove("btn-success");
+          button.classList.add("btn-primary");
+          button.innerText = message.split('] ')[1];
+        } else {
+          current.push(message);
+          localStorage.setItem('notifications', JSON.stringify(current));
+          displayNotification(message);
+          button.classList.remove("btn-primary");
+          button.classList.add("btn-success");
+          button.innerText = "✔ " + message.split('] ')[1];
+        }
+      }
+
+      upcoming.forEach(row => {
+        const datetime = row['datetime'] || '';
+        const time = datetime ? new Date(datetime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+        const m1 = row['Measure 1'] || '';
+        const m2 = row['Measure 2'] || '';
+        const m3 = row['Measure 3'] || '';
+
+        function makeButton(text) {
+          const btn = document.createElement('button');
+          btn.className = "btn btn-sm btn-primary";
+          btn.textContent = text;
+          const message = `[${time}] ${text}`;
+          if (saved.includes(message)) {
+            btn.classList.replace("btn-primary", "btn-success");
+            btn.textContent = "✔ " + text;
+          }
+          btn.onclick = () => toggleNotification(message, btn);
+          return btn;
+        }
+
+        const tr = document.createElement('tr');
+        const tdTime = document.createElement('td');
+        tdTime.textContent = time;
+
+        const td1 = document.createElement('td');
+        const td2 = document.createElement('td');
+        const td3 = document.createElement('td');
+
+        if (m1) td1.appendChild(makeButton(m1));
+        if (m2) td2.appendChild(makeButton(m2));
+        if (m3) td3.appendChild(makeButton(m3));
+
+        tr.appendChild(tdTime);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        table.appendChild(tr);
+      });
+    }
+  });
+}
+
+

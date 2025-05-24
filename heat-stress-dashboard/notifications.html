@@ -13,38 +13,49 @@
   <thead>
     <tr>
       <th>Time</th>
-      <th>UTCI</th>
-      <th>UTCI Group</th>
-      <th>Shift</th>
+      <th>Measure 1</th>
+      <th>Measure 2</th>
+      <th>Measure 3</th>
     </tr>
   </thead>
   <tbody>
     <!-- Data rows will go here -->
   </tbody>
 </table>
-
+<h3>Sent Notifications</h3>
+<div id="notification-list"></div>
 <script>
 // Load CSV and populate table
-Papa.parse("monterrey_utci_results.csv", {
+Papa.parse("monterrey_utci_with_measures.csv", {
   download: true,
   header: true,
+  skipEmptyLines: true,
   complete: function(results) {
     const data = results.data;
     const table = document.getElementById('measures-table').getElementsByTagName('tbody')[0];
 
-    // Loop through each row and add to table
     data.forEach(row => {
-      const time = new Date(row['datetime']).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      const utci = row['utci'];
-      const group = row['utciGroup'];
-      const shift = row['Shift'] === "1" ? "Day" : "Night";
+      // Safely access column values and make sure to match actual header names from CSV
+      const datetime = row['datetime'] || '';
+      const utci = row['utci'] || '';
+      const score = row['heat_risk_score'] || '';
+      const shift = row['shift'] === "1" ? "Day" : "Night";
+      const m1 = row['Measure 1'] || '';
+      const m2 = row['Measure 2'] || '';
+      const m3 = row['Measure 3'] || '';
+
+      // Convert time format
+      const time = datetime ? new Date(datetime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
 
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${time}</td>
         <td>${utci}</td>
-        <td>${group}</td>
+        <td>${score}</td>
         <td>${shift}</td>
+        <td>${m1}</td>
+        <td>${m2}</td>
+        <td>${m3}</td>
       `;
       table.appendChild(tr);
     });
