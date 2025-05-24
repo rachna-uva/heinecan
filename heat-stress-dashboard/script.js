@@ -13,8 +13,9 @@ function loadCSV() {
 
             // Sort by datetime and select first 7 entries
             dataRows.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
-            const forecastRows = dataRows.slice(0, 7);
-
+            const filteredRows = filterByShift(dataRows);
+            const forecastRows = filterByShift(dataRows);
+            
             const now = forecastRows[0];
             document.getElementById("temperature").innerText = `${now.temp} °C`;
             document.getElementById("humidity").innerText = `${now.humidity} %`;
@@ -86,19 +87,11 @@ function loadCSV() {
             tooltip.style.display = (tooltip.style.display === "none") ? "block" : "none";
             });
 
-            // Mitigations
-            const mitigationMap = {
-                "1": "No specific measures needed. Normal conditions.",
-                "2": "Drink water regularly. Wear light clothing.",
-                "3": "Limit direct sun exposure. Seek shade when possible.",
-                "4": "Reduce outdoor activity. Stay hydrated and rest frequently.",
-                "5": "Avoid outdoor activity. Use cooling shelters if available."
-            };
+            const tableBody = document.getElementById("mitigation-table");
+            if (tableBody) {
+              tableBody.innerHTML = `<tr><td>Forecasted</td><td>${mitigationMessage}</td></tr>`;
+            }
 
-            const mitigationMessage = mitigationMap[utciGroup] || "No data available";
-
-            document.getElementById("mitigation-table").innerHTML =
-                `<tr><td>Forecasted</td><td>${mitigationMessage}</td></tr>`;
 
             const chartlabels = forecastRows.map(r => {
                 const [date, time] = r.datetime.split(" ");
@@ -210,12 +203,9 @@ function initNotifications() {
       const now = new Date();
 
       // Filter to show only next 7 hours
-      const upcoming = data
-        .filter(row => {
-          const rowTime = new Date(row['datetime']);
-          return rowTime >= now && rowTime <= new Date(now.getTime() + 7 * 60 * 60 * 1000);
-        })
-        .slice(0, 7);
+      //const filtered = filterByShift(data);
+      const filtered = filterByShift(data); // 
+
 
       // Load existing from localStorage
       const saved = JSON.parse(localStorage.getItem('notifications')) || [];
@@ -304,5 +294,17 @@ function initNotifications() {
     }
   });
 }
-
+function filterByShift(dataRows) {
+  const shift = localStorage.getItem("selectedShift");
+  if (!shift) return dataRows;
+  return dataRows.filter(row => {
+    const hour = new Date(row.datetime).getHours();
+    if (shift === "day") {
+      return hour >= 8 && hour < 18;
+    } else if (shift === "night") {
+      return hour >= 18 || hour < 4;
+    }
+    return false;
+  });
+}
 
