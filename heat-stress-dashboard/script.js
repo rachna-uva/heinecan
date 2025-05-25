@@ -253,7 +253,7 @@ function initNotifications() {
         }
       }
 
-      upcoming.forEach(row => {
+      filtered.forEach(row => {
         const datetime = row['datetime'] || '';
         const time = datetime ? new Date(datetime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
         const m1 = row['Measure 1'] || '';
