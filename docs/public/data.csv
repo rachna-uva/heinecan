@@ -1,0 +1,106 @@
+Temperature,Humidity,Wind Speed,UTCI,Heat Stress,Condition,Mitigation
+30,60,10,28,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+35,50,12,34,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+40,45,15,39,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+45,40,8,47,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+22,70,5,20,No Thermal Stress,Cool Breeze,No immediate precautions needed
+44,54,15,48.3,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+31,36,12,38.3,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+34,65,17,39.2,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+29,49,8,31.9,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+35,33,17,40.4,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+27,72,17,30.6,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+35,72,18,35.4,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+33,46,12,34.8,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+21,42,17,29.6,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+30,40,13,36.5,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+26,44,15,33,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+32,51,13,38.8,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+33,48,12,38.7,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+34,59,4,36.9,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+42,64,14,50.2,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+20,49,8,22.8,No Thermal Stress,Cool Breeze,No immediate precautions needed
+43,64,6,43.2,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+39,39,20,42.7,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+37,52,3,45.9,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+29,71,16,31,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+44,33,6,48.6,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+30,40,5,32.2,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+45,52,13,49.8,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+44,47,8,45.3,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+40,48,6,42.2,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+41,80,11,48.7,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+33,47,3,41,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+43,49,6,51.9,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+30,67,15,32.5,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+34,42,16,34.5,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+31,48,16,34.2,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+41,53,8,49.1,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+45,53,9,47.7,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+41,34,14,49.3,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+40,77,13,44.1,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+21,53,8,29,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+20,41,2,27.2,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+23,71,17,25.6,No Thermal Stress,Cool Breeze,No immediate precautions needed
+28,44,12,36.2,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+28,56,11,28.6,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+30,63,18,32.5,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+45,45,9,48.3,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+45,65,11,45.9,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+34,70,2,35.7,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+39,77,14,45.7,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+43,65,20,43.9,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+25,40,20,33.9,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+35,65,5,40.2,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+40,42,12,48,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+40,59,2,50,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+24,38,8,28.3,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+44,72,6,45.8,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+37,59,4,45.2,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+44,39,7,45.7,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+20,80,16,23.7,No Thermal Stress,Cool Breeze,No immediate precautions needed
+44,74,5,52.2,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+40,43,14,45.6,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+38,43,13,46.2,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+36,69,11,44.9,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+24,75,16,25.6,No Thermal Stress,Cool Breeze,No immediate precautions needed
+30,43,20,39.6,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+29,68,3,38.4,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+23,58,12,25.1,No Thermal Stress,Cool Breeze,No immediate precautions needed
+39,53,14,44,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+20,35,15,26.6,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+23,74,12,23.2,No Thermal Stress,Cool Breeze,No immediate precautions needed
+31,37,2,36.3,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+20,45,5,26.1,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+34,38,20,39.8,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+42,50,13,48.8,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+40,50,16,44.5,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+43,46,5,47.8,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+26,62,5,35.2,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+25,34,2,25.7,No Thermal Stress,Cool Breeze,No immediate precautions needed
+42,77,18,48,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+25,31,3,26.1,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+40,57,3,40.8,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+35,77,4,35.1,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+20,39,13,29.1,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+39,59,14,48.3,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+25,71,3,28.3,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+27,46,14,36.3,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+29,65,15,37.3,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+38,52,18,40.4,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+42,36,4,47.7,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+32,73,15,39.7,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+32,68,19,39.3,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+36,53,16,40.7,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+31,50,11,38.6,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+32,44,3,41.9,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
+29,46,2,36.8,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+21,75,15,26.6,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+25,55,20,28.1,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+22,54,8,22.2,No Thermal Stress,Cool Breeze,No immediate precautions needed
+23,74,14,23.5,No Thermal Stress,Cool Breeze,No immediate precautions needed
+27,61,7,29.2,Moderate Thermal Stress,Partly Cloudy,Stay hydrated and avoid direct sunlight
+29,41,4,37.4,Strong Thermal Stress,Sunny,Reduce outdoor activities during peak hours
+36,65,11,45,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+39,76,5,45.2,Extreme Thermal Stress,Heatwave,Limit outdoor exposure; emergency cooling centers
+33,69,16,38.6,Very Strong Thermal Stress,Hot and Humid,Seek shade; use cooling devices
