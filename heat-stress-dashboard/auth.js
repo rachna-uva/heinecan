@@ -1,15 +1,4 @@
-function register(event) {
-  event.preventDefault();
-  const username = document.getElementById("register-username").value;
-  const password = document.getElementById("register-password").value;
-  const country = document.getElementById("register-country").value;
-
-  const userData = { password: password, country: country };
-  localStorage.setItem("user_" + username, JSON.stringify(userData));
-
-  alert("Registration successful! Please log in.");
-  window.location.href = "index.html";
-}
+const API_BASE = "http://127.0.0.1:5000"; // Flask server URL
 
 function login(event) {
   event.preventDefault();
@@ -17,20 +6,53 @@ function login(event) {
   const password = document.getElementById("login-password").value;
   const shift = document.getElementById("login-shift").value;
 
-  const stored = localStorage.getItem("user_" + username);
-  if (stored) {
-    const userData = JSON.parse(stored);
-    if (userData.password === password) {
-      localStorage.setItem("loggedInUser", username);
-      localStorage.setItem("selectedCountry", userData.country);
-      localStorage.setItem("selectedShift", shift);
-      window.location.href = "index.html";
-      return;
-    }
-  }
-
-  alert("Invalid username or password");
+  fetch(`${API_BASE}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        localStorage.setItem("loggedInUser", username);
+        localStorage.setItem("selectedCountry", data.country);
+        localStorage.setItem("selectedShift", shift);
+        window.location.href = "index.html";
+      } else {
+        alert(data.message || "Login failed.");
+      }
+    })
+    .catch(err => alert("Server error during login."));
 }
+
+function register(event) {
+  event.preventDefault();
+  const username = document.getElementById("register-username").value;
+  const password = document.getElementById("register-password").value;
+  const country = document.getElementById("register-country").value;
+
+  fetch(`${API_BASE}/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password, country })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        // Clear any session data
+        localStorage.removeItem("loggedInUser");
+        localStorage.removeItem("selectedCountry");
+        localStorage.removeItem("selectedShift");
+
+        alert("Registration successful! Please log in.");
+        window.location.href = "index.html";
+      } else {
+        alert(data.message || "Registration failed.");
+      }
+    })
+    .catch(err => alert("Server error during registration."));
+}
+
 
 function logout() {
   localStorage.removeItem("loggedInUser");
@@ -46,4 +68,5 @@ function protectDashboard() {
     window.location.href = "index.html";
   }
 }
+
 
