@@ -4,26 +4,25 @@
 <script>
   protectDashboard();
 </script>
-<button class="btn btn-sm btn-outline-secondary float-end" onclick="logout()">Logout</button>
 
 <!-- Dashboard Cards -->
 <div class="row text-center">
   <div class="col-md-4">
-    <div id="utci-card" class="dashboard-card text-white">
-      <h5>Heat Risk</h5>
+    <div id="utci-card" class="dashboard-card text-white" style="width: 180px; height: 150px;">
+      <h5 id="utci-label">Heat Stress</h5>
       <h2 id="utci-group">--</h2>
     </div>
   </div>
 
   <div class="col-md-4">
-    <div id="temperature-card" class="dashboard-card bg-light text-dark">
+    <div id="temperature-card" class="dashboard-card bg-light text-dark" style="width: 180px; height: 150px;">
       <h5>Temperature</h5>
       <h2 id="temperature">--</h2>
     </div>
   </div>
 
   <div class="col-md-4">
-    <div id="humidity-card" class="dashboard-card bg-light text-dark">
+    <div id="humidity-card" class="dashboard-card bg-light text-dark" style="width: 180px; height: 150px;">
       <h5>Humidity</h5>
       <h2 id="humidity">--</h2>
     </div>

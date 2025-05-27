@@ -11,15 +11,14 @@ function loadCSV() {
                 return rowData;
             });
 
-            // Sort by datetime and select first 7 entries
+            // Sort by datetime and shift
             dataRows.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
             const filteredRows = filterByShift(dataRows);
             const forecastRows = filterByShift(dataRows);
             
             const now = forecastRows[0];
-            document.getElementById("temperature").innerText = `${now.temp} °C`;
+            document.getElementById("temperature").innerText  = `${Math.round(now.temp)} °C`;
             document.getElementById("humidity").innerText = `${now.humidity} %`;
-
             const utciValue = parseFloat(now.utci);
             let utciGroup = "";
             if (utciValue <= 26) utciGroup = "1";
@@ -28,7 +27,21 @@ function loadCSV() {
             else if (utciValue <= 46) utciGroup = "4";
             else utciGroup = "5";
 
+            // Show both number and name
+            const riskLabels = {
+              1: "No Risk",
+              2: "Moderate Risk",
+              3: "Strong Risk",
+              4: "Very Strong Risk",
+              5: "Extreme Risk"
+            };
+            const riskLabel = riskLabels[utciGroup] || "--";
+
+            // Set label and number separately
+            document.getElementById("utci-label").innerText = riskLabel;
             document.getElementById("utci-group").innerText = utciGroup;
+
+
 
             const utciCard = document.getElementById("utci-card");
             utciCard.className = "dashboard-card text-white";
@@ -117,7 +130,7 @@ function loadCSV() {
                 data: {
                     labels: chartlabels,
                     datasets: [{
-                        label: 'Heat Stress Group',
+                        label: 'Heat Stress Risk',
                         data: utciGroups,
                         borderColor: 'rgba(255, 99, 132, 1)',
                         tension: 0.3,
@@ -132,7 +145,7 @@ function loadCSV() {
                             min: 1,
                             max: 5,
                             ticks: { stepSize: 1 },
-                            title: { display: true, text: 'Heat Stress Group' }
+                            title: { display: true, text: 'Heat Stress Risk' }
                         },
                         x: {
                             title: { display: true, text: 'Forecast Hour' }
@@ -297,14 +310,43 @@ function initNotifications() {
 function filterByShift(dataRows) {
   const shift = localStorage.getItem("selectedShift");
   if (!shift) return dataRows;
-  return dataRows.filter(row => {
-    const hour = new Date(row.datetime).getHours();
-    if (shift === "day") {
-      return hour >= 8 && hour < 18;
-    } else if (shift === "night") {
-      return hour >= 18 || hour < 4;
-    }
-    return false;
-  });
+
+  const parsedRows = dataRows.map(row => ({
+    ...row,
+    dt: new Date(row.datetime),
+    hour: new Date(row.datetime).getHours(),
+    date: row.datetime.split(" ")[0]
+  }));
+
+  if (shift === "day") {
+    // Filter only 08:00–17:59
+    const dayRows = parsedRows.filter(r => r.hour >= 8 && r.hour <= 18);
+    const latestDate = [...new Set(dayRows.map(r => r.date))].sort().pop();
+    return dayRows.filter(r => r.date === latestDate);
+  }
+
+  if (shift === "night") {
+    // Get all rows with hour >= 18 or < 3
+    const nightRows = parsedRows.filter(r => r.hour >= 18 || r.hour <= 3);
+
+    // Find latest base date with at least one entry >= 18
+    const baseDates = [...new Set(
+      nightRows
+        .filter(r => r.hour >= 18)
+        .map(r => r.date)
+    )].sort();
+    const baseDate = baseDates[0];
+    // Include from baseDate: 18–23, and nextDate: 00–02
+    const nextDate = new Date(baseDate);
+    nextDate.setDate(nextDate.getDate() + 1);
+    const nextDateStr = nextDate.toISOString().split("T")[0];
+
+    return nightRows.filter(r =>
+      (r.date === baseDate && r.hour >= 18) ||
+      (r.date === nextDateStr && r.hour <= 3)
+    );
+  }
+
+  return [];
 }
 
