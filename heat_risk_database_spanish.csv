@@ -1,0 +1,6 @@
+﻿Heat_Risk_Score,Medida 1,Medida 2,Medida 3,Medida 4
+1,No se requieren medidas,,,
+2,Beba al menos 1 vaso de agua durante esta hora,,,
+3,Beba al menos 1 vaso de agua durante esta hora,Use la sombra,Reduzca la actividad física durante esta hora,
+4,Beba al menos 2 vasos de agua durante esta hora,Use la sombra,Reduzca la actividad física durante esta hora,
+5,Refresque su cuerpo con una ducha,Beba al menos 2 vasos de agua durante esta hora,No physical activity,
