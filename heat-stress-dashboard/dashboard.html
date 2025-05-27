@@ -1,0 +1,53 @@
+<h1 class="mb-4">Health and Safety Dashboard</h1>
+
+<script src="auth.js"></script>
+<script>
+  protectDashboard();
+</script>
+
+<!-- Dashboard Cards -->
+<div class="row text-center">
+  <div class="col-md-4">
+    <div id="utci-card" class="dashboard-card text-white" style="width: 180px; height: 150px;">
+      <h5 id="utci-label">Heat Stress</h5>
+      <h2 id="utci-group">--</h2>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div id="temperature-card" class="dashboard-card bg-light text-dark" style="width: 180px; height: 150px;">
+      <h5>Temperature</h5>
+      <h2 id="temperature">--</h2>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div id="humidity-card" class="dashboard-card bg-light text-dark" style="width: 180px; height: 150px;">
+      <h5>Humidity</h5>
+      <h2 id="humidity">--</h2>
+    </div>
+  </div>
+</div>
+
+
+<!-- UTCI Chart -->
+<!--<div class="card p-3">
+    <h4 class="mb-3">Heat Risk Trend</h4>
+    <canvas id="utciChart"></canvas>
+</div>--> 
+<!-- Chart Toggle -->
+  <div class="mt-3">
+    <button id="toggle-chart" class="btn btn-outline-secondary btn-sm">Switch Graph</button>
+  </div>
+
+  
+  <!-- UTCI Chart -->
+  <div id="utci-chart-container">
+    <canvas id="utciChart"></canvas>
+  </div>
+  
+  <!-- Temperature & Humidity Chart (hidden initially) -->
+  <div id="temp-humid-chart-container" style="display: none;">
+    <canvas id="tempHumidityChart"></canvas>
+  </div>
+
