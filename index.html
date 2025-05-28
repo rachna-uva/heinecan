@@ -20,20 +20,20 @@
     <h2 class="text-center p-3">Health and Safety Dashboard</h2>
     <ul class="list-unstyled px-3">
       <li>
-        <a href="#" class="text-white" data-page="dashboard">
+        <a href="#" class="text-white" data-page="dashboard" data-i18n="dashboard">
           <i class="fas fa-thermometer-half"></i> Dashboard
         </a>
       </li>
       <li>
-        <a href="#" class="text-white d-flex align-items-center justify-content-between" data-page="notifications">
+        <a href="#" class="text-white d-flex align-items-center justify-content-between" data-page="notifications" data-i18n="notifications">
           <span><i class="fas fa-cloud-sun"></i> Notifications</span>
           <span id="notif-badge" class="badge bg-danger ms-2" style="display: none;">●</span>
         </a>
       </li>
         <li class="text-center my-3 list-unstyled">
       <div id="shift-toggle" class="btn-group rounded-pill" role="group">
-        <button type="button" class="btn btn-sm" id="dayShiftBtn">Day Shift</button>
-        <button type="button" class="btn btn-sm" id="nightShiftBtn">Night Shift</button>
+        <button type="button" class="btn btn-sm" id="dayShiftBtn" data-i18n="dayShift">Day Shift</button>
+        <button type="button" class="btn btn-sm" id="nightShiftBtn" data-i18n="nightShift">Night Shift</button>
       </div>
       </li>
       <li class="text-center my-3 list-unstyled">
@@ -67,7 +67,7 @@
         document.getElementById("dynamic-content").innerHTML = html;
 
         // Load specific JS logic for the loaded partial
-        if (page === "dashboard" && typeof loadCSV === 'function') loadCSV();
+        if (page === "dashboard" && typeof loadCSV === 'function'){ loadCSV();attachToggleChartListener();};
         if (page === "notifications" && typeof initNotifications === 'function') initNotifications();
         if (page === "rewards" && typeof initRewards === 'function') initRewards();
       });
