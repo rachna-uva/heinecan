@@ -441,7 +441,7 @@ function loadPage(page) {
       // Wait for DOM to be updated before applying translations
       setTimeout(() => {
         const currentLang = localStorage.getItem("selectedLanguage") || "en";
-        applyTranslations(currentLang); // ✅ Apply translations to newly loaded content
+        applyTranslations(currentLang); // Apply translations to newly loaded content
 
         if (page === "dashboard" && typeof loadCSV === 'function') {
           loadCSV();
