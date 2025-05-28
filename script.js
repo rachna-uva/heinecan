@@ -16,7 +16,10 @@ const translations = {
     time: "Time",
     measure1: "Measure 1",
     measure2: "Measure 2",
-    measure3: "Measure 3"
+    measure3: "Measure 3",
+    heatStressGraph: "Heat Stress Risk",
+    temperatureGraph: "Temperature (°C)",
+    humidityGraph: "Humidity (%)"
   },
   es: {
     title: "Panel de Salud y Seguridad",
@@ -33,8 +36,20 @@ const translations = {
     time: "Hora",
     measure1: "Medida 1",
     measure2: "Medida 2",
-    measure3: "Medida 3"
+    measure3: "Medida 3",
+    heatStressGraph: "Riesgo de Estrés por Calor",
+    temperatureGraph: "Temperatura (°C)",
+    humidityGraph: "Humedad (%)"
   }
+};
+const measureTranslations = {
+  "No measures required": "No se requieren medidas",
+  "Drink at least 1 glass of water during this hour": "Beber al menos 1 vaso de agua durante esta hora",
+  "Drink at least 2 glasses of water during this hour": "Beber al menos 2 vasos de agua durante esta hora",
+  "Make use of shade": "Hacer uso de la sombra",
+  "Reduce physical activity during this hour": "Reducir la actividad física durante esta hora",
+  "No physical activity": "Sin actividad física",
+  "Cool your body with a shower": "Enfría tu cuerpo con una ducha"
 };
 
 function applyTranslations(lang) {
@@ -113,7 +128,6 @@ function filterByShift(dataRows) {
 }
 
 
-
 function loadCSV() {
   const file = `${getSelectedCity()}_utci_with_measures.csv`;
 
@@ -126,7 +140,11 @@ function loadCSV() {
         if (document.getElementById("temperature")) {
           updateCards(filteredData);
           drawCharts(filteredData);
-          attachToggleChartListener()
+
+          // Wait until button exists before attaching listener
+          setTimeout(() => {
+            attachToggleChartListener();
+          }, 10);
         }
       } catch (error) {
         console.error("Error loading CSV:", error);
@@ -135,7 +153,11 @@ function loadCSV() {
   });
 }
 
+
+
 function updateCards(data) {
+  console.log("updateCards called with language:", localStorage.getItem("selectedLanguage"));
+
   if (!data.length) return;
   const latest = data[0];
   const temperature = Math.round(parseFloat(latest.temp));
@@ -145,10 +167,25 @@ function updateCards(data) {
   document.getElementById("humidity").textContent = isNaN(humidity) ? "--" : `${humidity} %`;
 
   const riskNum = parseInt(latest.heat_risk_score);
+  const lang = localStorage.getItem("selectedLanguage") || "en";
+  const label = getHeatStressLabel(riskNum);
+
+  const localizedLabel = lang === "en"
+    ? `${label} Risk`
+    : {
+        "None": "Sin Riesgo",
+        "Moderate": "Riesgo Moderado",
+        "Strong": "Riesgo Fuerte",
+        "Very Strong": "Riesgo Muy Fuerte",
+        "Extreme": "Riesgo Extremo",
+        "-": "-"
+      }[label] || "-";
+
   document.getElementById("utci-group").textContent = riskNum;
-  document.getElementById("utci-label").textContent = `${getHeatStressLabel(riskNum)} Risk`;
+  document.getElementById("utci-label").textContent = localizedLabel;
   document.getElementById("utci-card").style.backgroundColor = getRiskColor(riskNum);
 }
+
 
 function getHeatStressLabel(score) {
   return ["-", "None", "Moderate", "Strong", "Very Strong", "Extreme"][score] || "-";
@@ -159,6 +196,9 @@ function getRiskColor(score) {
 }
 
 function drawCharts(data) {
+  const lang = localStorage.getItem("selectedLanguage") || "en";
+  const t = translations[lang];
+
   const grouped = {};
   data.forEach(d => {
     const dt = new Date(d.datetime);
@@ -167,8 +207,16 @@ function drawCharts(data) {
     grouped[hourKey].push(parseFloat(d.heat_risk_score));
   });
 
-  const labels = Object.keys(grouped).map(k => new Date(k + ":00:00Z").toLocaleTimeString("en-GB", { hour: '2-digit', minute: '2-digit', hour12: false }));
-  const utciValues = Object.values(grouped).map(scores => scores.reduce((a, b) => a + b, 0) / scores.length);
+  const labels = Object.keys(grouped).map(k =>
+    new Date(k + ":00:00Z").toLocaleTimeString("en-GB", {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    })
+  );
+  const utciValues = Object.values(grouped).map(scores =>
+    scores.reduce((a, b) => a + b, 0) / scores.length
+  );
 
   const temps = data.map(d => parseFloat(d.temp) || null);
   const humidities = data.map(d => parseFloat(d.humidity) || null);
@@ -178,8 +226,37 @@ function drawCharts(data) {
 
   utciChart = new Chart(document.getElementById("utciChart").getContext("2d"), {
     type: "line",
-    data: { labels, datasets: [{ label: "Heat Stress Risk", data: utciValues, borderColor: "#e83e8c", backgroundColor: "rgba(232, 62, 140, 0.2)", fill: false, tension: 0.3, pointRadius: 5, pointHoverRadius: 7 }] },
-    options: { elements: { point: { radius: 5, hitRadius: 10, hoverRadius: 7 } }, scales: { y: { beginAtZero: true, min: 1, max: 5 }, x: { ticks: { maxRotation: 60, minRotation: 60 } } } }
+    data: {
+      labels,
+      datasets: [{
+        label: t.heatStressGraph,
+        data: utciValues,
+        borderColor: "#e83e8c",
+        backgroundColor: "rgba(232, 62, 140, 0.2)",
+        fill: false,
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7
+      }]
+    },
+    options: {
+      elements: {
+        point: { radius: 5, hitRadius: 10, hoverRadius: 7 }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          min: 1,
+          max: 5
+        },
+        x: {
+          ticks: {
+            maxRotation: 60,
+            minRotation: 60
+          }
+        }
+      }
+    }
   });
 
   tempHumidityChart = new Chart(document.getElementById("tempHumidityChart").getContext("2d"), {
@@ -187,16 +264,41 @@ function drawCharts(data) {
     data: {
       labels,
       datasets: [
-        { label: "Temperature (°C)", data: temps, borderColor: "#007bff", fill: false, yAxisID: "y1" },
-        { label: "Humidity (%)", data: humidities, borderColor: "#28a745", fill: false, yAxisID: "y2" }
+        {
+          label: t.temperatureGraph,
+          data: temps,
+          borderColor: "#007bff",
+          fill: false,
+          yAxisID: "y1"
+        },
+        {
+          label: t.humidityGraph,
+          data: humidities,
+          borderColor: "#28a745",
+          fill: false,
+          yAxisID: "y2"
+        }
       ]
     },
     options: {
       elements: { point: { radius: 4 } },
       scales: {
-        y1: { type: "linear", position: "left", beginAtZero: true },
-        y2: { type: "linear", position: "right", beginAtZero: true },
-        x: { ticks: { maxRotation: 60, minRotation: 60 } }
+        y1: {
+          type: "linear",
+          position: "left",
+          beginAtZero: true
+        },
+        y2: {
+          type: "linear",
+          position: "right",
+          beginAtZero: true
+        },
+        x: {
+          ticks: {
+            maxRotation: 60,
+            minRotation: 60
+          }
+        }
       }
     }
   });
@@ -204,19 +306,23 @@ function drawCharts(data) {
 
 function attachToggleChartListener() {
   const toggleButton = document.getElementById("toggle-chart");
-  console.log("Attaching toggle listener", toggleButton);
-  if (toggleButton) {
-    toggleButton.addEventListener("click", () => {
-      const utciChartContainer = document.getElementById("utci-chart-container");
-      const tempChartContainer = document.getElementById("temp-humid-chart-container");
-      if (!utciChartContainer || !tempChartContainer) return;
+  if (!toggleButton) return;
 
-      const isUTCIVisible = utciChartContainer.style.display !== "none";
-      utciChartContainer.style.display = isUTCIVisible ? "none" : "block";
-      tempChartContainer.style.display = isUTCIVisible ? "block" : "none";
-    });
-  }
+  if (toggleButton.dataset.listenerAttached) return;
+
+  toggleButton.addEventListener("click", () => {
+    const utciChartContainer = document.getElementById("utci-chart-container");
+    const tempChartContainer = document.getElementById("temp-humid-chart-container");
+    if (!utciChartContainer || !tempChartContainer) return;
+
+    const isUTCIVisible = utciChartContainer.style.display !== "none";
+    utciChartContainer.style.display = isUTCIVisible ? "none" : "block";
+    tempChartContainer.style.display = isUTCIVisible ? "block" : "none";
+  });
+
+  toggleButton.dataset.listenerAttached = "true"; 
 }
+
 
 function initNotifications() {
   const file = `${getSelectedCity()}_utci_with_measures.csv`;
@@ -288,7 +394,11 @@ function initNotifications() {
         const rowTime = new Date(row.datetime);
         const time = rowTime.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
 
-        const measures = [row['Measure 1'], row['Measure 2'], row['Measure 3']];
+        const lang = localStorage.getItem("selectedLanguage") || "en";
+        const measures = [row['Measure 1'], row['Measure 2'], row['Measure 3']].map(m => {
+          if (!m) return "";
+          return lang === "es" ? (measureTranslations[m] || m) : m;
+        });
         const tr = document.createElement('tr');
 
         const tdTime = document.createElement('td');
@@ -322,24 +432,28 @@ function initNotifications() {
 
 // Load initial page
 function loadPage(page) {
-  applyTranslations(localStorage.getItem("selectedLanguage") || "en");
   fetch(`${page}.html`)
     .then(res => res.text())
     .then(html => {
       const container = document.getElementById("dynamic-content");
       container.innerHTML = html;
 
-      // Delay slightly to ensure DOM has been updated
+      // Wait for DOM to be updated before applying translations
       setTimeout(() => {
-        if (page === "dashboard") {
+        const currentLang = localStorage.getItem("selectedLanguage") || "en";
+        applyTranslations(currentLang); // ✅ Apply translations to newly loaded content
+
+        if (page === "dashboard" && typeof loadCSV === 'function') {
           loadCSV();
-          attachToggleChartListener();
-        } else if (page === "notifications") {
+        } else if (page === "notifications" && typeof initNotifications === 'function') {
           initNotifications();
+        } else if (page === "rewards" && typeof initRewards === 'function') {
+          initRewards();
         }
-      }, 10); // small delay to let browser update the DOM
+      }, 10); // Delay ensures DOM is fully rendered
     });
 }
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -405,5 +519,9 @@ langTabs.forEach(tab => {
 
     langTabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
+
+    const currentPage = document.querySelector('#sidebar a.active')?.getAttribute('data-page') || "dashboard";
+    if (currentPage === "dashboard") loadCSV();
   });
 });
+

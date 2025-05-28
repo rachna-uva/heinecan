@@ -17,7 +17,7 @@
 <div class="d-flex" id="wrapper">
   <!-- Sidebar -->
   <div class="bg-dark-grey text-white position-relative" id="sidebar">
-    <h2 class="text-center p-3">Health and Safety Dashboard</h2>
+    <h2 class="text-center p-3" data-i18n="title">Health and Safety Dashboard</h2>
     <ul class="list-unstyled px-3">
       <li>
         <a href="#" class="text-white" data-page="dashboard" data-i18n="dashboard">
@@ -64,40 +64,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <script src="script.js"></script>
-
-<script>
-  function loadPage(page) {
-    fetch(`${page}.html`)
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("dynamic-content").innerHTML = html;
-
-        // Load specific JS logic for the loaded partial
-        if (page === "dashboard" && typeof loadCSV === 'function'){ loadCSV();attachToggleChartListener();};
-        if (page === "notifications" && typeof initNotifications === 'function') initNotifications();
-        if (page === "rewards" && typeof initRewards === 'function') initRewards();
-      });
-  }
-
-  document.querySelectorAll('#sidebar a[data-page]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const page = link.getAttribute('data-page');
-      loadPage(page);
-    });
-  });
-
-  window.addEventListener('DOMContentLoaded', () => {
-    const badge = document.getElementById('notif-badge');
-    const saved = JSON.parse(localStorage.getItem('notifications')) || [];
-    if (saved.length > 0 && badge) {
-      badge.style.display = 'inline-block';
-    }
-
-    // Load default view
-    loadPage("dashboard");
-  });
-</script>
 
 </body>
 </html>
