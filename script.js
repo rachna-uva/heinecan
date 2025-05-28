@@ -1,54 +1,55 @@
 let utciChart, tempHumidityChart;
-let showingUTCIGraph = true;
 
 function filterByShift(dataRows) {
   const shift = localStorage.getItem("selectedShift");
   if (!shift) return dataRows;
 
-  const parsedRows = dataRows.map(row => ({
-    ...row,
-    dt: new Date(row.datetime),
-    hour: new Date(row.datetime).getHours(),
-    date: row.datetime.split(" ")[0]
-  }));
+  const parsedRows = dataRows.map(row => {
+    const dt = new Date(row.datetime);
+    return {
+      ...row,
+      dt,
+      hour: dt.getHours(),
+      date: row.datetime.split(" ")[0]
+    };
+  });
 
-  if (shift === "day") {
-    // Filter only 08:00–17:59
-    const dayRows = parsedRows.filter(r => r.hour >= 8 && r.hour < 18);
-    const latestDate = [...new Set(dayRows.map(r => r.date))].sort().pop();
-    return dayRows.filter(r => r.date === latestDate);
+  const groupedByDate = {};
+  for (const row of parsedRows) {
+    if (!groupedByDate[row.date]) groupedByDate[row.date] = [];
+    groupedByDate[row.date].push(row);
   }
 
-  if (shift === "night") {
-    // Get all rows with hour >= 18 or < 3
-    const nightRows = parsedRows.filter(r => r.hour >= 18 || r.hour <= 3);
+  const validDates = Object.entries(groupedByDate).filter(([date, rows]) => {
+    const hours = rows.map(r => r.hour);
+    if (shift === "day") {
+      const required = [...Array(10).keys()].map(h => h + 8); // 08–17
+      return required.every(hr => hours.includes(hr));
+    }
+    if (shift === "night") {
+      const required = [18, 19, 20, 21, 22, 23, 0, 1, 2]; // 18–02
+      return required.every(hr => hours.includes(hr));
+    }
+    return false;
+  });
 
-    // Find latest base date with at least one entry >= 18
-    const baseDates = [...new Set(
-      nightRows
-        .filter(r => r.hour >= 18)
-        .map(r => r.date)
-    )].sort();
-    const baseDate = baseDates[0];
+  if (validDates.length === 0) return [];
 
-    // Include from baseDate: 18–23, and nextDate: 00–02
-    const nextDate = new Date(baseDate);
-    nextDate.setDate(nextDate.getDate() + 1);
-    const nextDateStr = nextDate.toISOString().split("T")[0];
+  const latestValidDate = validDates.map(([d]) => d).sort().pop();
 
-    return nightRows.filter(r =>
-      (r.date === baseDate && r.hour >= 18) ||
-      (r.date === nextDateStr && r.hour <= 3)
-    );
-  }
-
-  return [];
+  return parsedRows.filter(r => {
+    if (r.date !== latestValidDate) return false;
+    if (shift === "day") return r.hour >= 8 && r.hour < 18;
+    if (shift === "night") return r.hour >= 18 || r.hour <= 2;
+    return true;
+  });
 }
 
-
-
 function loadCSV() {
-  Papa.parse("monterrey_utci_with_measures.csv", {
+  const city = localStorage.getItem("selectedCity") || "monterrey";
+  const file = `${city}_utci_with_measures.csv`;
+
+  Papa.parse(file, {
     header: true,
     download: true,
     complete: function (results) {
@@ -57,18 +58,14 @@ function loadCSV() {
         const selectedShift = localStorage.getItem("selectedShift") || "day";
         const filteredData = filterByShift(data, selectedShift);
 
-        updateCards(filteredData);
-        drawCharts(filteredData);
+        if (document.getElementById("temperature")) {
+          updateCards(filteredData);
+          drawCharts(filteredData);
+        }
       } catch (error) {
         console.error("Error loading CSV:", error);
       }
     }
-  });
-  document.getElementById("toggle-chart").addEventListener("click", function () {
-  showingUTCIGraph = !showingUTCIGraph;
-
-  document.getElementById("utci-chart-container").style.display = showingUTCIGraph ? "block" : "none";
-  document.getElementById("temp-humid-chart-container").style.display = showingUTCIGraph ? "none" : "block";
   });
 }
 
@@ -111,14 +108,25 @@ function getRiskColor(score) {
 }
 
 function drawCharts(data) {
-  const timeLabels = data.map(d => {
-    const date = new Date(d.datetime);
+  const grouped = {};
+  data.forEach(d => {
+    const dt = new Date(d.datetime);
+    const hourKey = dt.toISOString().slice(0, 13); // hour
+    if (!grouped[hourKey]) grouped[hourKey] = [];
+    grouped[hourKey].push(parseFloat(d.heat_risk_score));
+  });
+
+  const labels = Object.keys(grouped).map(k => {
+    const date = new Date(k + ":00:00Z");
     return date.toLocaleTimeString("en-GB", { hour: '2-digit', minute: '2-digit', hour12: false });
   });
 
-  const utciValues = data.map(d => +d.heat_risk_score);
-  const temps = data.map(d => +d.temp);
-  const humidities = data.map(d => +d.humidity);
+  const utciValues = Object.values(grouped).map(scores =>
+    scores.reduce((a, b) => a + b, 0) / scores.length
+  );
+
+  const temps = labels.map((label, i) => parseFloat(data[i]?.temp) || null);
+  const humidities = labels.map((label, i) => parseFloat(data[i]?.humidity) || null);
 
   if (utciChart) utciChart.destroy();
   if (tempHumidityChart) tempHumidityChart.destroy();
@@ -127,7 +135,7 @@ function drawCharts(data) {
   utciChart = new Chart(ctx1, {
     type: "line",
     data: {
-      labels: timeLabels,
+      labels: labels,
       datasets: [{
         label: "Heat Stress Risk",
         data: utciValues,
@@ -140,6 +148,9 @@ function drawCharts(data) {
       }]
     },
     options: {
+      elements: {
+        point: { radius: 5, hitRadius: 10, hoverRadius: 7 }
+      },
       scales: {
         y: { beginAtZero: true, min: 1, max: 5 },
         x: { ticks: { maxRotation: 60, minRotation: 60 } }
@@ -151,7 +162,7 @@ function drawCharts(data) {
   tempHumidityChart = new Chart(ctx2, {
     type: "line",
     data: {
-      labels: timeLabels,
+      labels: labels,
       datasets: [
         {
           label: "Temperature (°C)",
@@ -170,6 +181,9 @@ function drawCharts(data) {
       ]
     },
     options: {
+      elements: {
+        point: { radius: 4 }
+      },
       scales: {
         y1: { type: "linear", position: "left", beginAtZero: true },
         y2: { type: "linear", position: "right", beginAtZero: true },
@@ -180,68 +194,225 @@ function drawCharts(data) {
 }
 
 function initNotifications() {
-  Papa.parse("monterrey_utci_with_measures.csv", {
-    header: true,
+  const city = localStorage.getItem("selectedCity") || "monterrey";
+  const shift = localStorage.getItem("selectedShift") || "day";
+  const file = `${city}_utci_with_measures.csv`;
+
+  Papa.parse(file, {
     download: true,
-    complete: function (results) {
-      try {
-        const data = results.data;
-        const selectedShift = localStorage.getItem("selectedShift") || "day";
-        const filtered = filterByShift(data, selectedShift);
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+      const allData = results.data;
+      const now = new Date();
+      const table = document.getElementById('measures-table')?.getElementsByTagName('tbody')[0];
+      const list = document.getElementById('notification-list');
+      if (!table || !list) return;
 
-        const table = document.getElementById("measures-table").getElementsByTagName("tbody")[0];
-        table.innerHTML = "";
+      table.innerHTML = ""; // Clear previous rows
 
-        filtered.forEach(row => {
-          const time = new Date(row.datetime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      // Filter upcoming data based on shift
+      const upcoming = allData.filter(row => {
+        const rowTime = new Date(row['datetime'].replace(" ", "T")); // Ensure proper parsing
+        const hour = rowTime.getHours();
+        const isFuture = rowTime >= now;
 
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${time}</td>
-            <td><button class="btn btn-primary btn-sm w-100">${row["Measure 1"]}</button></td>
-            <td><button class="btn btn-primary btn-sm w-100">${row["Measure 2"]}</button></td>
-            <td><button class="btn btn-primary btn-sm w-100">${row["Measure 3"]}</button></td>
-          `;
-          table.appendChild(tr);
-        });
-      } catch (error) {
-        console.error("Error loading CSV:", error);
+        const inDay = hour >= 8 && hour < 18;
+        const inNight = hour >= 18 || hour < 3;
+
+        if (!isFuture) return false;
+        if (shift === "day") return inDay;
+        if (shift === "night") return inNight;
+        console.log("DEBUG ---");
+        console.log("Raw:", row['datetime']);
+        console.log("Parsed:", rowTime.toString());
+        console.log("Hour:", hour);
+        console.log("Now:", now.toString());
+        console.log("isFuture:", isFuture);
+        console.log("inDay:", inDay);
+        console.log("inNight:", inNight);
+
+        return false;
+      }).slice(0, ); // Limit to next 7 entries
+
+      const saved = JSON.parse(localStorage.getItem('notifications')) || [];
+
+      function displayNotification(message) {
+        const div = document.createElement('div');
+        div.className = "alert alert-warning mt-2";
+        div.innerText = message;
+        div.dataset.key = message;
+        list.prepend(div);
       }
+
+      function removeNotification(message) {
+        const alerts = [...list.querySelectorAll('.alert')];
+        alerts.forEach(alert => {
+          if (alert.dataset.key === message) alert.remove();
+        });
+        const updated = saved.filter(msg => msg !== message);
+        localStorage.setItem('notifications', JSON.stringify(updated));
+      }
+
+      saved.forEach(displayNotification);
+
+      function toggleNotification(message, button) {
+        const current = JSON.parse(localStorage.getItem('notifications')) || [];
+        const isSent = current.includes(message);
+
+        if (isSent) {
+          removeNotification(message);
+          button.classList.remove("btn-success");
+          button.classList.add("btn-primary");
+          button.innerText = message.split('] ')[1];
+        } else {
+          current.push(message);
+          localStorage.setItem('notifications', JSON.stringify(current));
+          displayNotification(message);
+          button.classList.remove("btn-primary");
+          button.classList.add("btn-success");
+          button.innerText = "✔ " + message.split('] ')[1];
+        }
+      }
+
+      upcoming.forEach(row => {
+        const rowTime = new Date(row['datetime'].replace(" ", "T"));
+        const time = rowTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const m1 = row['Measure 1'] || '';
+        const m2 = row['Measure 2'] || '';
+        const m3 = row['Measure 3'] || '';
+
+        function makeButton(text) {
+          const btn = document.createElement('button');
+          btn.className = "btn btn-sm btn-primary";
+          btn.textContent = text;
+          const message = `[${time}] ${text}`;
+          if (saved.includes(message)) {
+            btn.classList.replace("btn-primary", "btn-success");
+            btn.textContent = "✔ " + text;
+          }
+          btn.onclick = () => toggleNotification(message, btn);
+          return btn;
+        }
+
+        const tr = document.createElement('tr');
+        const tdTime = document.createElement('td');
+        tdTime.textContent = time;
+
+        const td1 = document.createElement('td');
+        const td2 = document.createElement('td');
+        const td3 = document.createElement('td');
+
+        if (m1) td1.appendChild(makeButton(m1));
+        if (m2) td2.appendChild(makeButton(m2));
+        if (m3) td3.appendChild(makeButton(m3));
+
+        tr.appendChild(tdTime);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        table.appendChild(tr);
+      });
     }
   });
 }
 
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
+  const dayBtn = document.getElementById("dayShiftBtn");
+  const nightBtn = document.getElementById("nightShiftBtn");
+  const citySelector = document.getElementById("citySelector");
   const toggleButton = document.getElementById("toggle-chart");
+
+  const refreshCurrentPageData = () => {
+    const currentPage = document.querySelector("#sidebar a.active")?.getAttribute("data-page") || "dashboard";
+    if (currentPage === "dashboard") loadCSV();
+    if (currentPage === "notifications") initNotifications();
+  };
+
+  // City selector
+  if (citySelector) {
+    citySelector.value = localStorage.getItem("selectedCity") || "monterrey";
+    citySelector.addEventListener("change", () => {
+      localStorage.setItem("selectedCity", citySelector.value);
+      refreshCurrentPageData();
+    });
+  }
+
+  // Shift selector
+  if (dayBtn && nightBtn) {
+    const updateShift = (shift) => {
+      localStorage.setItem("selectedShift", shift);
+      dayBtn.classList.toggle("active", shift === "day");
+      nightBtn.classList.toggle("active", shift === "night");
+      refreshCurrentPageData();
+    };
+
+    dayBtn.addEventListener("click", () => updateShift("day"));
+    nightBtn.addEventListener("click", () => updateShift("night"));
+
+    updateShift(localStorage.getItem("selectedShift") || "day");
+  }
+
+  // Switch Graph Button
   if (toggleButton) {
     toggleButton.addEventListener("click", () => {
       const utciChartContainer = document.getElementById("utci-chart-container");
       const tempChartContainer = document.getElementById("temp-humid-chart-container");
+
+      if (!utciChartContainer || !tempChartContainer) return;
+
       const isUTCIVisible = utciChartContainer.style.display !== "none";
       utciChartContainer.style.display = isUTCIVisible ? "none" : "block";
       tempChartContainer.style.display = isUTCIVisible ? "block" : "none";
     });
   }
 
-  // Shift toggle
-  const dayBtn = document.getElementById("dayShiftBtn");
-  const nightBtn = document.getElementById("nightShiftBtn");
+  // Sidebar nav links
+  document.querySelectorAll('#sidebar a[data-page]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const page = link.getAttribute("data-page");
+      document.querySelectorAll('#sidebar a').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+      loadPage(page);
+    });
+  });
 
-  const updateShift = (shift) => {
-    localStorage.setItem("selectedShift", shift);
-    dayBtn.classList.toggle("active", shift === "day");
-    nightBtn.classList.toggle("active", shift === "night");
+  // Initial page load
+  loadPage("dashboard");
+});
 
-    const currentPage = document.querySelector("#sidebar .nav-link.active")?.getAttribute("data-page") || "dashboard";
-    loadPage(currentPage);
-  };
+function loadPage(page) {
+  fetch(`${page}.html`)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("dynamic-content").innerHTML = html;
 
-  if (dayBtn && nightBtn) {
-    dayBtn.addEventListener("click", () => updateShift("day"));
-    nightBtn.addEventListener("click", () => updateShift("night"));
+      if (page === "dashboard") {
+        loadCSV();
 
-    const savedShift = localStorage.getItem("selectedShift") || "day";
-    updateShift(savedShift);
-  }
+        // Reattach toggle button event
+        const toggleButton = document.getElementById("toggle-chart");
+        if (toggleButton) {
+          toggleButton.addEventListener("click", () => {
+            const utciChartContainer = document.getElementById("utci-chart-container");
+            const tempChartContainer = document.getElementById("temp-humid-chart-container");
 
-})
+            if (!utciChartContainer || !tempChartContainer) return;
+
+            const isUTCIVisible = utciChartContainer.style.display !== "none";
+            utciChartContainer.style.display = isUTCIVisible ? "none" : "block";
+            tempChartContainer.style.display = isUTCIVisible ? "block" : "none";
+          });
+        }
+      }
+
+      if (page === "notifications") initNotifications();
+    });
+}
+
+
