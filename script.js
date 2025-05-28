@@ -1,43 +1,51 @@
 let utciChart, tempHumidityChart;
+let showingUTCIGraph = true;
 
-function filterByShift(data, shift) {
-  // Group by date (ignore rows with invalid datetime)
-  const grouped = data.reduce((acc, row) => {
-    const dt = new Date(row.datetime);
-    if (isNaN(dt.getTime())) return acc; // skip invalid rows
+function filterByShift(dataRows) {
+  const shift = localStorage.getItem("selectedShift");
+  if (!shift) return dataRows;
 
-    const dateStr = dt.toISOString().split("T")[0];
-    if (!acc[dateStr]) acc[dateStr] = [];
-    acc[dateStr].push(row);
-    return acc;
-  }, {});
-
-  const sortedDates = Object.keys(grouped).sort();
-  const latestDate = sortedDates[sortedDates.length - 1];
-  const prevDate = sortedDates[sortedDates.length - 2];
-
-  const today = grouped[latestDate] || [];
-  const yesterday = grouped[prevDate] || [];
+  const parsedRows = dataRows.map(row => ({
+    ...row,
+    dt: new Date(row.datetime),
+    hour: new Date(row.datetime).getHours(),
+    date: row.datetime.split(" ")[0]
+  }));
 
   if (shift === "day") {
-    return today.filter(row => {
-      const h = new Date(row.datetime).getHours();
-      return h >= 8 && h < 18;
-    });
-  } else if (shift === "night") {
-    const part1 = yesterday.filter(row => {
-      const h = new Date(row.datetime).getHours();
-      return h >= 18;
-    });
-    const part2 = today.filter(row => {
-      const h = new Date(row.datetime).getHours();
-      return h < 4;
-    });
-    return [...part1, ...part2];
+    // Filter only 08:00–17:59
+    const dayRows = parsedRows.filter(r => r.hour >= 8 && r.hour < 18);
+    const latestDate = [...new Set(dayRows.map(r => r.date))].sort().pop();
+    return dayRows.filter(r => r.date === latestDate);
+  }
+
+  if (shift === "night") {
+    // Get all rows with hour >= 18 or < 3
+    const nightRows = parsedRows.filter(r => r.hour >= 18 || r.hour <= 3);
+
+    // Find latest base date with at least one entry >= 18
+    const baseDates = [...new Set(
+      nightRows
+        .filter(r => r.hour >= 18)
+        .map(r => r.date)
+    )].sort();
+    const baseDate = baseDates[0];
+
+    // Include from baseDate: 18–23, and nextDate: 00–02
+    const nextDate = new Date(baseDate);
+    nextDate.setDate(nextDate.getDate() + 1);
+    const nextDateStr = nextDate.toISOString().split("T")[0];
+
+    return nightRows.filter(r =>
+      (r.date === baseDate && r.hour >= 18) ||
+      (r.date === nextDateStr && r.hour <= 3)
+    );
   }
 
   return [];
 }
+
+
 
 function loadCSV() {
   Papa.parse("monterrey_utci_with_measures.csv", {
@@ -55,6 +63,12 @@ function loadCSV() {
         console.error("Error loading CSV:", error);
       }
     }
+  });
+  document.getElementById("toggle-chart").addEventListener("click", function () {
+  showingUTCIGraph = !showingUTCIGraph;
+
+  document.getElementById("utci-chart-container").style.display = showingUTCIGraph ? "block" : "none";
+  document.getElementById("temp-humid-chart-container").style.display = showingUTCIGraph ? "none" : "block";
   });
 }
 
@@ -213,20 +227,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const dayBtn = document.getElementById("dayShiftBtn");
   const nightBtn = document.getElementById("nightShiftBtn");
 
+  const updateShift = (shift) => {
+    localStorage.setItem("selectedShift", shift);
+    dayBtn.classList.toggle("active", shift === "day");
+    nightBtn.classList.toggle("active", shift === "night");
+
+    const currentPage = document.querySelector("#sidebar .nav-link.active")?.getAttribute("data-page") || "dashboard";
+    loadPage(currentPage);
+  };
+
   if (dayBtn && nightBtn) {
-    const updateShift = (shift) => {
-      localStorage.setItem("selectedShift", shift);
-      dayBtn.classList.toggle("active", shift === "day");
-      nightBtn.classList.toggle("active", shift === "night");
-
-      const currentPage = document.querySelector("#sidebar .nav-link.active")?.getAttribute("data-page") || "dashboard";
-      loadPage(currentPage);
-    };
-
     dayBtn.addEventListener("click", () => updateShift("day"));
     nightBtn.addEventListener("click", () => updateShift("night"));
 
     const savedShift = localStorage.getItem("selectedShift") || "day";
     updateShift(savedShift);
   }
-});
+
+})
