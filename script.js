@@ -387,3 +387,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadPage("dashboard");
 });
+
+//language change
+const langTabs = document.querySelectorAll('.lang-tab');
+const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+applyTranslations(currentLang);
+langTabs.forEach(tab => {
+  if (tab.dataset.lang === currentLang) tab.classList.add('active');
+  else tab.classList.remove('active');
+});
+
+langTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const selectedLang = tab.dataset.lang;
+    localStorage.setItem('selectedLanguage', selectedLang);
+    applyTranslations(selectedLang);
+
+    langTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
