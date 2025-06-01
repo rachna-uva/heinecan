@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<div class="profile-container">
+    <h2>User Profile</h2>
+  
+    <div class="profile-info">
+      <p><strong>Username:</strong> <span id="profile-username">Loading...</span></p>
+      <p><strong>Brewery Location:</strong> <span id="profile-location">Loading...</span></p>
+      <p><strong>Role:</strong>
+        <select id="role-selector">
+          <option value="manager">Manager</option>
+          <option value="worker">Worker</option>
+        </select>
+      </p>      
+    </div>
+  
+    <div class="profile-settings">
+        <label for="shift-selector"><strong>Shift:</strong></label>
+        <div class="shift-row">
+          <select id="shift-selector" class="form-select">
+            <option value="day">Day Shift</option>
+            <option value="night">Night Shift</option>
+          </select>
+          <button onclick="saveUserSettings()" class="btn btn-primary">Save Settings</button>
+        </div>
+      </div>      
+  </div>  
+</html>
+  
