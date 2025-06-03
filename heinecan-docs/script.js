@@ -410,7 +410,7 @@ function initNotifications() {
         const lang = localStorage.getItem("selectedLanguage") || "en";
         const measures = [row['Hydration'], row['Cooling'], row['Activity']].map(m => {
           if (!m) return "";
-          return lang === "es" ? (measureTranslations[m] || m) : m;
+          return measureTranslations[lang]?.[m] || m;
         });              
 
         const tr = document.createElement('tr');
