@@ -46,7 +46,7 @@ const translations = {
     awareness: "Concienciación",
     understanding_heat_stress: "Comprender el Estrés Térmico en el Trabajo",
     heat_stress_description: "El estrés térmico ocurre cuando el cuerpo no puede disipar suficiente calor para mantener una temperatura central segura. Puede causar fatiga, mareos, enfermedades relacionadas con el calor y afectar negativamente la productividad y la seguridad.",
-    what_is_heat_stress: "Que es el Estrés Eérmico",
+    what_is_heat_stress: "Que es el Estrés Térmico",
     heat_stress: "El estrés térmico es la respuesta del cuerpo al calor excesivo. Puede causar agotamiento físico, deshidratación e incluso condiciones potencialmente mortales como el golpe de calor. El Índice Universal del Clima Térmico (UTCI) se utiliza para evaluar este riesgo combinando la temperatura, la humedad y la velocidad del viento.",
     risk_levels: "Niveles de Riesgo Explicados",
     risk_level: "Nivel de riesgo",
@@ -546,7 +546,7 @@ function loadPage(page) {
       // Wait for DOM to be updated before applying translations
       setTimeout(() => {
         const currentLang = localStorage.getItem("selectedLanguage") || "en";
-        applyTranslations(currentLang); // Apply translations to newly loaded content
+        //applyTranslations(currentLang); // Apply translations to newly loaded content
 
         if (page === "dashboard" && typeof loadCSV === 'function') {
           loadCSV();
@@ -554,8 +554,9 @@ function loadPage(page) {
           initNotifications();      
         } else if (page === "worker_display") {
         } else if (page === "awareness") {
+          applyTranslations(lang);
         }
-      }, 10); // Delay ensures DOM is fully rendered
+      }, 20); // Delay ensures DOM is fully rendered
     });
 }
 
@@ -591,7 +592,11 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (currentPage === "awareness") {
         // call update logic for this page
       }
+    const lang = localStorage.getItem("selectedLanguage") || "en";
+    applyTranslations(lang);
     });
+
+
   }
 
 
@@ -642,7 +647,9 @@ langTabs.forEach(tab => {
     if (currentPage === "dashboard"){ 
       loadCSV();} else if (currentPage === "notifications") {
       initNotifications();
-      }
+      }else if (currentPage === "awareness") {
+      }applyTranslations(selectedLang);
+
   });
 });
 
