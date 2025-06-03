@@ -88,6 +88,9 @@ const translations = {
     heat_stroke_severity: "Emergencia médica – se requiere respuesta inmediata",
     heat_stroke_treatment: "Llama a emergencias, traslada a un lugar fresco, quita la ropa, usa ventiladores o agua con hielo para enfriar rápidamente",
     emergency_text: "Los trabajadores que experimenten síntomas deben detener el trabajo de inmediato y notificar a un supervisor. Un retraso en la respuesta puede agravar rápidamente los síntomas.",
+    select_shift:"Selecciona Turno",
+    site_location: "Ubicación de Trabajo",
+
 
   }
 };
