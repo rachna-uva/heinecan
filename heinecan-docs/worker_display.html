@@ -1,86 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HSMD - Workers</title>
-  <link rel="stylesheet" href="style_worker.css" />
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-</head>
-<body>
-<main class="container">
-  <h1 class="header">Worker Display</h1>
+<div class="container mt-5">
+  <h2 class="mb-5 text-center display-5">Worker Display Dashboard</h2>
 
-  <div class="cards-row">
-    <section class="card heat-card">
-      <h2>Heat Stress Risk</h2>
-      <div class="level">
-        <span class="icon" id="heat-icon">🌤️</span>
-        <span class="label" id="utci-label">Moderate</span>
+  <div class="row justify-content-center">
+    <!-- Heat Risk Level Card -->
+    <div class="col-md-5 mb-4">
+      <div id="heat-card" class="card text-center p-5 shadow" style="border-radius: 20px;">
+        <h4 class="mb-3 fw-bold">Heat Stress Risk Level</h4>
+        <div class="display-1 mb-3" id="heat-icon"></div>
+        <div class="display-4 fw-bold" id="utci-label"></div>
       </div>
-    </section>
+    </div>
 
-    <section class="card">
-      <h2>Remember to:</h2>
-      <ul class="reminders" id="reminders-list">
-        <li>Loading...</li>
-      </ul>
-    </section>
+    <!-- Health Reminders -->
+    <div class="col-md-5 mb-4">
+      <div class="card text-center p-5 shadow" style="border-radius: 20px;">
+        <h4 class="mb-3 fw-bold">Health Reminders</h4>
+        <ul class="list-unstyled mt-3 fs-4">
+          <li>💧 Every 30 minutes</li>
+          <li>🌳 Every 1 hour</li>
+          <li>👕 Light, breathable</li>
+        </ul>
+      </div>
+    </div>
   </div>
-</main>
-
-<script>
-  const riskIcons = {
-    "No Risk": "✅",
-    "Moderate Risk": "💧",
-    "Strong Risk": "🌤️",
-    "Very Strong Risk": "🌞",
-    "Extreme Risk": "⚠️"
-  };
-
-  function loadWorkerDisplay() {
-    Papa.parse("current_risk.csv", {
-      download: true,
-      header: true,
-      complete: function (riskResult) {
-        const current = riskResult.data[0];
-        const utciGroup = parseInt(current.utciGroup);
-        const riskLabel = current.riskLabel;
-
-        document.getElementById("utci-label").innerText = riskLabel;
-        document.getElementById("heat-icon").innerText = riskIcons[riskLabel] || "Error";
-
-        Papa.parse("heat_risk_database.csv", {
-          download: true,
-          header: true,
-          complete: function(results) {
-            const data = results.data;
-            const row = data.find(r => r["Heat_Risk_Score"] === utciGroup.toString());
-
-            const list = document.getElementById("reminders-list");
-            list.innerHTML = "";
-
-
-            if (!row) {
-              list.innerHTML = "<li class='text-danger'>No measures found.</li>";
-              return;
-            }
-
-            for (let i = 1; i <= 5; i++) {
-              const measure = row[`Measure ${i}`];
-              if (measure && measure.trim()) {
-                const li = document.createElement("li");
-                li.textContent = measure;
-                list.appendChild(li);
-              }
-            }
-          }
-        });
-      }
-    });
-  }
-
-  window.addEventListener("DOMContentLoaded", loadWorkerDisplay);
-</script>
-</body>
-</html>
+  <!-- Sent Notifications -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-10">
+      <div class="card p-4 shadow" style="border-radius: 20px;">
+        <h4 class="fw-bold mb-3">Sent Notifications</h4>
+        <ul id="worker-notification-list" class="list-group fs-5">
+          <!-- Filled dynamically -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

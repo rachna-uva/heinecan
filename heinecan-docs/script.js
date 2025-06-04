@@ -274,7 +274,7 @@ function getRiskColor(score) {
     2: "#ffc107", 
     3: "#fd7e14", 
     4: "#dc3545", 
-    5: "#6c2bd9"  
+    5: "#f5c6cb" 
   };
   const index = parseInt(score);
   console.log("getRiskColor(): parsed index =", index, "→ color =", colors[index]);
@@ -569,7 +569,7 @@ function loadPage(page) {
           loadCSV();
         } else if (page === "notifications" && typeof initNotifications === 'function') {
           initNotifications();      
-        } else if (page === "worker_display") {
+        } else if (page === "worker_display" && typeof loadWorkerDisplay === 'function') {
         } else if (page === "awareness") {
           applyTranslations(lang);
         }
@@ -580,6 +580,9 @@ function loadPage(page) {
 
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (!localStorage.getItem("selectedCity")) {
+  localStorage.setItem("selectedCity", "monterrey");
+  }
   const dayBtn = document.getElementById("dayShiftBtn");
   const nightBtn = document.getElementById("nightShiftBtn");
   const citySelector = document.getElementById("citySelector");
@@ -605,7 +608,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (currentPage === "notifications") {
         initNotifications(); // refresh measure table
       } else if (currentPage === "worker_display") {
-        // call update logic for this page
+        loadWorkerDisplay();      
       } else if (currentPage === "awareness") {
         // call update logic for this page
       }
@@ -665,7 +668,8 @@ langTabs.forEach(tab => {
       loadCSV();} else if (currentPage === "notifications") {
       initNotifications();
       }else if (currentPage === "awareness") {
-      }applyTranslations(selectedLang);
+      applyTranslations(selectedLang);} 
+      else if (currentPage === "worker_display"){loadWorkerDisplay()}
 
   });
 });
