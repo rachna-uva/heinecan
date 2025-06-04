@@ -1,294 +1,490 @@
-function loadCSV() {
-    fetch("monterrey_utci_results.csv")
-        .then(response => response.text())
-        .then(csvText => {
-            let rows = csvText.trim().split("\n");
-            let headers = rows[0].split(",");
-            let dataRows = rows.slice(1).map(row => {
-                const values = row.split(",");
-                const rowData = {};
-                headers.forEach((h, i) => rowData[h.trim()] = values[i]);
-                return rowData;
-            });
+let utciChart, tempHumidityChart;
+let showingUTCIGraph = true;
+let workerDisplayLoaded = false;
+let currentPage = null;
 
-            // Sort by datetime and shift
-            dataRows.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
-            const filteredRows = filterByShift(dataRows);
-            const forecastRows = filterByShift(dataRows);
-            
-            const now = forecastRows[0];
-            console.log("Now row:", now);
-            document.getElementById("temperature").innerText  = `${Math.round(now.temp)} °C`;
-            document.getElementById("humidity").innerText = `${now.humidity} %`;
-            const utciValue = parseFloat(now.utci);
-            let utciGroup = "";
-            if (utciValue <= 26) utciGroup = "1";
-            else if (utciValue <= 32) utciGroup = "2";
-            else if (utciValue <= 38) utciGroup = "3";
-            else if (utciValue <= 46) utciGroup = "4";
-            else utciGroup = "5";
+const translations = {
+  en: {
+    title: "Health and Safety Dashboard",
+    heatStress: "Heat Stress",
+    temperature: "Temperature",
+    humidity: "Humidity",
+    switchGraph: "Switch Graph",
+    dashboard: "Dashboard",
+    notifications: "Notifications",
+    dayShift: "Day Shift",
+    nightShift: "Night Shift",
+    measuresToday: "Measures for Today",
+    sentNotifications: "Sent Notifications",
+    time: "Time",
+    measure1: "Hydration",
+    measure2: "Cooling",
+    measure3: "Activity",
+    heatStressGraph: "Heat Stress Risk",
+    temperatureGraph: "Temperature (°C)",
+    humidityGraph: "Humidity (%)",
+    workerDisplay: "Worker Display",
+    awareness: "Awareness"
+  },
+  es: {
+    title: "Panel de Gestió de Estrés por Calor", 
+    heatStress: "Estrés por Calor",
+    temperature: "Temperatura",
+    humidity: "Humedad",
+    switchGraph: "Cambiar Gráfico",
+    dashboard: "Panel",
+    notifications: "Notificaciones", 
+    dayShift: "Turno de Día",
+    nightShift: "Turno de Noche",
+    measuresToday: "Medidas para Hoy",
+    sentNotifications: "Notificaciones Enviadas",
+    time: "Hora",
+    measure1: "Hidratación",
+    measure2: "Enfriamiento",
+    measure3: "Actividad",
+    heatStressGraph: "Riesgo de Estrés por Calor",
+    temperatureGraph: "Temperatura (°C)",
+    humidityGraph: "Humedad (%)",
+    workerDisplay: "Pantalla del Trabajador",
+    awareness: "Concienciación",
+    understanding_heat_stress: "Comprender el Estrés Térmico en el Trabajo",
+    heat_stress_description: "El estrés térmico ocurre cuando el cuerpo no puede disipar suficiente calor para mantener una temperatura central segura. Puede causar fatiga, mareos, enfermedades relacionadas con el calor y afectar negativamente la productividad y la seguridad.",
+    what_is_heat_stress: "Que es el Estrés Térmico",
+    heat_stress: "El estrés térmico es la respuesta del cuerpo al calor excesivo. Puede causar agotamiento físico, deshidratación e incluso condiciones potencialmente mortales como el golpe de calor. El Índice Universal del Clima Térmico (UTCI) se utiliza para evaluar este riesgo combinando la temperatura, la humedad y la velocidad del viento.",
+    risk_levels: "Niveles de Riesgo Explicados",
+    risk_level: "Nivel de riesgo",
+    meaning: "Significado",
+    no_risk: "Sin riesgo",
+    no_risk_desc: "Las condiciones son seguras. No se requieren medidas especiales.",
+    moderate_risk: "Riesgo moderado",
+    moderate_risk_desc: "Puede haber molestias. Mantente hidratado.",
+    strong_risk: "Riesgo fuerte",
+    strong_risk_desc: "Toma precauciones. Usa sombra y períodos de descanso.",
+    very_strong_risk: "Riesgo muy fuerte",
+    very_strong_risk_desc: "Alta probabilidad de estrés térmico. Aplica todas las medidas de mitigación.",
+    extreme_risk: "Riesgo extremo",
+    extreme_risk_desc: "Condiciones peligrosas. Evita la actividad física. Activa el protocolo de emergencia.",
+    how_to_stay_safe: "Cómo Mantenerse Seguro",
+    hydration_tip: "Hidratación: Bebe una taza de agua (250 ml) cada 15 a 20 minutos. No es seguro consumir más de 6 tazas (aprox. 1.5 litros) por hora.",
+    cooling_tip: "Enfriamiento: Toma descansos en áreas sombreadas o frescas, y usa ventiladores o compresas frías.",
+    clothing_tip: "Ropa: Usa ropa ligera y transpirable.",
+    monitoring_tip: "Monitoreo: Usa el panel de HSMD para vigilar las condiciones y seguir las pautas de mitigación.",
+    common_symptoms_title: "Síntomas Comunes a Vigilar",
+    condition: "Condición",
+    symptoms: "Síntomas",
+    severity: "Gravedad",
+    treatment: "Tratamiento",
+    heat_rash: "Sarpullido por calor",
+    heat_rash_symptoms: "Grupos de granitos rojos o pequeñas ampollas (cuello, pecho, ingle)",
+    heat_rash_severity: "Molestia leve",
+    heat_rash_treatment: "Mantén el área afectada seca y fresca; usa lociones secantes suaves y limpia la piel para evitar infecciones; evita la ropa ajustada",
+    heat_cramps: "Calambres por calor",
+    heat_cramps_symptoms: "Espasmos musculares dolorosos (piernas, brazos, abdomen), a menudo tras sudoración excesiva",
+    heat_cramps_severity: "Moderado",
+    heat_cramps_treatment: "Descansa en un área fresca, bebe agua o bebida isotónica, estira suavemente los músculos afectados",
+    heat_exhaustion: "Agotamiento por calor",
+    heat_exhaustion_symptoms: "Sudoración intensa, mareos, fatiga, náuseas, piel húmeda, pulso rápido",
+    heat_exhaustion_severity: "Grave – requiere descanso e hidratación",
+    heat_exhaustion_treatment: "Muévete a un área con sombra o aire acondicionado, hidrátate con bebidas frías, aplica toallas húmedas, descansa hasta recuperarte por completo o vete a casa",
+    heat_stroke: "Golpe de calor",
+    heat_stroke_symptoms: "Confusión, inconsciencia, piel caliente y seca, convulsiones, temperatura corporal > 40 °C",
+    heat_stroke_severity: "Emergencia médica – se requiere respuesta inmediata",
+    heat_stroke_treatment: "Llama a emergencias, traslada a un lugar fresco, quita la ropa, usa ventiladores o agua con hielo para enfriar rápidamente",
+    emergency_text: "Los trabajadores que experimenten síntomas deben detener el trabajo de inmediato y notificar a un supervisor. Un retraso en la respuesta puede agravar rápidamente los síntomas.",
+    select_shift:"Selecciona Turno",
+    site_location: "Ubicación de Trabajo",
 
-            // Show both number and name
-            const riskLabels = {
-              1: "No Risk",
-              2: "Moderate Risk",
-              3: "Strong Risk",
-              4: "Very Strong Risk",
-              5: "Extreme Risk"
-            };
-            const riskLabel = riskLabels[utciGroup] || "--";
 
-            // Set label and number separately
-            document.getElementById("utci-label").innerText = riskLabel;
-            document.getElementById("utci-group").innerText = utciGroup;
+  }
+};
+const measureTranslations = {
+  en: {
+    "No measures required": "No measures required",
+    "Drink at least 1 glass of water during this hour": "Drink at least 1 glass of water during this hour",
+    "Drink at least 2 glasses of water during this hour": "Drink at least 2 glasses of water during this hour",
+    "Make use of shade": "Make use of shade",
+    "Reduce physical activity during this hour": "Reduce physical activity during this hour",
+    "No physical activity": "No physical activity",
+    "Cool your body with a shower": "Cool your body with a shower"
+  },
+  es: {
+    "No measures required": "No se requieren medidas",
+    "Drink at least 1 glass of water during this hour": "Beber al menos 1 vaso de agua durante esta hora",
+    "Drink at least 2 glasses of water during this hour": "Beber al menos 2 vasos de agua durante esta hora",
+    "Make use of shade": "Hacer uso de la sombra",
+    "Reduce physical activity during this hour": "Reducir la actividad física durante esta hora",
+    "No physical activity": "Sin actividad física",
+    "Cool your body with a shower": "Enfría tu cuerpo con una ducha"
+  }
+};
 
 
+function applyTranslations(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
 
-            const utciCard = document.getElementById("utci-card");
-            utciCard.className = "dashboard-card";
-            if (utciGroup === "1") {
-              utciCard.classList.add("bg-success");
-              utciCard.style.color = "black";
-            } else if (utciGroup === "2") {
-              utciCard.classList.add("bg-info");
-              utciCard.style.color = "black";
-            } else if (utciGroup === "3") {
-              utciCard.classList.add("bg-warning");
-              utciCard.style.color = "white";
-            } else if (utciGroup === "4") {
-              utciCard.classList.add("bg-danger");
-              utciCard.style.color = "white";
-            } else {
-              utciCard.classList.add("bg-dark");
-              utciCard.style.color = "white";
-            }
-            
-
-           // Learn More about Heat Stress
-           const riskExplanations = {
-            1: "Conditions are safe. No special measures are required.",
-            2: "Some discomfort may occur during prolonged physical activity. Stay hydrated.",
-            3: "Take precautions. Ensure regular water intake and rest in shaded areas.",
-            4: "Heat stress is likely. Follow full mitigation steps. See the Awareness page.",
-            5: "Dangerous conditions. Minimize physical activity and activate emergency protocols. See the Awareness page."
-          };
-          
-            const chartlabels = forecastRows.map(r => {
-                const [date, time] = r.datetime.split(" ");
-                return `${date} ${time.slice(0, 5)}`;
-            });
-
-            // Create a floating explanation popup (hidden by default)
-            const tooltip = document.createElement("div");
-            tooltip.innerHTML = (riskExplanations[utciGroup] || "No explanation available.")
-            .replace(
-              "See the Awareness page.",
-              'See the <a href="awareness.html" target="_blank" rel="noopener noreferrer">Awareness</a> page.'
-            );
-            tooltip.style.cssText = `
-              position: absolute;
-              bottom: 40px;
-              right: 10px;
-              background: #fff;
-              color: black;
-              border: 1px solid #ccc;
-              padding: 8px 10px;
-              border-radius: 5px;
-              font-size: 13px;
-              width: 220px;
-              display: none;
-              box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            `;
-            utciCard.appendChild(tooltip);
-
-            // Add help icon
-            const helpIcon = document.createElement("div");
-            helpIcon.innerText = "?";
-            helpIcon.title = "Explanation of UTCI goes here...";
-            helpIcon.style.cssText = `
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            background: white;
-            color: black;
-            border: 1px solid #ccc;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            text-align: center;
-            line-height: 22px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            z-index: 10;
-            `;
-            utciCard.style.position = "relative";
-            utciCard.appendChild(helpIcon);
-
-            // Toggle tooltip on click
-            helpIcon.addEventListener("click", () => {
-            tooltip.style.display = (tooltip.style.display === "none") ? "block" : "none";
-            });
-
-            const tableBody = document.getElementById("mitigation-table");
-            if (tableBody) {
-              tableBody.innerHTML = `<tr><td>Forecasted</td><td>${mitigationMessage}</td></tr>`;
-            }
-
-            const utciGroups = forecastRows.map(r => {
-                const utci = parseFloat(r.utci);
-                if (utci <= 26) return 1;
-                if (utci <= 32) return 2;
-                if (utci <= 38) return 3;
-                if (utci <= 46) return 4;
-                return 5;
-            });
-
-            const temps = forecastRows.map(r => parseFloat(r.temp));
-            const humidities = forecastRows.map(r => parseFloat(r.humidity));
-
-            // UTCI Chart
-            const ctx = document.getElementById('utciChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: chartlabels,
-                    datasets: [{
-                        label: 'Heat Stress Risk',
-                        data: utciGroups,
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        tension: 0.3,
-                        borderWidth: 2,
-                        pointRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            min: 1,
-                            max: 5,
-                            ticks: { stepSize: 1 },
-                            title: { display: true, text: 'Heat Stress Risk' }
-                        },
-                        x: {
-                            title: { display: true, text: 'Forecast Hour' }
-                        }
-                    }
-                }
-            });
-
-            // Temperature and Humidity Chart
-            const ctx2 = document.getElementById('tempHumidityChart').getContext('2d');
-            new Chart(ctx2, {
-                type: 'line',
-                data: {
-                    labels: chartlabels,
-                    datasets: [
-                        {
-                            label: 'Temperature (°C)',
-                            data: temps,
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            tension: 0.4
-                        },
-                        {
-                            label: 'Humidity (%)',
-                            data: humidities,
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            tension: 0.4
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { title: { display: true, text: 'Value' } },
-                        x: { title: { display: true, text: 'Forecast Hour' } }
-                    }
-                }
-            });
-
-            // Switch chart
-            let currentChart = 'utci';
-            document.getElementById('toggle-chart').addEventListener('click', () => {
-                if (currentChart === 'utci') {
-                    document.getElementById('utci-chart-container').style.display = 'none';
-                    document.getElementById('temp-humid-chart-container').style.display = 'block';
-                    currentChart = 'temp';
-                } else {
-                    document.getElementById('temp-humid-chart-container').style.display = 'none';
-                    document.getElementById('utci-chart-container').style.display = 'block';
-                    currentChart = 'utci';
-                }
-            });
-        })
-        .catch(error => console.error("Error loading CSV:", error));
+  // Update shift buttons if they exist
+  const dayBtn = document.getElementById('dayShiftBtn');
+  const nightBtn = document.getElementById('nightShiftBtn');
+  if (dayBtn && nightBtn) {
+    dayBtn.textContent = translations[lang].dayShift;
+    nightBtn.textContent = translations[lang].nightShift;
+  }
 }
 
-function makeButton(text) {
-  const btn = document.createElement('button');
-  btn.className = "btn btn-sm btn-primary";
-  btn.textContent = text;
+function getSelectedShift() {
+  return localStorage.getItem("selectedShift") || "day";
+}
 
-  const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  const message = `[${time}] ${text}`;
-  const saved = JSON.parse(localStorage.getItem('notifications')) || [];
+function getSelectedCity() {
+  return localStorage.getItem("selectedCity") || "monterrey";
+}
 
-  if (saved.includes(message)) {
-    btn.classList.replace("btn-primary", "btn-success");
-    btn.textContent = "✔ " + text;
+function filterByShift(dataRows) {
+  const shift = getSelectedShift();
+  if (!shift) return dataRows;
+
+  const parsedRows = dataRows.map(row => {
+    let dt;
+    if (row.datetime.includes('/')) {
+      // Format: DD/MM/YYYY HH:mm → convert to YYYY-MM-DDTHH:mm
+      const [datePart, timePart] = row.datetime.split(' ');
+      const [day, month, year] = datePart.split('/');
+      dt = new Date(`${year}-${month}-${day}T${timePart}`);
+    } else {
+      // Format: YYYY-MM-DD HH:mm:ss → safe
+      dt = new Date(row.datetime.replace(" ", "T"));
+    }
+    let hour = dt.getHours();
+    let shiftDate = row.datetime.split(" ")[0];
+    let displayHour = hour;
+
+    if (shift === "night" && hour <= 2) {
+      // Early morning → belongs to previous night shift
+      const adjusted = new Date(dt);
+      adjusted.setDate(adjusted.getDate() - 1);
+      shiftDate = adjusted.toISOString().split("T")[0];
+      displayHour += 24;
+    }
+
+    const sortKey = `${shiftDate} ${String(displayHour).padStart(2, "0")}:00`;
+    return { ...row, dt, hour, shiftDate, sortKey };
+  });
+
+  // Group rows by shiftDate instead of regular date
+  const groupedByShiftDate = {};
+  for (const row of parsedRows) {
+    if (!groupedByShiftDate[row.shiftDate]) groupedByShiftDate[row.shiftDate] = [];
+    groupedByShiftDate[row.shiftDate].push(row);
   }
 
-  btn.onclick = () => toggleNotification(message, btn);
-  return btn;
+  // Determine if shift is "valid" (contains all expected hours)
+  const validDates = Object.entries(groupedByShiftDate).filter(([_, rows]) => {
+    const hours = rows.map(r => r.hour);
+    const required = shift === "day"
+      ? Array.from({ length: 10 }, (_, i) => i + 8) // 08–17
+      : [18, 19, 20, 21, 22, 23, 0, 1, 2];          // night
+    return required.every(h => hours.includes(h));
+  });
+
+  if (validDates.length === 0) return [];
+
+  const latestValidShiftDate = validDates.map(([d]) => d).sort().pop();
+
+  return groupedByShiftDate[latestValidShiftDate]
+    .filter(r => {
+      if (shift === "day") return r.hour >= 8 && r.hour < 18;
+      return r.hour >= 18 || r.hour <= 2;
+    })
+    .sort((a, b) => a.sortKey.localeCompare(b.sortKey));
 }
 
+
+function loadCSV() {
+  const file = `${getSelectedCity()}_utci_with_measures.csv`;
+
+  Papa.parse(file, {
+    header: true,
+    download: true,
+    complete: function ({ data }) {
+      try {
+        const filteredData = filterByShift(data);
+        if (window.location.pathname.includes("worker_display.html")) {
+          updateWorkerDisplay(filteredData);
+        }
+        if (document.getElementById("temperature")) {
+          updateCards(filteredData);
+          drawCharts(filteredData);
+
+          // Wait until button exists before attaching listener
+          setTimeout(() => {
+            attachToggleChartListener();
+          }, 10);
+        }
+      } catch (error) {
+        console.error("Error loading CSV:", error);
+      }
+    }
+  });
+}
+
+
+
+function updateCards(data) {
+  console.log("updateCards called with language:", localStorage.getItem("selectedLanguage"));
+
+  if (!data.length) return;
+  const latest = data[0];
+  const temperature = Math.round(parseFloat(latest.temp));
+  const humidity = parseFloat(latest.humidity);
+
+  document.getElementById("temperature").textContent = isNaN(temperature) ? "--" : `${temperature} °C`;
+  document.getElementById("humidity").textContent = isNaN(humidity) ? "--" : `${humidity} %`;
+
+  const riskNum = parseInt(latest.heat_risk_score);
+  const lang = localStorage.getItem("selectedLanguage") || "en";
+  const label = getHeatStressLabel(riskNum);
+  const card = document.getElementById("utci-card");
+
+
+  const localizedLabel = lang === "en"
+    ? `${label} Risk`
+    : {
+        "None": "Sin Riesgo",
+        "Moderate": "Riesgo Moderado",
+        "Strong": "Riesgo Fuerte",
+        "Very Strong": "Riesgo Muy Fuerte",
+        "Extreme": "Riesgo Extremo",
+        "-": "-"
+      }[label] || "-";
+
+  document.getElementById("utci-group").textContent = riskNum;
+  document.getElementById("utci-label").textContent = localizedLabel;
+  document.getElementById("utci-card").style.backgroundColor = getRiskColor(riskNum);
+  console.log("heat_risk_score raw:", latest.heat_risk_score);
+
+}
+
+
+function getHeatStressLabel(score) {
+  return ["-", "None", "Moderate", "Strong", "Very Strong", "Extreme"][score] || "-";
+}
+
+function getRiskColor(score) {
+  const colors = {
+    1: "#28a745", 
+    2: "#ffc107", 
+    3: "#fd7e14", 
+    4: "#dc3545", 
+    5: "#f5c6cb" 
+  };
+  const index = parseInt(score);
+  console.log("getRiskColor(): parsed index =", index, "→ color =", colors[index]);
+  return colors[index] || "#adb5bd";
+}
+
+
+function drawCharts(data) {
+  const lang = localStorage.getItem("selectedLanguage") || "en";
+  const t = translations[lang];
+
+  const grouped = {};
+  data.forEach(d => {
+    let dt;
+    if (d.datetime.includes('/')) {
+      // Format: DD/MM/YYYY HH:mm
+      const [datePart, timePart] = d.datetime.split(' ');
+      const [day, month, year] = datePart.split('/');
+      dt = new Date(`${year}-${month}-${day}T${timePart}`);
+    } else {
+      // Format: YYYY-MM-DD HH:mm:ss
+      dt = new Date(d.datetime.replace(" ", "T"));
+    }
+    const hourKey = dt.toISOString().slice(0, 13);
+    if (!grouped[hourKey]) grouped[hourKey] = [];
+    grouped[hourKey].push(parseFloat(d.heat_risk_score));
+  });
+
+  const labels = Object.keys(grouped).map(k =>
+    new Date(k + ":00:00Z").toLocaleTimeString("en-GB", {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    })
+  );
+  const utciValues = Object.values(grouped).map(scores =>
+    scores.reduce((a, b) => a + b, 0) / scores.length
+  );
+
+  const temps = data.map(d => parseFloat(d.temp) || null);
+  const humidities = data.map(d => parseFloat(d.humidity) || null);
+
+  if (utciChart) utciChart.destroy();
+  if (tempHumidityChart) tempHumidityChart.destroy();
+
+  utciChart = new Chart(document.getElementById("utciChart").getContext("2d"), {
+    type: "line",
+    data: {
+      labels,
+      datasets: [{
+        label: t.heatStressGraph,
+        data: utciValues,
+        borderColor: "#e83e8c",
+        backgroundColor: "rgba(232, 62, 140, 0.2)",
+        fill: false,
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7
+      }]
+    },
+    options: {
+      elements: {
+        point: { radius: 5, hitRadius: 10, hoverRadius: 7 }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          min: 1,
+          max: 5.2,
+          ticks: {
+            stepSize: 1,
+            callback: function(value) {
+              return [1, 2, 3, 4, 5].includes(value) ? value : '';
+            }
+          }
+        },
+        x: {
+            offset: true,
+            ticks: {
+              maxRotation: 60,
+              minRotation: 60
+            }
+          }
+      }
+    }
+  });
+
+  tempHumidityChart = new Chart(document.getElementById("tempHumidityChart").getContext("2d"), {
+    type: "line",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: t.temperatureGraph,
+          data: temps,
+          borderColor: "#007bff",
+          fill: false,
+          yAxisID: "y1"
+        },
+        {
+          label: t.humidityGraph,
+          data: humidities,
+          borderColor: "#28a745",
+          fill: false,
+          yAxisID: "y2"
+        }
+      ]
+    },
+    options: {
+      elements: { point: { radius: 4 } },
+      scales: {
+        y1: {
+          type: "linear",
+          position: "left",
+          beginAtZero: true
+        },
+        y2: {
+          type: "linear",
+          position: "right",
+          beginAtZero: true
+        },
+        x: {
+          ticks: {
+            maxRotation: 60,
+            minRotation: 60
+          }
+        }
+      }
+    }
+  });
+}
+
+function attachToggleChartListener() {
+  const toggleButton = document.getElementById("toggle-chart");
+  if (!toggleButton) return;
+
+  if (toggleButton.dataset.listenerAttached) return;
+
+  toggleButton.addEventListener("click", () => {
+    const utciChartContainer = document.getElementById("utci-chart-container");
+    const tempChartContainer = document.getElementById("temp-humid-chart-container");
+    if (!utciChartContainer || !tempChartContainer) return;
+
+    const isUTCIVisible = utciChartContainer.style.display !== "none";
+    utciChartContainer.style.display = isUTCIVisible ? "none" : "block";
+    tempChartContainer.style.display = isUTCIVisible ? "block" : "none";
+  });
+
+  toggleButton.dataset.listenerAttached = "true"; 
+}
+
+
 function initNotifications() {
-  Papa.parse("monterrey_utci_with_measures.csv", {
+  const file = `${getSelectedCity()}_utci_with_measures.csv`;
+
+  Papa.parse(file, {
     download: true,
     header: true,
     skipEmptyLines: true,
     complete: function(results) {
-      const data = results.data;
+      console.log("First data row:", results.data[0]);
+      console.log("All loaded rows:", results.data.length); 
+
+
+      const allData = results.data;
+      const now = new Date();
+
       const table = document.getElementById('measures-table')?.getElementsByTagName('tbody')[0];
       const list = document.getElementById('notification-list');
       if (!table || !list) return;
 
-      const now = new Date();
+      table.innerHTML = ""; // Clear table
 
-      // Filter to show only next 7 hours
-      //const filtered = filterByShift(data);
-      const filtered = filterByShift(data); // 
+      const filteredByShift = filterByShift(results.data);
+      console.log("Filtered rows for selected shift:", filteredByShift.length);
 
+      // const upcoming = filteredByShift.filter(row => {
+        // const rowTime = new Date(row.datetime.replace(" ", "T"));
+        // return rowTime.getTime() >= now.getTime(); // consistent comparison
+      // });
 
-      // Load existing from localStorage
+      const upcoming = filteredByShift; 
+
       const saved = JSON.parse(localStorage.getItem('notifications')) || [];
 
-      // Display a notification
       function displayNotification(message) {
-        const div = document.createElement('div');
-        div.className = "alert alert-warning mt-2";
-        div.innerText = message;
-        div.dataset.key = message;
-        list.prepend(div);
+        if (!list.querySelector(`[data-key="${message}"]`)) {
+          const div = document.createElement('div');
+          div.className = "alert alert-warning mt-2";
+          div.innerText = message;
+          div.dataset.key = message;
+          list.prepend(div);
+        }
       }
 
-      // Remove a notification from UI and storage
       function removeNotification(message) {
         const alerts = [...list.querySelectorAll('.alert')];
         alerts.forEach(alert => {
-          if (alert.dataset.key === message) {
-            alert.remove();
-          }
+          if (alert.dataset.key === message) alert.remove();
         });
+
         const updated = saved.filter(msg => msg !== message);
         localStorage.setItem('notifications', JSON.stringify(updated));
       }
-
-      // Restore saved
-      saved.forEach(displayNotification);
 
       function toggleNotification(message, button) {
         const current = JSON.parse(localStorage.getItem('notifications')) || [];
@@ -309,114 +505,304 @@ function initNotifications() {
         }
       }
 
-      filtered.forEach(row => {
-        const datetime = row['datetime'] || '';
-        const time = datetime ? new Date(datetime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
-      
-        const categories = {
-          Hydration: row['Hydration'],
-          Cooling: row['Cooling_Recovery'],
-          Activity: row['Workload_Adjustment'],
-        };
-        
+      saved.forEach(displayNotification);
+
+      upcoming.forEach(row => {
+        console.log("Rendering row:", row);
+        let rowTime;
+        if (row.datetime.includes('/')) {
+          const [datePart, timePart] = row.datetime.split(' ');
+          const [day, month, year] = datePart.split('/');
+          rowTime = new Date(`${year}-${month}-${day}T${timePart}`);
+        } else {
+          rowTime = new Date(row.datetime.replace(" ", "T"));
+        }
+
+        const time = rowTime.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
+
+        const lang = localStorage.getItem("selectedLanguage") || "en";
+        const measures = [row['Measure 1'], row['Measure 2'], row['Measure 3']].map(m => {
+          if (!m) return "";
+          return measureTranslations[lang]?.[m] || m;
+        });              
+
         const tr = document.createElement('tr');
         const tdTime = document.createElement('td');
         tdTime.textContent = time;
         tr.appendChild(tdTime);
-        
-        Object.keys(categories).forEach(cat => {
+
+        for (const m of measures) {
           const td = document.createElement('td');
-          const measure = categories[cat];
-          if (measure) td.appendChild(makeButton(measure));
+          if (m) {
+            const btn = document.createElement('button');
+            btn.className = "btn btn-sm btn-primary";
+            btn.textContent = m;
+
+            const message = `[${time}] ${m}`;
+            if (saved.includes(message)) {
+              btn.classList.replace("btn-primary", "btn-success");
+              btn.textContent = "✔ " + m;
+            }
+
+            btn.onclick = () => toggleNotification(message, btn);
+            td.appendChild(btn);
+          }
           tr.appendChild(td);
-        });
+        }
 
         table.appendChild(tr);
       });
-      
     }
   });
 }
-function filterByShift(dataRows) {
-  const shift = localStorage.getItem("selectedShift");
-  if (!shift) return dataRows;
 
-  const parsedRows = dataRows.map(row => ({
-    ...row,
-    dt: new Date(row.datetime),
-    hour: new Date(row.datetime).getHours(),
-    date: row.datetime.split(" ")[0]
-  }));
 
-  if (shift === "day") {
-    // Filter only 08:00–17:59
-    const dayRows = parsedRows.filter(r => r.hour >= 8 && r.hour <= 18);
-    const latestDate = [...new Set(dayRows.map(r => r.date))].sort().pop();
-    return dayRows.filter(r => r.date === latestDate);
-  }
 
-  if (shift === "night") {
-    // Get all rows with hour >= 18 or < 3
-    const nightRows = parsedRows.filter(r => r.hour >= 18 || r.hour <= 3);
+// Load initial page
 
-    // Find latest base date with at least one entry >= 18
-    const baseDates = [...new Set(
-      nightRows
-        .filter(r => r.hour >= 18)
-        .map(r => r.date)
-    )].sort();
-    const baseDate = baseDates[0];
-    // Include from baseDate: 18–23, and nextDate: 00–02
-    const nextDate = new Date(baseDate);
-    nextDate.setDate(nextDate.getDate() + 1);
-    const nextDateStr = nextDate.toISOString().split("T")[0];
-
-    return nightRows.filter(r =>
-      (r.date === baseDate && r.hour >= 18) ||
-      (r.date === nextDateStr && r.hour <= 3)
-    );
-  }
-
-  return [];
-}
-
-function loadUserProfile() {
-  const username = localStorage.getItem("loggedInUser") || "N/A";
-  const location = localStorage.getItem("selectedCountry") || "Not selected";
-  const shift = localStorage.getItem("selectedShift") || "day";
-  const role = localStorage.getItem("userRole") || "manager";
-
-  document.getElementById("profile-username").innerText = username;
-  document.getElementById("profile-location").innerText = location;
-  document.getElementById("shift-selector").value = shift;
-  document.getElementById("role-selector").value = role;
-}
-
-function saveUserSettings() {
-  const selectedShift = document.getElementById("shift-selector").value;
-  const selectedRole = document.getElementById("role-selector").value;
-  const username = localStorage.getItem("loggedInUser");
-
-  localStorage.setItem("selectedShift", selectedShift);
-  localStorage.setItem("userRole", selectedRole);
-
-  fetch("http://127.0.0.1:5000/update-role", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, role: selectedRole })
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        alert("Profile updated successfully!");
-      } else {
-        alert("Failed to update role.");
+function loadPage(page) {
+  fetch(`${page}.html`)
+    .then(res => res.text())
+    .then(html => {
+      const container = document.getElementById("dynamic-content");
+      if (!container) {
+        console.warn("'#dynamic-content' not found. Skipping page load.");
+        return;
       }
+
+      container.innerHTML = html;
+      if (page !== "worker_display") {
+      workerDisplayLoaded = false;
+      }
+
+
+      // Wait for DOM to be updated before applying logic
+      setTimeout(() => {
+        const currentLang = localStorage.getItem("selectedLanguage") || "en";
+        // applyTranslations(currentLang); // Uncomment if needed
+
+        if (page === "dashboard" && typeof loadCSV === 'function') {
+          loadCSV();
+        } else if (page === "notifications" && typeof initNotifications === 'function') {
+          initNotifications();      
+        } else if (page === "worker_display" && typeof loadWorkerDisplay === 'function') {
+        if (!workerDisplayLoaded) {
+          loadWorkerDisplay();
+          workerDisplayLoaded = true;
+        } else {
+          console.log("🔁 Skipping redundant worker_display reload.");
+        }
+      }else if (page === "awareness") {
+          applyTranslations(currentLang);
+        }
+      }, 10); // Slight delay ensures DOM is painted
+    })
+    .catch(err => {
+      console.error(`Failed to load ${page}.html:`, err);
     });
 }
 
-// Automatically load profile when user.html is opened
-if (window.location.href.includes("user.html") && typeof loadUserProfile === "function") {
-  document.addEventListener("DOMContentLoaded", loadUserProfile);
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (!localStorage.getItem("selectedCity")) {
+  localStorage.setItem("selectedCity", "monterrey");
+  }
+  const dayBtn = document.getElementById("dayShiftBtn");
+  const nightBtn = document.getElementById("nightShiftBtn");
+  const citySelector = document.getElementById("citySelector");
+
+  const refreshCurrentPageData = () => {
+    const currentPage = document.querySelector("#sidebar a.active")?.getAttribute("data-page") || "dashboard";
+    if (currentPage === "dashboard"){ loadCSV();
+        attachToggleChartListener();
+    }
+    else if (currentPage === "notifications") initNotifications();
+  };
+
+  if (citySelector) {
+    citySelector.value = getSelectedCity();
+    citySelector.addEventListener("change", () => {
+      localStorage.setItem("selectedCity", citySelector.value);
+
+      const currentPage = document.querySelector('#sidebar a.active')?.getAttribute("data-page") || "dashboard";
+
+      if (currentPage === "dashboard") {
+        loadCSV(); // refresh charts
+        attachToggleChartListener(); // ensure toggle still works
+      } else if (currentPage === "notifications") {
+        initNotifications(); // refresh measure table
+      } else if (currentPage === "worker_display") {
+        loadWorkerDisplay();      
+      } else if (currentPage === "awareness") {
+        // call update logic for this page
+      }
+    const lang = localStorage.getItem("selectedLanguage") || "en";
+    applyTranslations(lang);
+    });
+
+
+  }
+
+
+  if (dayBtn && nightBtn) {
+    const updateShift = shift => {
+      localStorage.setItem("selectedShift", shift);
+      dayBtn.classList.toggle("active", shift === "day");
+      nightBtn.classList.toggle("active", shift === "night");
+      refreshCurrentPageData();
+    };
+    dayBtn.addEventListener("click", () => updateShift("day"));
+    nightBtn.addEventListener("click", () => updateShift("night"));
+    updateShift(getSelectedShift());
+  }
+
+  document.querySelectorAll('#sidebar a[data-page]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const page = link.getAttribute("data-page");
+      document.querySelectorAll('#sidebar a').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+      loadPage(page);
+    });
+  });
+
+  loadPage("dashboard");
+});
+
+//language change
+const langTabs = document.querySelectorAll('.lang-tab');
+const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+applyTranslations(currentLang);
+langTabs.forEach(tab => {
+  if (tab.dataset.lang === currentLang) tab.classList.add('active');
+  else tab.classList.remove('active');
+});
+
+langTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const selectedLang = tab.dataset.lang;
+    localStorage.setItem('selectedLanguage', selectedLang);
+    applyTranslations(selectedLang);
+
+    langTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    const currentPage = document.querySelector('#sidebar a.active')?.getAttribute('data-page') || "dashboard";
+    if (currentPage === "dashboard"){ 
+      loadCSV();} else if (currentPage === "notifications") {
+      initNotifications();
+      }else if (currentPage === "awareness") {
+      applyTranslations(selectedLang);} 
+      else if (currentPage === "worker_display"){loadWorkerDisplay()}
+
+  });
+});
+//worker
+function getHeatStressIcon(score) {
+  return {
+    1: "✅",
+    2: "🌤️",
+    3: "☀️",
+    4: "🔥",
+    5: "⚠️"
+  }[score] || "❓";
 }
+
+function getRiskColor(score) {
+  return {
+    1: "#28a745", // Green
+    2: "#ffc107", // Yellow
+    3: "#fd7e14", // Orange
+    4: "#dc3545", // Red
+    5: "#b21f1f"  // Dark red
+  }[score] || "#adb5bd";
+}
+
+function getHeatRiskLabel(score, lang) {
+  const labels = {
+    en: {
+      1: "No Risk",
+      2: "Moderate Risk",
+      3: "Strong Risk",
+      4: "Very Strong Risk",
+      5: "Extreme Risk"
+    },
+    es: {
+      1: "Sin Riesgo",
+      2: "Riesgo Moderado",
+      3: "Riesgo Fuerte",
+      4: "Riesgo Muy Fuerte",
+      5: "Riesgo Extremo"
+    }
+  };
+  return labels[lang]?.[score] || "-";
+}
+
+function loadWorkerDisplay() {
+  const file = `${getSelectedCity()}_utci_with_measures.csv`;
+
+  Papa.parse(file, {
+    header: true,
+    download: true,
+    complete: function ({ data }) {
+      try {
+        const filteredData = filterByShift(data);
+        if (!filteredData.length) {
+          console.warn("No valid data for selected shift.");
+          return;
+        }
+
+        const latest = filteredData[0];
+        const score = parseInt(latest["heat_risk_score"]);
+        const lang = localStorage.getItem("selectedLanguage") || "en";
+
+        const color = getRiskColor(score);
+        const label = getHeatStressLabel(score); // from updateCards()
+        const localizedLabel = lang === "en"
+          ? `${label} Risk`
+          : {
+              "None": "Sin Riesgo",
+              "Moderate": "Riesgo Moderado",
+              "Strong": "Riesgo Fuerte",
+              "Very Strong": "Riesgo Muy Fuerte",
+              "Extreme": "Riesgo Extremo",
+              "-": "-"
+            }[label] || "-";
+
+        const utciCard = document.getElementById("utci-card");
+        const utciLabel = document.getElementById("utci-label");
+        const utciGroup = document.getElementById("utci-group");
+
+        if (utciCard && utciLabel && utciGroup) {
+          utciLabel.textContent = localizedLabel;
+          utciGroup.textContent = score;
+          utciCard.style.backgroundColor = color;
+        } else {
+          console.warn("UTCI elements missing in DOM.");
+        }
+
+        // Optional: Show saved notifications
+        const notifListEl = document.getElementById("notification-list");
+        if (notifListEl) {
+          notifListEl.innerHTML = "";
+          const notifications = JSON.parse(localStorage.getItem("notifications")) || [];
+          for (const message of notifications) {
+            const div = document.createElement("div");
+            div.className = "alert alert-warning mt-2";
+            div.textContent = message;
+            notifListEl.appendChild(div);
+          }
+        }
+      } catch (err) {
+        console.error("Error in loadWorkerDisplay():", err);
+      }
+    }
+  });
+}
+
+
+if (window.location.pathname.includes("worker_display.html")) {
+  loadCSV();
+}
+
 

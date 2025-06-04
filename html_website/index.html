@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heat Stress Management Dashboard</title>
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js & PapaParse -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+
+<body class="d-flex">
+  <!-- Sidebar -->
+  <div class="bg-dark-grey text-white d-flex flex-column p-3" id="sidebar" style="width: 250px; min-height: 100vh;">
+    <h2 class="text-center mb-4">⛑️ HSMD.</h2>
+    <ul class="list-unstyled flex-grow-1">
+      <li><a href="#" class="text-white" data-page="dashboard">Dashboard</a></li>
+      <li><a href="#" class="text-white" data-page="user">User Profile</a></li>
+      <li><a href="#" class="text-white" data-page="notifications">Notifications</a></li>
+      <li><a href="#" class="text-white" data-page="awareness">Awareness</a></li>
+    </ul>
+    <button class="btn btn-outline-light btn-sm mt-auto" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Main content -->
+  <div class="flex-grow-1 p-4" id="main-content">
+    <!-- Top Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <small>Current Location:</small> <strong id="current-location">...</strong>
+      </div>
+    </div>
+
+    <!-- Page container -->
+    <div id="dynamic-content">Loading...</div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function loadPage(page) {
+      fetch(`${page}.html`)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("dynamic-content").innerHTML = html;
+          if (page === "dashboard" && typeof loadCSV === 'function') loadCSV();
+          if (page === "notifications" && typeof initNotifications === 'function') initNotifications();
+          if (page === "user" && typeof loadUserProfile === 'function') loadUserProfile();
+        });
+    }
+
+    document.querySelectorAll('#sidebar a[data-page]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = link.getAttribute('data-page');
+        loadPage(page);
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem("selectedShift")) {
+        localStorage.setItem("selectedShift", "day");
+
+    window.addEventListener('DOMContentLoaded', () => {
+        loadPage("notifications");
+    })
+      }
+
+      // Load default view
+      loadPage("dashboard");
+
+      const savedLocation = localStorage.getItem("selectedCountry") || "Not Set";
+      const formatted = savedLocation.charAt(0).toUpperCase() + savedLocation.slice(1).replace("-", " ");
+      document.getElementById("current-location").innerText = formatted;
+    });
+  </script>
+</body>
+</html>

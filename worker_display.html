@@ -1,101 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HSMD - Workers</title>
-  <link rel="stylesheet" href="style_worker.css" />
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-</head>
-<body>
-<main class="container">
-  <h1 class="header">Worker Display</h1>
+<div class="container mt-5 text-center">
+  <h2 class="mb-5 display-5 fw-bold">Worker Display Dashboard</h2>
 
-  <div class="cards-row">
-    <section class="card heat-card">
-      <h2>Heat Stress Risk</h2>
-      <div class="level">
-        <span class="icon" id="heat-icon">🌤️</span>
-        <span class="label" id="utci-label">Loading...</span>
-      </div>
-    </section>
+  <!-- Cards Row -->
+  <div class="d-flex justify-content-center flex-wrap gap-4 mb-5">
 
-    <section class="card">
-      <h2>Remember to:</h2>
-      <ul class="reminders" id="reminders-list">
-        <li>Loading...</li>
+    <!-- UTCI Risk Card -->
+    <div id="utci-card" class="heat-card text-white p-4 rounded shadow d-flex flex-column justify-content-center align-items-center" style="min-width: 200px; min-height: 150px;">
+      <div id="utci-group" class="display-4 fw-bold">--</div>
+      <div id="utci-label" class="fs-4 mt-2">--</div>
+    </div>
+
+    <!-- Health Reminders -->
+    <div class="bg-white p-4 rounded-4 shadow-sm" style="width: 280px;">
+      <h4 class="mb-3 fw-bold">Health Reminders</h4>
+      <ul class="list-unstyled fs-5 text-start m-0">
+        <li>💧 Every 30 minutes</li>
+        <li>🌳 Every 1 hour</li>
+        <li>👕 Light, breathable</li>
       </ul>
-    </section>
+    </div>
   </div>
-</main>
 
-<script>
-  const riskIcons = {
-    "No Risk": "✅",
-    "Moderate Risk": "💧",
-    "Strong Risk": "🌤️",
-    "Very Strong Risk": "🌞",
-    "Extreme Risk": "⚠️"
-  };
-
-  function getRiskGroup(utci) {
-    if (utci <= 26) return 1;
-    if (utci <= 32) return 2;
-    if (utci <= 38) return 3;
-    if (utci <= 46) return 4;
-    return 5;
-  }
-
-  const riskLabels = {
-    1: "No Risk",
-    2: "Moderate Risk",
-    3: "Strong Risk",
-    4: "Very Strong Risk",
-    5: "Extreme Risk"
-  };
-
-  function loadWorkerDisplay() {
-    Papa.parse("monterrey_utci_results.csv", {
-      download: true,
-      header: true,
-      complete: function (result) {
-        const data = result.data;
-        const latest = data[data.length - 1];
-        const utci = parseFloat(latest.utci);
-        const utciGroup = getRiskGroup(utci);
-        const riskLabel = riskLabels[utciGroup];
-
-        document.getElementById("utci-label").innerText = riskLabel;
-        document.getElementById("heat-icon").innerText = riskIcons[riskLabel] || "❓";
-
-        Papa.parse("heat_risk_database.csv", {
-          download: true,
-          header: true,
-          complete: function (riskData) {
-            const row = riskData.data.find(r => r["Heat_Risk_Score"] === utciGroup.toString());
-            const list = document.getElementById("reminders-list");
-            list.innerHTML = "";
-
-            if (!row) {
-              list.innerHTML = "<li class='text-danger'>No measures found.</li>";
-              return;
-            }
-
-            for (let i = 1; i <= 5; i++) {
-              const m = row[`Measure ${i}`];
-              if (m && m.trim()) {
-                const li = document.createElement("li");
-                li.textContent = m;
-                list.appendChild(li);
-              }
-            }
-          }
-        });
-      }
-    });
-  }
-
-  window.addEventListener("DOMContentLoaded", loadWorkerDisplay);
-</script>
-</body>
-</html>
+  <!-- Notifications -->
+  <div class="card p-4 shadow-sm rounded-4 mx-auto" style="max-width: 600px;">
+    <h4 class="fw-bold mb-3">Sent Notifications</h4>
+    <div id="notification-list" class="fs-5 text-start"></div>
+  </div>
+</div>
