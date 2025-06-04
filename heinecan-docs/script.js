@@ -1,5 +1,8 @@
 let utciChart, tempHumidityChart;
 let showingUTCIGraph = true;
+let workerDisplayLoaded = false;
+let currentPage = null;
+
 const translations = {
   en: {
     title: "Health and Safety Dashboard",
@@ -24,7 +27,7 @@ const translations = {
     awareness: "Awareness"
   },
   es: {
-    title: "Panel de Salud y Seguridad",
+    title: "Panel de Gestió de Estrés por Calor", 
     heatStress: "Estrés por Calor",
     temperature: "Temperatura",
     humidity: "Humedad",
@@ -210,6 +213,9 @@ function loadCSV() {
     complete: function ({ data }) {
       try {
         const filteredData = filterByShift(data);
+        if (window.location.pathname.includes("worker_display.html")) {
+          updateWorkerDisplay(filteredData);
+        }
         if (document.getElementById("temperature")) {
           updateCards(filteredData);
           drawCharts(filteredData);
@@ -553,30 +559,48 @@ function initNotifications() {
 
 
 // Load initial page
+
 function loadPage(page) {
   fetch(`${page}.html`)
     .then(res => res.text())
     .then(html => {
       const container = document.getElementById("dynamic-content");
-      container.innerHTML = html;
+      if (!container) {
+        console.warn("'#dynamic-content' not found. Skipping page load.");
+        return;
+      }
 
-      // Wait for DOM to be updated before applying translations
+      container.innerHTML = html;
+      if (page !== "worker_display") {
+      workerDisplayLoaded = false;
+      }
+
+
+      // Wait for DOM to be updated before applying logic
       setTimeout(() => {
         const currentLang = localStorage.getItem("selectedLanguage") || "en";
-        //applyTranslations(currentLang); 
+        // applyTranslations(currentLang); // Uncomment if needed
 
         if (page === "dashboard" && typeof loadCSV === 'function') {
           loadCSV();
         } else if (page === "notifications" && typeof initNotifications === 'function') {
           initNotifications();      
         } else if (page === "worker_display" && typeof loadWorkerDisplay === 'function') {
-        } else if (page === "awareness") {
-          applyTranslations(lang);
+        if (!workerDisplayLoaded) {
+          loadWorkerDisplay();
+          workerDisplayLoaded = true;
+        } else {
+          console.log("🔁 Skipping redundant worker_display reload.");
         }
-      })
+      }else if (page === "awareness") {
+          applyTranslations(currentLang);
+        }
+      }, 10); // Slight delay ensures DOM is painted
+    })
+    .catch(err => {
+      console.error(`Failed to load ${page}.html:`, err);
     });
 }
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -673,4 +697,112 @@ langTabs.forEach(tab => {
 
   });
 });
+//worker
+function getHeatStressIcon(score) {
+  return {
+    1: "✅",
+    2: "🌤️",
+    3: "☀️",
+    4: "🔥",
+    5: "⚠️"
+  }[score] || "❓";
+}
+
+function getRiskColor(score) {
+  return {
+    1: "#28a745", // Green
+    2: "#ffc107", // Yellow
+    3: "#fd7e14", // Orange
+    4: "#dc3545", // Red
+    5: "#b21f1f"  // Dark red
+  }[score] || "#adb5bd";
+}
+
+function getHeatRiskLabel(score, lang) {
+  const labels = {
+    en: {
+      1: "No Risk",
+      2: "Moderate Risk",
+      3: "Strong Risk",
+      4: "Very Strong Risk",
+      5: "Extreme Risk"
+    },
+    es: {
+      1: "Sin Riesgo",
+      2: "Riesgo Moderado",
+      3: "Riesgo Fuerte",
+      4: "Riesgo Muy Fuerte",
+      5: "Riesgo Extremo"
+    }
+  };
+  return labels[lang]?.[score] || "-";
+}
+
+function loadWorkerDisplay() {
+  const file = `${getSelectedCity()}_utci_with_measures.csv`;
+
+  Papa.parse(file, {
+    header: true,
+    download: true,
+    complete: function ({ data }) {
+      try {
+        const filteredData = filterByShift(data);
+        if (!filteredData.length) {
+          console.warn("No valid data for selected shift.");
+          return;
+        }
+
+        const latest = filteredData[0];
+        const score = parseInt(latest["heat_risk_score"]);
+        const lang = localStorage.getItem("selectedLanguage") || "en";
+
+        const color = getRiskColor(score);
+        const label = getHeatStressLabel(score); // from updateCards()
+        const localizedLabel = lang === "en"
+          ? `${label} Risk`
+          : {
+              "None": "Sin Riesgo",
+              "Moderate": "Riesgo Moderado",
+              "Strong": "Riesgo Fuerte",
+              "Very Strong": "Riesgo Muy Fuerte",
+              "Extreme": "Riesgo Extremo",
+              "-": "-"
+            }[label] || "-";
+
+        const utciCard = document.getElementById("utci-card");
+        const utciLabel = document.getElementById("utci-label");
+        const utciGroup = document.getElementById("utci-group");
+
+        if (utciCard && utciLabel && utciGroup) {
+          utciLabel.textContent = localizedLabel;
+          utciGroup.textContent = score;
+          utciCard.style.backgroundColor = color;
+        } else {
+          console.warn("UTCI elements missing in DOM.");
+        }
+
+        // Optional: Show saved notifications
+        const notifListEl = document.getElementById("notification-list");
+        if (notifListEl) {
+          notifListEl.innerHTML = "";
+          const notifications = JSON.parse(localStorage.getItem("notifications")) || [];
+          for (const message of notifications) {
+            const div = document.createElement("div");
+            div.className = "alert alert-warning mt-2";
+            div.textContent = message;
+            notifListEl.appendChild(div);
+          }
+        }
+      } catch (err) {
+        console.error("Error in loadWorkerDisplay():", err);
+      }
+    }
+  });
+}
+
+
+if (window.location.pathname.includes("worker_display.html")) {
+  loadCSV();
+}
+
 

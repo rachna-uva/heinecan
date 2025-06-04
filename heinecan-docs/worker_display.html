@@ -1,37 +1,29 @@
-<div class="container mt-5">
-  <h2 class="mb-5 text-center display-5">Worker Display Dashboard</h2>
+<div class="container mt-5 text-center">
+  <h2 class="mb-5 display-5 fw-bold">Worker Display Dashboard</h2>
 
-  <div class="row justify-content-center">
-    <!-- Heat Risk Level Card -->
-    <div class="col-md-5 mb-4">
-      <div id="heat-card" class="card text-center p-5 shadow" style="border-radius: 20px;">
-        <h4 class="mb-3 fw-bold">Heat Stress Risk Level</h4>
-        <div class="display-1 mb-3" id="heat-icon"></div>
-        <div class="display-4 fw-bold" id="utci-label"></div>
-      </div>
+  <!-- Cards Row -->
+  <div class="d-flex justify-content-center flex-wrap gap-4 mb-5">
+
+    <!-- UTCI Risk Card -->
+    <div id="utci-card" class="heat-card text-white p-4 rounded shadow d-flex flex-column justify-content-center align-items-center" style="min-width: 200px; min-height: 150px;">
+      <div id="utci-group" class="display-4 fw-bold">--</div>
+      <div id="utci-label" class="fs-4 mt-2">--</div>
     </div>
 
     <!-- Health Reminders -->
-    <div class="col-md-5 mb-4">
-      <div class="card text-center p-5 shadow" style="border-radius: 20px;">
-        <h4 class="mb-3 fw-bold">Health Reminders</h4>
-        <ul class="list-unstyled mt-3 fs-4">
-          <li>💧 Every 30 minutes</li>
-          <li>🌳 Every 1 hour</li>
-          <li>👕 Light, breathable</li>
-        </ul>
-      </div>
+    <div class="bg-white p-4 rounded-4 shadow-sm" style="width: 280px;">
+      <h4 class="mb-3 fw-bold">Health Reminders</h4>
+      <ul class="list-unstyled fs-5 text-start m-0">
+        <li>💧 Every 30 minutes</li>
+        <li>🌳 Every 1 hour</li>
+        <li>👕 Light, breathable</li>
+      </ul>
     </div>
   </div>
-  <!-- Sent Notifications -->
-  <div class="row justify-content-center mt-4">
-    <div class="col-md-10">
-      <div class="card p-4 shadow" style="border-radius: 20px;">
-        <h4 class="fw-bold mb-3">Sent Notifications</h4>
-        <ul id="worker-notification-list" class="list-group fs-5">
-          <!-- Filled dynamically -->
-        </ul>
-      </div>
-    </div>
+
+  <!-- Notifications -->
+  <div class="card p-4 shadow-sm rounded-4 mx-auto" style="max-width: 600px;">
+    <h4 class="fw-bold mb-3">Sent Notifications</h4>
+    <div id="notification-list" class="fs-5 text-start"></div>
   </div>
 </div>
