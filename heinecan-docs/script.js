@@ -3,6 +3,7 @@ let showingUTCIGraph = true;
 let workerDisplayLoaded = false;
 let currentPage = null;
 
+
 const translations = {
   en: {
     title: "Health and Safety Dashboard",
