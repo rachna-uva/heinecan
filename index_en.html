@@ -72,54 +72,5 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="script.js"></script>
-
-
-  <script>
-    function loadPage(page) {
-      fetch(`${page}.html`)
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById("dynamic-content").innerHTML = html;
-          if (page === "dashboard" && typeof loadCSV === 'function') loadCSV();
-          if (page === "notifications" && typeof initNotifications === 'function') initNotifications();
-          if (page === "user" && typeof loadUserProfile === 'function') loadUserProfile();
-        });
-    }
-
-    document.querySelectorAll('#sidebar a[data-page]').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const page = link.getAttribute("data-page");
-        loadPage(page);
-      });
-    });
-
-    window.addEventListener('DOMContentLoaded', () => {
-      if (!localStorage.getItem("selectedShift")) {
-        localStorage.setItem("selectedShift", "day");
-      }
-
-      // Load default view
-      loadPage("dashboard");
-
-      const savedLocation = localStorage.getItem("selectedCountry") || "Not Set";
-      const formatted = savedLocation.charAt(0).toUpperCase() + savedLocation.slice(1).replace("-", " ");
-
-      const currentLang = localStorage.getItem('selectedLanguage') || 'en';
-      applyTranslations(currentLang);
-
-      const langTabs = document.querySelectorAll('.lang-tab');
-      langTabs.forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.lang === currentLang);
-        tab.addEventListener('click', () => {
-          const selectedLang = tab.dataset.lang;
-          localStorage.setItem('selectedLanguage', selectedLang);
-          applyTranslations(selectedLang);
-          langTabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-        });
-      });
-    });
-  </script>
 </body>
 </html>

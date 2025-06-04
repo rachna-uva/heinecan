@@ -24,7 +24,14 @@ const translations = {
     temperatureGraph: "Temperature (°C)",
     humidityGraph: "Humidity (%)",
     workerDisplay: "Worker Display",
-    awareness: "Awareness"
+    awareness: "Awareness",
+    healthReminders: "Health Reminders",
+    every30Min: "Every 30 minutes",
+    every1Hour: "Every 1 hour",
+    lightBreathable: "Light, breathable",
+    workerDisplay: "Worker Display Dashboard"
+
+
   },
   es: {
     title: "Panel de Gestió de Estrés por Calor", 
@@ -93,8 +100,12 @@ const translations = {
     emergency_text: "Los trabajadores que experimenten síntomas deben detener el trabajo de inmediato y notificar a un supervisor. Un retraso en la respuesta puede agravar rápidamente los síntomas.",
     select_shift:"Selecciona Turno",
     site_location: "Ubicación de Trabajo",
-
-
+    healthReminders: "Recordatorios de Salud",
+    every30Min: "Cada 30 minutos",
+    every1Hour: "Cada 1 hora",
+    lightBreathable: "Ligera, transpirable",
+    sentNotifications: "Notificaciones Enviadas",
+    workerDisplay: "Pantalla del Trabajador"
   }
 };
 const measureTranslations = {
@@ -123,7 +134,7 @@ function applyTranslations(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (translations[lang] && translations[lang][key]) {
-      el.textContent = translations[lang][key];
+    el.innerHTML = translations[lang][key];
     }
   });
 
@@ -150,44 +161,56 @@ function filterByShift(dataRows) {
 
   const parsedRows = dataRows.map(row => {
     let dt;
+    let originalFormat = "iso"; // default
     if (row.datetime.includes('/')) {
-      // Format: DD/MM/YYYY HH:mm → convert to YYYY-MM-DDTHH:mm
+      originalFormat = "local"; // Monterrey
       const [datePart, timePart] = row.datetime.split(' ');
       const [day, month, year] = datePart.split('/');
       dt = new Date(`${year}-${month}-${day}T${timePart}`);
     } else {
-      // Format: YYYY-MM-DD HH:mm:ss → safe
       dt = new Date(row.datetime.replace(" ", "T"));
     }
+
     let hour = dt.getHours();
-    let shiftDate = row.datetime.split(" ")[0];
-    let displayHour = hour;
+    let shiftDate;
 
     if (shift === "night" && hour <= 2) {
-      // Early morning → belongs to previous night shift
       const adjusted = new Date(dt);
       adjusted.setDate(adjusted.getDate() - 1);
-      shiftDate = adjusted.toISOString().split("T")[0];
-      displayHour += 24;
+      if (originalFormat === "local") {
+        const d = String(adjusted.getDate()).padStart(2, '0');
+        const m = String(adjusted.getMonth() + 1).padStart(2, '0');
+        const y = adjusted.getFullYear();
+        shiftDate = `${d}/${m}/${y}`;
+      } else {
+        shiftDate = adjusted.toISOString().split("T")[0];
+      }
+    } else {
+      shiftDate = row.datetime.split(" ")[0]; // use original format
+    }
+
+    let displayHour = hour;
+    if (shift === "night" && hour <= 2) {
+      displayHour += 24; 
     }
 
     const sortKey = `${shiftDate} ${String(displayHour).padStart(2, "0")}:00`;
     return { ...row, dt, hour, shiftDate, sortKey };
   });
 
-  // Group rows by shiftDate instead of regular date
+  // Group by shiftDate
   const groupedByShiftDate = {};
   for (const row of parsedRows) {
     if (!groupedByShiftDate[row.shiftDate]) groupedByShiftDate[row.shiftDate] = [];
     groupedByShiftDate[row.shiftDate].push(row);
   }
 
-  // Determine if shift is "valid" (contains all expected hours)
+  // Identify valid shift dates
   const validDates = Object.entries(groupedByShiftDate).filter(([_, rows]) => {
     const hours = rows.map(r => r.hour);
     const required = shift === "day"
-      ? Array.from({ length: 10 }, (_, i) => i + 8) // 08–17
-      : [18, 19, 20, 21, 22, 23, 0, 1, 2];          // night
+      ? Array.from({ length: 10 }, (_, i) => i + 8)  // 08 to 17
+      : [18, 19, 20, 21, 22, 23, 0, 1, 2];           // 18 to 02 (next day)
     return required.every(h => hours.includes(h));
   });
 
@@ -202,6 +225,7 @@ function filterByShift(dataRows) {
     })
     .sort((a, b) => a.sortKey.localeCompare(b.sortKey));
 }
+
 
 
 function loadCSV() {
@@ -434,7 +458,10 @@ function attachToggleChartListener() {
 
 
 function initNotifications() {
-  const file = `${getSelectedCity()}_utci_with_measures.csv`;
+  const city = getSelectedCity();
+  const shift = getSelectedShift();
+  const file = `${city}_utci_with_measures.csv`;
+  const notifKey = `notifications_${city}_${shift}`;
 
   Papa.parse(file, {
     download: true,
@@ -443,7 +470,6 @@ function initNotifications() {
     complete: function(results) {
       console.log("First data row:", results.data[0]);
       console.log("All loaded rows:", results.data.length); 
-
 
       const allData = results.data;
       const now = new Date();
@@ -457,14 +483,9 @@ function initNotifications() {
       const filteredByShift = filterByShift(results.data);
       console.log("Filtered rows for selected shift:", filteredByShift.length);
 
-      // const upcoming = filteredByShift.filter(row => {
-        // const rowTime = new Date(row.datetime.replace(" ", "T"));
-        // return rowTime.getTime() >= now.getTime(); // consistent comparison
-      // });
-
       const upcoming = filteredByShift; 
 
-      const saved = JSON.parse(localStorage.getItem('notifications')) || [];
+      const saved = JSON.parse(localStorage.getItem(notifKey)) || [];
 
       function displayNotification(message) {
         if (!list.querySelector(`[data-key="${message}"]`)) {
@@ -483,11 +504,11 @@ function initNotifications() {
         });
 
         const updated = saved.filter(msg => msg !== message);
-        localStorage.setItem('notifications', JSON.stringify(updated));
+        localStorage.setItem(notifKey, JSON.stringify(updated));
       }
 
       function toggleNotification(message, button) {
-        const current = JSON.parse(localStorage.getItem('notifications')) || [];
+        const current = JSON.parse(localStorage.getItem(notifKey)) || [];
         const isSent = current.includes(message);
 
         if (isSent) {
@@ -497,7 +518,7 @@ function initNotifications() {
           button.innerText = message.split('] ')[1];
         } else {
           current.push(message);
-          localStorage.setItem('notifications', JSON.stringify(current));
+          localStorage.setItem(notifKey, JSON.stringify(current));
           displayNotification(message);
           button.classList.remove("btn-primary");
           button.classList.add("btn-success");
@@ -558,10 +579,12 @@ function initNotifications() {
 
 
 
+
 // Load initial page
 
 function loadPage(page) {
-  fetch(`${page}.html`)
+  const lang = localStorage.getItem("selectedLanguage") || "en";
+  fetch(`${page}_${lang}.html`)
     .then(res => res.text())
     .then(html => {
       const container = document.getElementById("dynamic-content");
@@ -579,8 +602,7 @@ function loadPage(page) {
       // Wait for DOM to be updated before applying logic
       setTimeout(() => {
         const currentLang = localStorage.getItem("selectedLanguage") || "en";
-        // applyTranslations(currentLang); // Uncomment if needed
-
+        applyTranslations(currentLang); 
         if (page === "dashboard" && typeof loadCSV === 'function') {
           loadCSV();
         } else if (page === "notifications" && typeof initNotifications === 'function') {
@@ -688,6 +710,7 @@ langTabs.forEach(tab => {
     tab.classList.add('active');
 
     const currentPage = document.querySelector('#sidebar a.active')?.getAttribute('data-page') || "dashboard";
+    loadPage(currentPage);
     if (currentPage === "dashboard"){ 
       loadCSV();} else if (currentPage === "notifications") {
       initNotifications();
@@ -705,7 +728,7 @@ function getHeatStressIcon(score) {
     3: "☀️",
     4: "🔥",
     5: "⚠️"
-  }[score] || "❓";
+  }[score] ;
 }
 
 function getRiskColor(score) {
@@ -739,7 +762,10 @@ function getHeatRiskLabel(score, lang) {
 }
 
 function loadWorkerDisplay() {
-  const file = `${getSelectedCity()}_utci_with_measures.csv`;
+  const city = getSelectedCity();
+  const shift = getSelectedShift();
+  const file = `${city}_utci_with_measures.csv`;
+  const notifKey = `notifications_${city}_${shift}`;
 
   Papa.parse(file, {
     header: true,
@@ -757,7 +783,7 @@ function loadWorkerDisplay() {
         const lang = localStorage.getItem("selectedLanguage") || "en";
 
         const color = getRiskColor(score);
-        const label = getHeatStressLabel(score); // from updateCards()
+        const label = getHeatStressLabel(score);
         const localizedLabel = lang === "en"
           ? `${label} Risk`
           : {
@@ -781,11 +807,11 @@ function loadWorkerDisplay() {
           console.warn("UTCI elements missing in DOM.");
         }
 
-        // Optional: Show saved notifications
+        // Show saved notifications for current city+shift
         const notifListEl = document.getElementById("notification-list");
         if (notifListEl) {
           notifListEl.innerHTML = "";
-          const notifications = JSON.parse(localStorage.getItem("notifications")) || [];
+          const notifications = JSON.parse(localStorage.getItem(notifKey)) || [];
           for (const message of notifications) {
             const div = document.createElement("div");
             div.className = "alert alert-warning mt-2";
@@ -799,6 +825,7 @@ function loadWorkerDisplay() {
     }
   });
 }
+
 
 
 if (window.location.pathname.includes("worker_display.html")) {
