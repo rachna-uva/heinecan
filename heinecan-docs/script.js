@@ -242,6 +242,8 @@ function updateCards(data) {
   const riskNum = parseInt(latest.heat_risk_score);
   const lang = localStorage.getItem("selectedLanguage") || "en";
   const label = getHeatStressLabel(riskNum);
+  const card = document.getElementById("utci-card");
+
 
   const localizedLabel = lang === "en"
     ? `${label} Risk`
@@ -257,6 +259,8 @@ function updateCards(data) {
   document.getElementById("utci-group").textContent = riskNum;
   document.getElementById("utci-label").textContent = localizedLabel;
   document.getElementById("utci-card").style.backgroundColor = getRiskColor(riskNum);
+  console.log("heat_risk_score raw:", latest.heat_risk_score);
+
 }
 
 
@@ -265,8 +269,18 @@ function getHeatStressLabel(score) {
 }
 
 function getRiskColor(score) {
-  return ["#adb5bd", "#28a745", "#ffc107", "#fd7e14", "#dc3545", "#6c2bd9"][score] || "#adb5bd";
+  const colors = {
+    1: "#28a745", 
+    2: "#ffc107", 
+    3: "#fd7e14", 
+    4: "#dc3545", 
+    5: "#6c2bd9"  
+  };
+  const index = parseInt(score);
+  console.log("getRiskColor(): parsed index =", index, "→ color =", colors[index]);
+  return colors[index] || "#adb5bd";
 }
+
 
 function drawCharts(data) {
   const lang = localStorage.getItem("selectedLanguage") || "en";
@@ -549,7 +563,7 @@ function loadPage(page) {
       // Wait for DOM to be updated before applying translations
       setTimeout(() => {
         const currentLang = localStorage.getItem("selectedLanguage") || "en";
-        //applyTranslations(currentLang); // Apply translations to newly loaded content
+        //applyTranslations(currentLang); 
 
         if (page === "dashboard" && typeof loadCSV === 'function') {
           loadCSV();
@@ -559,7 +573,7 @@ function loadPage(page) {
         } else if (page === "awareness") {
           applyTranslations(lang);
         }
-      }, 20); // Delay ensures DOM is fully rendered
+      })
     });
 }
 
