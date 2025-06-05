@@ -1,0 +1,468 @@
+body {
+    background-color: #f8f9fa; /* Light gray background */
+    font-family: 'Inter', sans-serif;
+    color: #2d3436;
+
+}
+h1, h4, h5 {
+    font-weight: 600;
+}
+h2 {
+    margin-top: 20px;
+}
+
+.table th {
+    text-align: center;
+}
+
+.badge {
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-info {
+    color: #17a2b8 !important;
+}
+.bg-orange {
+    background-color: #ff8c00 !important; /* Orange */
+}
+/* Sidebar styling */
+@media (min-width: 0px) {
+  #sidebar {
+    min-height: 100vh;
+    width: 300px;
+    padding: 30px 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    background-color: #2f2f2f;
+    overflow-x: hidden;
+    flex-shrink: 0;
+  }  
+
+}
+/* Sidebar links */
+#sidebar a {
+  display: block;
+  padding: 10px 0;
+  border-radius: 8px;
+  margin: 5px 0;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  color: #eaefef;
+  font-size: 1rem;
+  text-align: left;
+}
+
+#sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.bg-dark-grey {
+    background-color: #2f2f2f !important; /* Rich dark grey */
+}
+
+/* Sidebar Controls */
+.sidebar-controls small {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ccc;
+  margin-bottom: 4px;
+}
+
+#shift-toggle {
+  display: flex;
+  background-color: #fff;
+  border-radius: 25px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+#shift-toggle .btn {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0;
+  padding: 6px 0;
+  background-color: #fff;
+  color: #000;
+}
+
+#shift-toggle .btn.active {
+  background-color: #2f2f2f;
+  color: #fff;
+}
+
+#citySelector {
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+/* Dashboard cards */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.card h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+/* Table styling */
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Chart container */
+#utci-chart-container,
+#temp-humid-chart-container {
+  width: 100%;
+  padding: 20px 0;
+}
+
+#utciChart,
+#tempHumidityChart {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 2 / 1;  /* ✅ keeps charts tall enough */
+  display: block;
+}
+
+.dashboard-card {
+  min-width: 150px;
+  min-height: 100px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+
+/* Enhanced card behavior */
+.dashboard-card:hover {
+    transform: scale(1.02);
+  }
+  
+/* Consistent height and spacing */
+  .dashboard-card h5 {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .dashboard-card h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Chart wrapper */
+  #utci-chart-container, #temp-humid-chart-container {
+    padding: 10px 0;
+  }
+  
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Graph section card styling */
+  .card h5 {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  /* Heat Stress Risk Card */
+  .bg-success {
+    background-color: #A0CFB2 !important;
+    border: 4px solid #3E7A55 !important;
+  }
+
+  .bg-info {
+    background-color: #EFE6BD !important;
+    border: 4px solid #D4BB49 !important;
+  }
+
+  .bg-warning {
+    background-color: #F1C5A7 !important;
+    border: 4px solid #DD732C !important;
+  }
+
+  .bg-danger {
+    background-color: #EC8383 !important;
+    border: 4px solid #C21E1E !important;
+  }
+
+/* Awareness Page Styles */
+.awareness-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+  }
+  
+.awareness-container h1 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+
+.awareness-container h2.section-title {
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 6px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+/* Two-column layout */
+.awareness-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 200px;          
+  }
+  
+/* Tables for Risk Levels & Symptoms */
+.awareness-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+  }
+  
+.awareness-container th,
+.awareness-container td {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-size: 14px;
+    vertical-align: top;
+  }
+
+.awareness-container th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+  }
+  
+.awareness-container ul {
+    margin-left: 20px;
+  }
+  
+.awareness-container p {
+    margin: 10px 0 20px;
+  }
+  
+  /* Heading underline */
+.awareness-container h2 {
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+  }
+  
+  /* Full-width table inside columns */
+  .awareness-columns table {
+    width: 100%;
+  }
+  
+  /* Allow table cells to align top */
+  .awareness-container td {
+    vertical-align: top;
+  }
+
+.emergency-text {
+    color: #b30000;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+/* Make layout responsive on small screens */
+@media (max-width: 992px) {
+    .awareness-columns {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+/* User Profile Styles */
+.user-profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.user-profile-container h1 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.user-profile-container .user-info p {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+/* Layout for shift row */
+.shift-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  
+  /* Smaller, inline dropdown */
+  #shift-selector {
+    width: 180px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+/* Language Switcher Tabs */
+#language-switcher {
+  z-index: 1000;
+}
+
+.language-tabs {
+  background-color: #2f2f2f;
+  color: white;
+  border-radius: 5px;
+  padding: 4px 8px;
+  display: flex;
+  gap: 10px;
+}
+
+.lang-tab {
+  cursor: pointer;
+  padding: 4px 8px;
+  font-weight: 500;
+  position: relative;
+}
+
+.lang-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: white;
+}
+
+/* Worker Display */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Tahoma, Verdana sans-serif;
+  background: #f9fafb;
+  color: #111;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  font-size: 2rem;
+  font-family: Tahoma, Verdana sans-serif;
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-family: Tahoma, Verdana sans-serif;
+  text-align: center;
+}
+
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.heat-card {
+  background-color: #fef08a;
+}
+
+.level {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;     
+  gap: 0.5rem;             
+  font-size: 3.5rem;
+  font-family: Tahoma, Verdana sans-serif;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+
+.icon {
+  font-size: 7rem;
+}
+
+.reminders {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+  font-size: 1.5rem;
+  font-family: Tahoma, Verdana sans-serif;
+  line-height: 1.8;
+}
+
+.cards-row {
+  display: flex;
+  gap: 2rem;            
+  justify-content: center; 
+}
+
+.card {
+  flex: 1 1 45%;        
+  min-width: 300px;     
+}
+
+#fullscreen-btn {
+  font-size: 0.85rem;
+  padding: 6px 12px;
+}
