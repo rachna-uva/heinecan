@@ -1,24 +1,53 @@
-<div class="container mt-5 text-center">
-  <h2 class="mb-5 display-5 fw-bold">Pantalla del Trabajador</h2>
+<div class="container text-center mt-5">
+  <h2 class="mb-5 display-5 fw-bold" data-i18n="workerDisplay">Pantalla del Trabajador</h2>
 
-  <div class="d-flex justify-content-center flex-wrap gap-4 mb-5">
-    <div id="utci-card" class="heat-card text-white p-4 rounded shadow d-flex flex-column justify-content-center align-items-center" style="min-width: 200px; min-height: 150px;">
-      <div id="utci-group" class="display-4 fw-bold">--</div>
-      <div id="utci-label" class="fs-4 mt-2">--</div>
+  <div class="d-flex flex-wrap justify-content-center gap-5">
+
+    <!-- LEFT COLUMN -->
+    <div class="d-flex flex-column gap-4 align-items-center" style="max-width: 400px;">
+      <!-- UTCI Risk Card -->
+      <div id="utci-card" class="heat-card text-white p-4 rounded shadow">
+        <div id="utci-group" class="display-3 fw-bold">--</div>
+        <div id="utci-label" class="fs-3 mt-2">--</div>
+      </div>
+
+      <!-- Health Reminders -->
+      <div class="bg-white p-4 rounded-4 shadow-sm w-100">
+        <h4 class="fw-bold mb-3" data-i18n="healthReminders">Recordatorios de Salud</h4>
+        <ul class="list-unstyled fs-5 text-start m-0">
+          <li>💧 <span data-i18n="every30Min">Cada 30 minutos</span></li>
+          <li>🌳 <span data-i18n="every1Hour">Cada 1 hora</span></li>
+          <li>👕 <span data-i18n="lightBreathable">Ligera, transpirable</span></li>
+        </ul>
+      </div>
     </div>
 
-    <div class="bg-white p-4 rounded-4 shadow-sm" style="width: 280px;">
-      <h4 class="mb-3 fw-bold">Recordatorios de Salud</h4>
-      <ul class="list-unstyled fs-5 text-start m-0">
-        <li>💧 Cada 30 minutos</li>
-        <li>🌳 Cada 1 hora</li>
-        <li>👕 Ligera, transpirable</li>
-      </ul>
-    </div>
-  </div>
+    <!-- RIGHT COLUMN -->
+    <div class="d-flex flex-column gap-4" style="max-width: 500px;">
 
-  <div class="card p-4 shadow-sm rounded-4 mx-auto" style="max-width: 600px;">
-    <h4 class="fw-bold mb-3">Notificaciones Enviadas</h4>
-    <div id="notification-list" class="fs-5 text-start"></div>
+      <!-- Action List -->
+      <div class="card p-4 shadow-sm rounded-4">
+        <h4 class="fw-bold mb-3" data-i18n="takeaction">Tomar Medidas</h4>
+        <ul id="notification-list" class="fs-5 text-start list-unstyled m-0"></ul>
+      </div>
+
+      <!-- Legend -->
+      <div class="p-4 rounded-4 shadow-sm bg-white w-100">
+        <h5 class="fw-bold mb-3" data-i18n="legend">Leyenda</h5>
+        <ul class="list-unstyled mb-0">
+          <li class="d-flex align-items-center mb-2">
+            <span class="legend-box legend-hydration"></span> 💧 Hidratación
+          </li>
+          <li class="d-flex align-items-center mb-2">
+            <span class="legend-box legend-cooling"></span> 🌳 Enfriamiento
+          </li>
+          <li class="d-flex align-items-center">
+            <span class="legend-box legend-activity"></span> 🏃 Actividad
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
+
+<link rel="stylesheet" href="style_worker.css">

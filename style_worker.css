@@ -10,9 +10,7 @@ body {
 }
 
 .container {
-  max-width: 900px;
-  margin: auto;
-  padding: 2rem;
+  max-width: 1400px;
 }
 
 .header {
@@ -77,3 +75,71 @@ h2 {
   min-width: 300px;     
 }
 
+.checklist {
+  padding-left: 0;
+}
+
+.checklist-item {
+  transition: all 0.2s ease-in-out;
+}
+
+.check-time {
+  font-weight: bold;
+  margin-right: 0.5rem;
+  color: #444;
+  display: inline-block;
+  min-width: 60px;
+}
+
+.check-text {
+  display: inline;
+}
+
+.legend {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  max-width: 300px;
+  margin-top: 2rem;
+  font-family: Tahoma, Verdana, sans-serif;
+}
+
+.legend h5 {
+  margin-bottom: 1rem;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.legend-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+}
+
+.notification-card {
+  padding: 10px 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.legend-hydration {
+  background-color: rgba(125, 210, 218, 0.4);
+}
+.legend-cooling {
+  background-color: rgba(159, 230, 108, 0.4);
+}
+.legend-activity {
+  background-color: rgba(232, 157, 95, 0.4);
+}

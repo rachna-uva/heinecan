@@ -29,9 +29,11 @@ const translations = {
     every30Min: "Every 30 minutes",
     every1Hour: "Every 1 hour",
     lightBreathable: "Light, breathable",
-    workerDisplay: "Worker Display Dashboard"
-
-
+    workerDisplay: "Worker Display Dashboard",
+    takeaction: "Take Action",
+    legend: "Legend",
+    clearWorkerDisplay: "Clear Worker Display",
+    confirmNotifications: "Confirm and Send to Worker Display"
   },
   es: {
     title: "Panel de Gestió de Estrés por Calor", 
@@ -105,7 +107,14 @@ const translations = {
     every1Hour: "Cada 1 hora",
     lightBreathable: "Ligera, transpirable",
     sentNotifications: "Notificaciones Enviadas",
-    workerDisplay: "Pantalla del Trabajador"
+    workerDisplay: "Pantalla del Trabajador",
+    takeaction: "Tomar Medidas",
+    legend: "Leyenda",
+    measure1: "Hidratación",
+    measure2: "Enfriamiento",
+    measure3: "Actividad",
+    clearWorkerDisplay: "Limpiar Pantalla del Trabajador",
+    confirmNotifications: "Confirmar y enviar a la pantalla del trabajador"
   }
 };
 const measureTranslations = {
@@ -508,22 +517,21 @@ function initNotifications() {
       }
 
       function toggleNotification(message, button) {
-        const current = JSON.parse(localStorage.getItem(notifKey)) || [];
-        const isSent = current.includes(message);
+        const isSent = tempNotifications.includes(message);
 
         if (isSent) {
-          removeNotification(message);
+          tempNotifications = tempNotifications.filter(msg => msg !== message);
           button.classList.remove("btn-success");
           button.classList.add("btn-primary");
           button.innerText = message.split('] ')[1];
         } else {
-          current.push(message);
-          localStorage.setItem(notifKey, JSON.stringify(current));
-          displayNotification(message);
+          tempNotifications.push(message);
           button.classList.remove("btn-primary");
           button.classList.add("btn-success");
           button.innerText = "✔ " + message.split('] ')[1];
         }
+
+        localStorage.setItem(tempKey, JSON.stringify(tempNotifications));
       }
 
       saved.forEach(displayNotification);
@@ -573,6 +581,55 @@ function initNotifications() {
 
         table.appendChild(tr);
       });
+      const tempKey = `temp_notifications_${city}_${shift}`;
+      let tempNotifications = JSON.parse(localStorage.getItem(tempKey)) || [];
+
+      document.getElementById("confirmNotificationsBtn")?.addEventListener("click", () => {
+        if (!tempNotifications.length) {
+          alert("No notifications selected to confirm.");
+          return;
+        }
+
+        // Save the confirmed notifications
+        localStorage.setItem(notifKey, JSON.stringify(tempNotifications));
+
+        // Clear the Sent Notifications section
+        list.innerHTML = "";
+
+        // Re-render the new confirmed notifications
+        tempNotifications.forEach(message => {
+          const div = document.createElement('div');
+          div.className = "alert alert-warning mt-2";
+          div.innerText = message;
+          div.dataset.key = message;
+          list.prepend(div);
+        });
+
+        alert("Notifications confirmed and sent to Worker Display.");
+      });
+
+      const clearBtn = document.getElementById("clearWorkerDisplayBtn");
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          const confirmClear = confirm("Are you sure you want to clear all actions from the worker display?");
+          if (!confirmClear) return;
+
+          localStorage.removeItem(notifKey);
+          list.innerHTML = "";
+
+          const buttons = document.querySelectorAll("#measures-table button.btn-success");
+          buttons.forEach(btn => {
+            btn.classList.remove("btn-success");
+            btn.classList.add("btn-primary");
+            const originalText = btn.textContent.replace("✔ ", "");
+            btn.textContent = originalText;
+          });
+
+          if (typeof loadWorkerDisplay === "function") {
+            loadWorkerDisplay();
+          }
+        });
+      }
     }
   });
 }
@@ -610,7 +667,6 @@ function loadPage(page) {
         } else if (page === "worker_display" && typeof loadWorkerDisplay === 'function') {
         if (!workerDisplayLoaded) {
           loadWorkerDisplay();
-          workerDisplayLoaded = true;
         } else {
           console.log("🔁 Skipping redundant worker_display reload.");
         }
@@ -635,11 +691,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const refreshCurrentPageData = () => {
     const currentPage = document.querySelector("#sidebar a.active")?.getAttribute("data-page") || "dashboard";
-    if (currentPage === "dashboard"){ loadCSV();
-        attachToggleChartListener();
+    
+    if (currentPage === "dashboard") {
+      loadCSV();
+      attachToggleChartListener();
+    } else if (currentPage === "notifications") {
+      initNotifications();
+    } else if (currentPage === "worker_display") {
+      loadWorkerDisplay(); 
     }
-    else if (currentPage === "notifications") initNotifications();
   };
+
 
   if (citySelector) {
     citySelector.value = getSelectedCity();
@@ -671,7 +733,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("selectedShift", shift);
       dayBtn.classList.toggle("active", shift === "day");
       nightBtn.classList.toggle("active", shift === "night");
-      refreshCurrentPageData();
+      refreshCurrentPageData();  // ✅ This line triggers the update
     };
     dayBtn.addEventListener("click", () => updateShift("day"));
     nightBtn.addEventListener("click", () => updateShift("night"));
@@ -712,11 +774,14 @@ langTabs.forEach(tab => {
     const currentPage = document.querySelector('#sidebar a.active')?.getAttribute('data-page') || "dashboard";
     loadPage(currentPage);
     if (currentPage === "dashboard"){ 
-      loadCSV();} else if (currentPage === "notifications") {
+      loadCSV();
+    } else if (currentPage === "notifications") {
       initNotifications();
-      }else if (currentPage === "awareness") {
-      applyTranslations(selectedLang);} 
-      else if (currentPage === "worker_display"){loadWorkerDisplay()}
+    } else if (currentPage === "awareness") {
+      applyTranslations(selectedLang);
+    } else if (currentPage === "worker_display") {
+      loadWorkerDisplay(); 
+    }
 
   });
 });
@@ -811,12 +876,32 @@ function loadWorkerDisplay() {
         const notifListEl = document.getElementById("notification-list");
         if (notifListEl) {
           notifListEl.innerHTML = "";
+          const ul = document.getElementById("notification-list");
+          ul.innerHTML = "";
+
           const notifications = JSON.parse(localStorage.getItem(notifKey)) || [];
+
           for (const message of notifications) {
+            const li = document.createElement("li");
+            li.style.listStyle = "none";
+            li.style.marginBottom = "12px";
+
             const div = document.createElement("div");
-            div.className = "alert alert-warning mt-2";
-            div.textContent = message;
-            notifListEl.appendChild(div);
+            div.className = "notification-card";
+            div.textContent = message.replace(/^\[(\d{2}:\d{2})\]\s*/, '$1 ');
+
+            const msg = message.toLowerCase();
+
+            if (msg.includes("water") || msg.includes("beber")) {
+              div.style.backgroundColor = "rgba(125, 210, 218, 0.4)"; // Hydration
+            } else if (msg.includes("shade") || msg.includes("sombra") || msg.includes("ducha")) {
+              div.style.backgroundColor = "rgba(159, 230, 108, 0.4)"; // Cooling
+            } else if (msg.includes("activity") || msg.includes("actividad física")) {
+              div.style.backgroundColor = "rgba(232, 157, 95, 0.4)"; // Activity
+            }
+
+            li.appendChild(div);
+            ul.appendChild(li);
           }
         }
       } catch (err) {
