@@ -733,7 +733,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("selectedShift", shift);
       dayBtn.classList.toggle("active", shift === "day");
       nightBtn.classList.toggle("active", shift === "night");
-      refreshCurrentPageData();  // ✅ This line triggers the update
+      refreshCurrentPageData();  // This line triggers the update
     };
     dayBtn.addEventListener("click", () => updateShift("day"));
     nightBtn.addEventListener("click", () => updateShift("night"));
@@ -786,15 +786,6 @@ langTabs.forEach(tab => {
   });
 });
 //worker
-function getHeatStressIcon(score) {
-  return {
-    1: "✅",
-    2: "🌤️",
-    3: "☀️",
-    4: "🔥",
-    5: "⚠️"
-  }[score] ;
-}
 
 function getRiskColor(score) {
   return {
