@@ -1,0 +1,2210 @@
+================================================================================
+HEAT STRESS MITIGATION ANALYSIS RESULTS
+================================================================================
+
+ENTITY CATEGORIZATION:
+Heat Conditions (1887):
+  - heat stress: 129 mentions
+  - heat exposure: 74 mentions
+  - stress: 71 mentions
+  - heat waves: 64 mentions
+  - occupational heat stress: 58 mentions
+  - high temperatures: 54 mentions
+  - heat illness: 54 mentions
+  - heat stroke: 53 mentions
+  - thermal comfort: 52 mentions
+  - the heat stress: 38 mentions
+  - thermal stress: 38 mentions
+  - heat exhaustion: 35 mentions
+  - occupational heat exposure: 35 mentions
+  - extreme temperatures: 31 mentions
+  - workplace heat exposure: 28 mentions
+  - high temperature: 26 mentions
+  - environmental heat: 23 mentions
+  - rising temperatures: 21 mentions
+  - high ambient temperature: 20 mentions
+  - extreme heat exposure: 20 mentions
+  - heat illnesses: 18 mentions
+  - environmental heat exposure: 17 mentions
+  - high ambient temperatures: 17 mentions
+  - environmental heat stress: 15 mentions
+  - exertional heat illness: 14 mentions
+  - heat stress conditions: 12 mentions
+  - heat exposures: 11 mentions
+  - heat stress exposure: 11 mentions
+  - uncompensable heat stress: 11 mentions
+  - heat stress risk: 9 mentions
+  - heat stress management: 9 mentions
+  - heat stress mitigation: 8 mentions
+  - the stress: 8 mentions
+  - thermally stressful environments: 8 mentions
+  - human thermal comfort: 8 mentions
+  - the heat exposure: 8 mentions
+  - heat stress prevention: 8 mentions
+  - human heat stress: 8 mentions
+  - the thermal stress: 8 mentions
+  - cold stress: 7 mentions
+  - the thermal comfort: 7 mentions
+  - to heat stress: 7 mentions
+  - occupational heat stress risks: 7 mentions
+  - workplace heat stress: 7 mentions
+  - heat stress impacts: 6 mentions
+  - cold and heat waves: 6 mentions
+  - high heat exposure: 6 mentions
+  - indoor occupational heat stress: 6 mentions
+  - occupational heat illness: 6 mentions
+  - climatic heat stress risk: 6 mentions
+  - exerciseheat stress: 6 mentions
+  - the environmental heat: 6 mentions
+  - the heat waves: 6 mentions
+  - moderate heat stress: 6 mentions
+  - a heat stress: 6 mentions
+  - excessive heat exposure: 6 mentions
+  - managing heat stress: 5 mentions
+  - heat stress metrics: 5 mentions
+  - high heat stress: 5 mentions
+  - increasing heat exposure: 5 mentions
+  - overall health psychological distress: 5 mentions
+  - heat stress assessment: 5 mentions
+  - ohstress: 5 mentions
+  - population heat exposure: 5 mentions
+  - environmental heatassociated deaths: 5 mentions
+  - direct heat exposure health: 5 mentions
+  - outdoor heat exposure: 5 mentions
+  - outdoor thermal comfort: 5 mentions
+  - heat stress vulnerability: 5 mentions
+  - heat stress levels: 5 mentions
+  - increasing heat stress: 5 mentions
+  - heat stress related perceptions: 4 mentions
+  - improved thermal comfort: 4 mentions
+  - heat exposure vigilance: 4 mentions
+  - hajat s heat stress: 4 mentions
+  - heat strokes: 4 mentions
+  - al heat stress: 4 mentions
+  - exertional heat stroke: 4 mentions
+  - environmental stress: 4 mentions
+  - postexercise thermal comfort: 4 mentions
+  - heat illness symptoms: 4 mentions
+  - the heat stress index: 4 mentions
+  - both heat stress: 4 mentions
+  - hajat s  heat stress: 4 mentions
+  - work place heat exposure: 4 mentions
+  - combat heat stress: 4 mentions
+  - heat stroke cases: 4 mentions
+  - oh stress: 4 mentions
+  - the environmental heat load: 4 mentions
+  - more heat stress: 4 mentions
+  - heat stress disorders: 4 mentions
+  - et al  heat stress: 4 mentions
+  - a  heat stress: 4 mentions
+  - the environmental heat stress: 4 mentions
+  - exertional heat stress: 4 mentions
+  - a heat stress index: 4 mentions
+  - heat illness incidents: 4 mentions
+  - heat stress control: 4 mentions
+  - heat stress policies: 4 mentions
+  - “heat stress safety decree: 3 mentions
+  - heatstress: 3 mentions
+  - heat stress physiological response: 3 mentions
+  - stress  information: 3 mentions
+  - heat stress risk factors: 3 mentions
+  - higher heat stress: 3 mentions
+  - stress implications: 3 mentions
+  - what heat illness: 3 mentions
+  - major heat waves: 3 mentions
+  - extremely high temperatures: 3 mentions
+  - some settings heat stress: 3 mentions
+  - counter­ act heat stress: 3 mentions
+  - heat temperature  stress: 3 mentions
+  - heat stress prevention measures: 3 mentions
+  - heat stress indices: 3 mentions
+  - europe heat stress: 3 mentions
+  - heat stroke  considerations: 3 mentions
+  - excess heat exposure: 3 mentions
+  - “effective” ohstress prevention measures: 3 mentions
+  - occu pational heat stress: 3 mentions
+  - microclimate and thermal comfort: 3 mentions
+  - personal heat exposure: 3 mentions
+  - personalized heatstress risk forecast: 3 mentions
+  - urban heat stress: 3 mentions
+  - heat illness impact: 3 mentions
+  - body thermal comfort: 3 mentions
+  - mitigating heat stress: 3 mentions
+  - occupational heat stress list: 3 mentions
+  - occupational heat stress impacts: 3 mentions
+  - heat stress dehydration: 3 mentions
+  - excessive heat stress: 3 mentions
+  - ohstress participants  years: 3 mentions
+  - oh stress reasons: 3 mentions
+  - stress conditions: 3 mentions
+  - combat­ ting ohstress: 3 mentions
+  - heat stress impact: 3 mentions
+  - occupational heatstress ohstress: 3 mentions
+  - very thermally stressful jobs: 3 mentions
+  - stress resilience: 3 mentions
+  - occupational heat stress assessment: 3 mentions
+  - ambient heat exposure: 3 mentions
+  - heat stress monitoring: 3 mentions
+  - ambient heat stress: 3 mentions
+  - moderate thermal stress: 3 mentions
+  - heat stress compr physiol: 3 mentions
+  - summer heat stress: 3 mentions
+  - exercise heat stress: 3 mentions
+  - stress exposure: 3 mentions
+  - occupational heat stress journal: 3 mentions
+  - workrelated heat stress: 3 mentions
+  - severe heat stress: 3 mentions
+  - heat stress mitigation strategies: 3 mentions
+  - ohstress effects: 3 mentions
+  - oc cupational heat stress: 3 mentions
+  - occupational heat stress risk: 3 mentions
+  - other heat stress: 2 mentions
+  - chronic stress policy: 2 mentions
+  - these heat stress: 2 mentions
+  - environmental heat waves: 2 mentions
+  - antiheat stress clothing: 2 mentions
+  - these heat waves: 2 mentions
+  - heat exposure variables: 2 mentions
+  - extreme heat waves: 2 mentions
+  - heat stress ind health: 2 mentions
+  - extreme heat exposures: 2 mentions
+  - heat syncope heat exhaustion: 2 mentions
+  - extreme high temperature: 2 mentions
+  - heat waves floods: 2 mentions
+  - high environmental heat: 2 mentions
+  - envi ronmental heat stress: 2 mentions
+  - the same heat stress: 2 mentions
+  - workers’ heat stress: 2 mentions
+  - ft heat stress monitoring: 2 mentions
+  - temperature stress: 2 mentions
+  - heat stress factors: 2 mentions
+  - fatal heat stroke: 2 mentions
+  - local heat exposures: 2 mentions
+  - noise and heat stress: 2 mentions
+  - very strong cold stress: 2 mentions
+  - occupational heat stress management: 2 mentions
+  - outdoor thermal comfort indices: 2 mentions
+  - mildly heatstressed humans: 2 mentions
+  - climate changerelated heat stress: 2 mentions
+  - a high temperature: 2 mentions
+  - stress risks: 2 mentions
+  - occupa tional heat exposure: 2 mentions
+  - other environmental stressors: 2 mentions
+  - thermally stressed workers: 2 mentions
+  - heatrelated stress: 2 mentions
+  - the heat exposures: 2 mentions
+  - prolonged heat exposure: 2 mentions
+  - chronic heat exposure: 2 mentions
+  - heat stress essential elements: 2 mentions
+  - occupa­ tional heat stress: 2 mentions
+  - their heat stress: 2 mentions
+  - a heat stroke: 2 mentions
+  - temperature and heat stress: 2 mentions
+  - thermal stress physiol: 2 mentions
+  - heat stress risks: 2 mentions
+  - exhaustion and heat stroke: 2 mentions
+  - severe heat waves: 2 mentions
+  - extreme heat stress: 2 mentions
+  - heat exposure risk: 2 mentions
+  - heat stress days: 2 mentions
+  - direct heat exposures: 2 mentions
+  - heat exposure assessment: 2 mentions
+  - no thermal stress: 2 mentions
+  - increased heat exposure: 2 mentions
+  - external heat exposure: 2 mentions
+  - − moderate cold stress: 2 mentions
+  - potential heat stroke: 2 mentions
+  - perceived heat stress symptoms: 2 mentions
+  - indoor heat exposure: 2 mentions
+  - heat stress issues: 2 mentions
+  - heat stress heat strain: 2 mentions
+  - global heat stress: 2 mentions
+  - daylong humid heat exposure: 2 mentions
+  - the actual heat stress: 2 mentions
+  - high heat exposures: 2 mentions
+  - worker heat stress: 2 mentions
+  - stress increases: 2 mentions
+  - a heat stress meter: 2 mentions
+  - heat exposure metrics: 2 mentions
+  - stress compr physiol: 2 mentions
+  - fatal heat stress: 2 mentions
+  - heat stress prevention programs: 2 mentions
+  - heat stress recommendations: 2 mentions
+  - stress scenario: 2 mentions
+  - thermal comfort perception: 2 mentions
+  - heat exposure reduction: 2 mentions
+  - brotherhood jr occupational heat stress: 2 mentions
+  - heat stress education: 2 mentions
+  - heat stress interventions: 2 mentions
+  - climatic heat stress: 2 mentions
+  - occupational heat illnesses: 2 mentions
+  - workers’ heat exposure: 2 mentions
+  - the local high temperature: 2 mentions
+  - workplace heat stress health: 2 mentions
+  - heat exposure risks: 2 mentions
+  - ds  thermal comfort: 2 mentions
+  - the heat stress risk: 2 mentions
+  - heat stress physical exertion: 2 mentions
+  - stress heat: 2 mentions
+  - extreme high temperatures: 2 mentions
+  - additional stress: 2 mentions
+  - performance thermal stress: 2 mentions
+  - heat stress vulnerability mapping: 2 mentions
+  - all heat waves: 2 mentions
+  - heat exposure impact: 2 mentions
+  - their heat exposure: 2 mentions
+  - “heat stress: 2 mentions
+  - high temperature exposure: 2 mentions
+  - occupational heat exposures: 2 mentions
+  - heat stressheat stroke: 2 mentions
+  - occupation heat stress: 2 mentions
+  - pedestrian thermal comfort: 2 mentions
+  - strong heat stress: 2 mentions
+  - humid heat exposure: 2 mentions
+  - very high temperatures: 2 mentions
+  - et al  heat waves: 2 mentions
+  - occupational heat stress factors: 2 mentions
+  - a heat illness: 2 mentions
+  - stressful life events: 2 mentions
+  - a heat exposure: 2 mentions
+  - a heat stress model: 2 mentions
+  - workrelated heat illness: 2 mentions
+  - te  heat stress: 2 mentions
+  - heat stress parsons: 2 mentions
+  - niosh  heat stress: 2 mentions
+  - subjective heat stress: 2 mentions
+  - occupational heat exposure risks: 2 mentions
+  - high temperature environments: 2 mentions
+  - al thermal comfort: 2 mentions
+  - slight cold stress: 2 mentions
+  - all heat illnesses: 2 mentions
+  - heat exposure tawatsupa: 2 mentions
+  - heat illness prevention programs: 2 mentions
+  - the thermal comfort effects: 2 mentions
+  - extreme thermal stress: 2 mentions
+  - other stressors: 2 mentions
+  - exertional heat illnesses: 2 mentions
+  - heat stress research: 2 mentions
+  - stressors: 2 mentions
+  - heat stress symptoms: 2 mentions
+  - psychological distress: 2 mentions
+  - a heat exposure effects: 2 mentions
+  - heat exposure situations: 2 mentions
+  - heat stress construction workers: 2 mentions
+  - stress possible application: 2 mentions
+  - j n  heatstressrelated mortality: 2 mentions
+  - heat stress heat: 2 mentions
+  - additional heat stress: 2 mentions
+  - heat stress measures: 2 mentions
+  - a stressor: 2 mentions
+  - tional heat stress: 2 mentions
+  - global heat stress exposure: 2 mentions
+  - strong cold stress: 2 mentions
+  - occupational heat stress exposure: 2 mentions
+  - minor heat illness: 1 mentions
+  - stress bakers: 1 mentions
+  - presumed heat stroke victims: 1 mentions
+  - stressful working proﬁle: 1 mentions
+  - identical heat stress: 1 mentions
+  - the high temperature periods: 1 mentions
+  - that exposure heat waves: 1 mentions
+  - occupa tional heat illness: 1 mentions
+  - the heat stress workers: 1 mentions
+  - jf ed environmental stress: 1 mentions
+  - minor heat illnesses: 1 mentions
+  - m heat stress: 1 mentions
+  - heat stress management policies: 1 mentions
+  - physiological and psychological stress: 1 mentions
+  - main tain thermal comfort: 1 mentions
+  - psycholog ical distress: 1 mentions
+  - occupational heat stroke cases: 1 mentions
+  - occurrenceofhealthsymptomsheat exhaustion summerof: 1 mentions
+  - httpwwwsidasecontentassetsadbdf fcabacdeaewomenwatersanitationandhygienepdf heat stress: 1 mentions
+  - tropical heat exposure: 1 mentions
+  - occupational heat exposure conclusion: 1 mentions
+  - heat stroke worst case: 1 mentions
+  - high temperature thresholds: 1 mentions
+  - heat stress awareness: 1 mentions
+  - heat exposure key words: 1 mentions
+  - heat stress humid ity: 1 mentions
+  - environmental heat measurements: 1 mentions
+  - heat stress hospitalizations: 1 mentions
+  - different heat exposure levels: 1 mentions
+  - heat stress assessments: 1 mentions
+  - workplace heat exposure risks: 1 mentions
+  - a practical heat stress: 1 mentions
+  - heat and heat stress: 1 mentions
+  - heat stress eg curriero: 1 mentions
+  - the combined heat stress: 1 mentions
+  - comprehensive heat stress education: 1 mentions
+  - high temperature change: 1 mentions
+  - stress soc sci med: 1 mentions
+  - heat stress training programs: 1 mentions
+  - very strong thermal stress: 1 mentions
+  - occu­ pational heat stroke: 1 mentions
+  - particular climatic stressors: 1 mentions
+  - heat stress  conclusions: 1 mentions
+  - heat stress minimum: 1 mentions
+  - thermophysiological stress exposure: 1 mentions
+  - different stressors: 1 mentions
+  - more heat stress symptoms: 1 mentions
+  - compensable heat stress conditions: 1 mentions
+  - no radiant heat exposure: 1 mentions
+  - high temperatures burke: 1 mentions
+  - occupational heat exposure trabalho: 1 mentions
+  - stress heat safety stakeholders: 1 mentions
+  - stressful periods: 1 mentions
+  - increasing heat stress levels: 1 mentions
+  - higher heat strokesun: 1 mentions
+  - site heat stress: 1 mentions
+  - small firms heat exposures: 1 mentions
+  - thermalstress budd: 1 mentions
+  - heat stress illness hospitalizations: 1 mentions
+  - longterm heat exposure: 1 mentions
+  - summer heat stress trends: 1 mentions
+  - high temperature warnings: 1 mentions
+  - occupational heat stress index: 1 mentions
+  - c  heat exposure control: 1 mentions
+  - selfreported heat stress: 1 mentions
+  - thermal stress adaptation strategies: 1 mentions
+  - high heat stress risk: 1 mentions
+  - workplace heat stress exposure: 1 mentions
+  - mandatory heat exposure: 1 mentions
+  - hazardous heat exposures: 1 mentions
+  - lower heat stress limits: 1 mentions
+  - heat illness risk identiﬁcation: 1 mentions
+  - the rising temperatures: 1 mentions
+  - workers’ total heat stress: 1 mentions
+  - heat stress yi: 1 mentions
+  - common heat stress: 1 mentions
+  - the stressful working proﬁle: 1 mentions
+  - heatstressrelated mortalities: 1 mentions
+  - thermal stress disadvantages: 1 mentions
+  - heat stressbeckett et al: 1 mentions
+  - the workers’ stress: 1 mentions
+  - no estresse térmico associada: 1 mentions
+  - global warmingrelated heat exposure: 1 mentions
+  - heat stress extreme noise: 1 mentions
+  - heat exposure data: 1 mentions
+  - heatstress uniforms: 1 mentions
+  - future heat stress: 1 mentions
+  - a thermal stress index: 1 mentions
+  - httpwwwhsegovuktemperatureheatstressmeasuringwetbulbhtm: 1 mentions
+  - thermallystressful environments: 1 mentions
+  - material and psychological distress: 1 mentions
+  - the heat stress policies: 1 mentions
+  - et al heat illness: 1 mentions
+  - heat stress heat stroke: 1 mentions
+  - water stress: 1 mentions
+  - more appropriate heat stress: 1 mentions
+  - wear­ able heat stress: 1 mentions
+  - heatstress guidance: 1 mentions
+  - heat stress standard  documentation: 1 mentions
+  - stressful com plex: 1 mentions
+  - eighteen heat waves: 1 mentions
+  - heat stress workers: 1 mentions
+  - new heat stress guidelines: 1 mentions
+  - stress noise shift rotation: 1 mentions
+  - thermal comfort limits: 1 mentions
+  - increasing occupational heat stress: 1 mentions
+  - critical insights heat stress: 1 mentions
+  - the increasing heat stress: 1 mentions
+  - a  heat illness: 1 mentions
+  - ‘occupational heat exposure: 1 mentions
+  - heat waves  perspiration: 1 mentions
+  - heat exposure  potential pathways: 1 mentions
+  - heat exhaustion cramps: 1 mentions
+  - heat stress table  figure: 1 mentions
+  - commonly used heat stress: 1 mentions
+  - thermal comfort standards: 1 mentions
+  - the true heat stress: 1 mentions
+  - febbraio ma heat stress: 1 mentions
+  - systems table  heat exposure: 1 mentions
+  - heat stress  limitations: 1 mentions
+  - cardiovascular distress: 1 mentions
+  - workrelated stress: 1 mentions
+  - its high temperature: 1 mentions
+  - each heat illness claim: 1 mentions
+  - a stress index: 1 mentions
+  - hatch’s  heat stress index: 1 mentions
+  - less heat stress: 1 mentions
+  - this thermally stressful conditions: 1 mentions
+  - heat illness further research: 1 mentions
+  - heat stress national institute: 1 mentions
+  - heat stress ando: 1 mentions
+  - the spatiallyexplicit heat stress: 1 mentions
+  - subjective heat stress age: 1 mentions
+  - heat waves accom: 1 mentions
+  - a mild heat illness: 1 mentions
+  - subjective heat stress semenza: 1 mentions
+  - heatstress decision rules: 1 mentions
+  - heat illness heat exhaustion: 1 mentions
+  - markedly increasing thermal stress: 1 mentions
+  - more subjective heat stress: 1 mentions
+  - stress figure: 1 mentions
+  - environmental heat metabolic heat: 1 mentions
+  - instance heat stress: 1 mentions
+  - the heat illness incidence: 1 mentions
+  - an acute heat illness: 1 mentions
+  - tional heat stress impacts: 1 mentions
+  - extremely high temperature: 1 mentions
+  - the additional stress: 1 mentions
+  - occupational heart stress: 1 mentions
+  - dehydration exacerbating heat stress: 1 mentions
+  - thermal comfort participants: 1 mentions
+  - cupational heat stress risks: 1 mentions
+  - stress measurements engineering: 1 mentions
+  - nighttime heat stress: 1 mentions
+  - their inhabitants’ thermal comfort: 1 mentions
+  - httpswwworsodnih govsrdohsdocumentsnihheatstressprogrampdf: 1 mentions
+  - heat stressrelated morbidity: 1 mentions
+  - lm  heat waves aging: 1 mentions
+  - three heat stress levels: 1 mentions
+  - unsafe heat exposure: 1 mentions
+  - high temperatures vanos: 1 mentions
+  - accumulated fatigue heat stroke: 1 mentions
+  - heat stress indicators: 1 mentions
+  - the general stress level: 1 mentions
+  - reported heatstress incidents: 1 mentions
+  - very high ambient temperature: 1 mentions
+  - heat stress effects: 1 mentions
+  - the s heat exposure: 1 mentions
+  - the environmental stress: 1 mentions
+  - longterm stress int arch: 1 mentions
+  - hockey r ed stress: 1 mentions
+  - that heat exposure: 1 mentions
+  - heat stress respondents: 1 mentions
+  - heat stroke exhaustion: 1 mentions
+  - thermal stress authors: 1 mentions
+  - the heat stress topic: 1 mentions
+  - physiological stress: 1 mentions
+  - heat stress control policies: 1 mentions
+  - heat waves parsons: 1 mentions
+  - heatstress management: 1 mentions
+  - longterm outdoor thermal comfort: 1 mentions
+  - heat exposure heat stroke: 1 mentions
+  - perceived exertion thermal comfort: 1 mentions
+  - stress loss: 1 mentions
+  - heat stress ann: 1 mentions
+  - heat stroke excessive sweating: 1 mentions
+  - subsequent humid heat stress: 1 mentions
+  - heat exhaustion heat stroke: 1 mentions
+  - potential heat exhaustion  ◦c: 1 mentions
+  - episodic heat waves wilson: 1 mentions
+  - physical impairment  heat stress: 1 mentions
+  - the heat stress standard: 1 mentions
+  - heat illness prevention activities: 1 mentions
+  - that heat stress dehydration: 1 mentions
+  - general stress: 1 mentions
+  - work environment stressors: 1 mentions
+  - impending heat stroke: 1 mentions
+  - to heat waves: 1 mentions
+  - environmental heat­‐associated deaths: 1 mentions
+  - such heat stress: 1 mentions
+  - heat waves tennis data: 1 mentions
+  - systematic review heat stress: 1 mentions
+  - ofheatstress oncognitive performance: 1 mentions
+  - heat stress situa tions: 1 mentions
+  - environmental heatstroke: 1 mentions
+  - environmentally stressful load: 1 mentions
+  - heat exposure thresholds: 1 mentions
+  - heat exposuren: 1 mentions
+  - severe heat stress exposures: 1 mentions
+  - the heat illness problem: 1 mentions
+  - stress cf acgih  tian: 1 mentions
+  - heatstressed cities: 1 mentions
+  - heat stroke victims: 1 mentions
+  - total heat stress: 1 mentions
+  - increasingly unstable heat waves: 1 mentions
+  - heat exhaustion mildest form: 1 mentions
+  - continued heat exposure: 1 mentions
+  - the heat exposure indicator: 1 mentions
+  - stress methods: 1 mentions
+  - high ambient temperatures  methods: 1 mentions
+  - al stress: 1 mentions
+  - heat stress guidelines: 1 mentions
+  - acute heat illnesses name: 1 mentions
+  - ds thermal comfort: 1 mentions
+  - heat stress protection: 1 mentions
+  - exertional heat exhaustion: 1 mentions
+  - related heat stress concerns: 1 mentions
+  - physical health heat exhaustion: 1 mentions
+  - “heat illness: 1 mentions
+  - heat exposure increase shading: 1 mentions
+  - human ther mal stress: 1 mentions
+  - heat exposure infants: 1 mentions
+  - stress noise movement: 1 mentions
+  - a heat stroke studies: 1 mentions
+  - hypothermia or heat stress: 1 mentions
+  - particular heat stress dehydration: 1 mentions
+  - a  heat exposure study: 1 mentions
+  - mal comfortstress: 1 mentions
+  - annex  table  heat illness: 1 mentions
+  - excessive occupational heat exposure: 1 mentions
+  - increased stress hormones: 1 mentions
+  - high ohstress: 1 mentions
+  - the heat stress threat: 1 mentions
+  - no recent heat exposure: 1 mentions
+  - eltahir  heat stress: 1 mentions
+  - significant thermal stress: 1 mentions
+  - both heat exhaustion: 1 mentions
+  - heat stress concerns: 1 mentions
+  - an individual’s thermal comfort: 1 mentions
+  - medium–high temperatures: 1 mentions
+  - realtime heatstress risk mitigation: 1 mentions
+  - the heat stress intensity: 1 mentions
+  - pharmacolog ical stress: 1 mentions
+  - future work heat stress: 1 mentions
+  - environmental heat conditions: 1 mentions
+  - environmental heat load: 1 mentions
+  - pro­ longed heat exposure: 1 mentions
+  - kenny gp  heat exposure: 1 mentions
+  - recent us heat waves: 1 mentions
+  - high temperatures high humidity: 1 mentions
+  - the thermal comfort regime: 1 mentions
+  - heat illness experience: 1 mentions
+  - outdoor workers   high temperatures: 1 mentions
+  - stress employers: 1 mentions
+  - exerciseheat exposure: 1 mentions
+  - the ther mal stress: 1 mentions
+  - occupational heat stress  projections: 1 mentions
+  - andor heat exhaustion: 1 mentions
+  - stress preventive measures: 1 mentions
+  - rateofheat illness compensation claims: 1 mentions
+  - oshab heat stress section: 1 mentions
+  - observed heatstress conditions: 1 mentions
+  - httpswww canadacaenemploymentsocialdevelopmentserviceshealthsafetyreportsthermalstresswork placehtmlhh: 1 mentions
+  - processgenerated heat exposure: 1 mentions
+  - subjective heat stress h: 1 mentions
+  - increasing heat exposure categories: 1 mentions
+  - signiﬁcant heat stress: 1 mentions
+  - antiheatstress uniforms: 1 mentions
+  - httpswwwcdcgovnioshtopicsheatstressrecommendationshtml: 1 mentions
+  - stress preliminary analysis: 1 mentions
+  - heat waves authors: 1 mentions
+  - temperatureoccupational heat illness: 1 mentions
+  - occupational health heat stress: 1 mentions
+  - a heat stress metric: 1 mentions
+  - heat stress complaints: 1 mentions
+  - stress  heat stress: 1 mentions
+  - heat stress extremes: 1 mentions
+  - present study heat stress: 1 mentions
+  - heat stress hubbard: 1 mentions
+  - addition heat stress: 1 mentions
+  - similar thermal stress table: 1 mentions
+  - especially important extreme temperatures: 1 mentions
+  - hs heat stress models: 1 mentions
+  - climatic stress: 1 mentions
+  - ‘classic’’ nonexertional heat stroke: 1 mentions
+  - heat exposure use: 1 mentions
+  - heat stress con ditions: 1 mentions
+  - drought rising temperatures: 1 mentions
+  - january  totalnumberof ambientheatstress: 1 mentions
+  - europe heat waves: 1 mentions
+  - how increasing heat exposure: 1 mentions
+  - socalled heat stress indices: 1 mentions
+  - heat stress exposures: 1 mentions
+  - the additional stress factors: 1 mentions
+  - hri occupational heat illness: 1 mentions
+  - occupational heat stroke mortality: 1 mentions
+  - average heat exposure incidents: 1 mentions
+  - how thermal stress: 1 mentions
+  - dry heat exposure: 1 mentions
+  - p   thermal comfort p: 1 mentions
+  - pre venting heat illness: 1 mentions
+  - heat stress  research studies: 1 mentions
+  - introduction occupational heat exposure: 1 mentions
+  - combined stress: 1 mentions
+  - occupationallyattributed heat illness: 1 mentions
+  - effectively managing heat stress: 1 mentions
+  - heat stress management ministry: 1 mentions
+  - stress and psychiatric morbidity: 1 mentions
+  - those heatstress conditions: 1 mentions
+  - heat stress physiology: 1 mentions
+  - this article heat exposure: 1 mentions
+  - the heat stroke cases: 1 mentions
+  - indoor heat stress variability: 1 mentions
+  - a heat stress indicator: 1 mentions
+  - heat stress prevention implementation: 1 mentions
+  - associated heat stress: 1 mentions
+  - heat indexes heat stress: 1 mentions
+  - heat exhaustion seizures: 1 mentions
+  - direct heat exposure: 1 mentions
+  - effective heat stress prevention: 1 mentions
+  - heat exposure inadequate recognition: 1 mentions
+  - g extreme heat stress: 1 mentions
+  - pulmonary stress: 1 mentions
+  - their heat stress policies: 1 mentions
+  - occupational heat stress impact: 1 mentions
+  - heat stress expos: 1 mentions
+  - consistently high heat exposures: 1 mentions
+  - heat stress studies: 1 mentions
+  - more heat exposure: 1 mentions
+  - kc  international heat stress: 1 mentions
+  - heat stress people: 1 mentions
+  - mean daily high temperatures: 1 mentions
+  - heat stress related symptoms: 1 mentions
+  - the heat illness workgroup: 1 mentions
+  - lam j  thermal comfort: 1 mentions
+  - stress atyia  epa  data: 1 mentions
+  - four documented heat waves: 1 mentions
+  - cetalheatstress dehydration: 1 mentions
+  - exercise‐heat stress: 1 mentions
+  - perceived heat stress: 1 mentions
+  - both ambient heat exposure: 1 mentions
+  - thermal stress   yokota: 1 mentions
+  - shortterm memory stressors: 1 mentions
+  - the chronic heat illnesses: 1 mentions
+  - different heat exposure estimation: 1 mentions
+  - heat exposure venugopal: 1 mentions
+  - mild cold stress: 1 mentions
+  - heat stress provision: 1 mentions
+  - heat stress hazard: 1 mentions
+  - heat stress condition: 1 mentions
+  - heat stress average temperature: 1 mentions
+  - heat stress responses: 1 mentions
+  - stress shifts: 1 mentions
+  - overall heatstress: 1 mentions
+  - outdoor thermal comfort conditions: 1 mentions
+  - heat stress exposure locations: 1 mentions
+  - heat stress prevention strategies: 1 mentions
+  - cardiovascular stress: 1 mentions
+  - especially exertional heat stroke: 1 mentions
+  - exerciseheat exposure shortterm: 1 mentions
+  - multiple heat exposure days: 1 mentions
+  - thermal stress heat stroke: 1 mentions
+  - heat stress creams: 1 mentions
+  - addition extreme temperatures: 1 mentions
+  - osha heatstress fatality investigation: 1 mentions
+  - occupational heat stress                                                adaptation: 1 mentions
+  - heat waves’ characteristics: 1 mentions
+  - lengthy heat exposure: 1 mentions
+  - “extreme cold stress: 1 mentions
+  - classic passive heat stroke: 1 mentions
+  - the workers heat stress: 1 mentions
+  - inhibitors  heat stress: 1 mentions
+  - retired  heat stress: 1 mentions
+  - heat stroke body temperature: 1 mentions
+  - stress proper breakfast: 1 mentions
+  - summary high temperatures: 1 mentions
+  - hatch heat stress index: 1 mentions
+  - additionally high temperatures: 1 mentions
+  - extreme temperatures exposure misclassification: 1 mentions
+  - medium heat stress  points: 1 mentions
+  - fainting heat exhaustion: 1 mentions
+  - combat ing heat stress: 1 mentions
+  - stressful days: 1 mentions
+  - osha heat stress investigations: 1 mentions
+  - dangerous heat stress days: 1 mentions
+  - heat exposure one study: 1 mentions
+  - hse b heat stress: 1 mentions
+  - the heat exposure risk: 1 mentions
+  - thermal comfort daytime ventilation: 1 mentions
+  - heat illness indicators: 1 mentions
+  - high heatstress events: 1 mentions
+  - simulated occupational heat stress: 1 mentions
+  - a heat stress intervention: 1 mentions
+  - severe exertional heat stroke: 1 mentions
+  - more polarised heat exposure: 1 mentions
+  - perience high heat exposure: 1 mentions
+  - heat stress educational campaigns: 1 mentions
+  - heat exposure hazards: 1 mentions
+  - treadmill stress testing: 1 mentions
+  - heat stress working conditions: 1 mentions
+  - heat stress technical report: 1 mentions
+  - religious observances heat exhaustion: 1 mentions
+  - stress productivity reduction: 1 mentions
+  - heat stress heat stress: 1 mentions
+  - heat exposure fluid replacement: 1 mentions
+  - exertional heat stroke deaths: 1 mentions
+  - ci  unspecified heat exhaustion: 1 mentions
+  - heat exposure meteorological data: 1 mentions
+  - an abnormal stress: 1 mentions
+  - these heat illnesses: 1 mentions
+  - maternal heat exposure: 1 mentions
+  - the occupational heat stress: 1 mentions
+  - heat waves energy build: 1 mentions
+  - onheatstress related perceptions: 1 mentions
+  - high temperatures’ effects: 1 mentions
+  - heat stress adaptation standards: 1 mentions
+  - a  outdoor thermal comfort: 1 mentions
+  - the environmental stresses: 1 mentions
+  - heat stress morbidity: 1 mentions
+  - the heat stress problem: 1 mentions
+  - current heat stress: 1 mentions
+  - strong thermal stress: 1 mentions
+  - human movement  heat stress: 1 mentions
+  - the stress environment: 1 mentions
+  - environmental heat fatalities: 1 mentions
+  - other minor heat illnesses: 1 mentions
+  - figure  heat stress chart: 1 mentions
+  - stress •acclimatization: 1 mentions
+  - thermal stress resilience d: 1 mentions
+  - heat exhaustion best case: 1 mentions
+  - thermal stress standards: 1 mentions
+  - heat stress kenney: 1 mentions
+  - daily occupational heat illness: 1 mentions
+  - heat stress kovats: 1 mentions
+  - regional heat stress: 1 mentions
+  - heat exposure work: 1 mentions
+  - environmental heat exposure oiics: 1 mentions
+  - meteorology  thermal comfort observations: 1 mentions
+  - that heat stress information: 1 mentions
+  - heat waves’ climatology: 1 mentions
+  - workrelated heat stroke: 1 mentions
+  - environmental heat stress factors: 1 mentions
+  - the term ‘heat stress: 1 mentions
+  - heat stress readers: 1 mentions
+  - the most heatstressed regions: 1 mentions
+  - about  reported heat exposure: 1 mentions
+  - so high temperature: 1 mentions
+  - these thermal comfort models: 1 mentions
+  - heat stress parameters: 1 mentions
+  - j extreme temperatures andmortality: 1 mentions
+  - individual subjective heat stress: 1 mentions
+  - onsite environmental heat: 1 mentions
+  - heat stress vulnerability   policies: 1 mentions
+  - thermal comfort enhancement: 1 mentions
+  - stress preexisting dehydration: 1 mentions
+  - overwhelming heat stress: 1 mentions
+  - heat stress detailed information: 1 mentions
+  - job stress sexual harassment: 1 mentions
+  - daytime heat stress: 1 mentions
+  - a bucket environmental heat: 1 mentions
+  - heat illness  monitoring workers: 1 mentions
+  - international heat stress standards: 1 mentions
+  - nicaragua introduction rising temperatures: 1 mentions
+  - d s thermal comfort: 1 mentions
+  - the thermal comfort needs: 1 mentions
+  - the extreme temperatures: 1 mentions
+  - extreme heatstress: 1 mentions
+  - illness heat exhaustion heat: 1 mentions
+  - the heat stress assessments: 1 mentions
+  - the radiant heat exposure: 1 mentions
+  - mental awareness heat stroke: 1 mentions
+  - ohstress prevention strate gies: 1 mentions
+  - heat illness factors: 1 mentions
+  - moderate heat waves: 1 mentions
+  - thennal stress: 1 mentions
+  - “heat exhaustion: 1 mentions
+  - higher heat exposure: 1 mentions
+  - mild heat stress: 1 mentions
+  - preview   much exerciseheat exposure: 1 mentions
+  - heat exposure vargo: 1 mentions
+  - the total heat exposure: 1 mentions
+  - extreme temperatures children: 1 mentions
+  - high temperatures people: 1 mentions
+  - occupational heat stress threshold: 1 mentions
+  - a heat stressrelated disease: 1 mentions
+  - individual stresses: 1 mentions
+  - stress lack: 1 mentions
+  - heat exposure workers: 1 mentions
+  - excessive environmental heat literature: 1 mentions
+  - heat stress increases: 1 mentions
+  - quality psychological stress food: 1 mentions
+  - failed thermoregulation heat stroke: 1 mentions
+  - pational heat illnesses: 1 mentions
+  - thermal stress research: 1 mentions
+  - appropriate heat stress indices: 1 mentions
+  - heat stress methods: 1 mentions
+  - stress social science: 1 mentions
+  - an overwhelming stressor: 1 mentions
+  - uncompensable heat stress conditions: 1 mentions
+  - quan­ tifying heat stress: 1 mentions
+  - heat stress  slovenia  p: 1 mentions
+  - metabolic and environmental heat: 1 mentions
+  - heat illness  employers: 1 mentions
+  - this period heat waves: 1 mentions
+  - et al  heat exposure: 1 mentions
+  - the heat stress issue: 1 mentions
+  - firstly heat waves: 1 mentions
+  - a heat exposure threshold: 1 mentions
+  - ‘heat illnesses: 1 mentions
+  - occupational heat stress page: 1 mentions
+  - physical distress: 1 mentions
+  - physiologically stressful conditions acknowledgements: 1 mentions
+  - relative percentilebased heat stress: 1 mentions
+  - the only stressors: 1 mentions
+  - many environmental factors stress: 1 mentions
+  - occupational heat stress methods: 1 mentions
+  - a thermal comfort investigation: 1 mentions
+  - equivalent thermal comfort: 1 mentions
+  - mortality and heat waves: 1 mentions
+  - indirect heat exposures: 1 mentions
+  - heat stress man agement: 1 mentions
+  - december  httpwwwbomgovauinfo thermalstress: 1 mentions
+  - standard heat stress: 1 mentions
+  - passive heat stress temperature: 1 mentions
+  - local workplace heat stress: 1 mentions
+  - steadystate thermal comfort models: 1 mentions
+  - work shift thermal stresses: 1 mentions
+  - an environ mental stressor: 1 mentions
+  - the frequent heat exposure: 1 mentions
+  - increased high temperatures: 1 mentions
+  - heat stroke” temperature data: 1 mentions
+  - high ambient temperature table: 1 mentions
+  - severely high ambient temperatures: 1 mentions
+  - severe heat exposure: 1 mentions
+  - all heat stroke fatalities: 1 mentions
+  - heatstress mitigation strategies: 1 mentions
+  - heat stress urine samples: 1 mentions
+  - heat exposure education: 1 mentions
+  - hu man heat stress: 1 mentions
+  - more extreme heat stress: 1 mentions
+  - regular heat exposure: 1 mentions
+  - several days heat waves: 1 mentions
+  - thermal comfort indoors: 1 mentions
+  - repeated heat exposure: 1 mentions
+  - lifethreatening heat stroke: 1 mentions
+  - fitness and stress level: 1 mentions
+  - chronic heat exhaustion: 1 mentions
+  - constant heat stress: 1 mentions
+  - heat exposure  cultural norms: 1 mentions
+  - pational heat stress: 1 mentions
+  - heatstressed miners: 1 mentions
+  - more frequent heat waves: 1 mentions
+  - thermally stressful environments annals: 1 mentions
+  - conﬁdence intervals heat exposure: 1 mentions
+  - environmental heat x exposure: 1 mentions
+  - the thermal comfort survey: 1 mentions
+  - de veloping heat illness: 1 mentions
+  - chronic cyclic heat stress: 1 mentions
+  - n f o keywords occupational heat stress healthcare professionals healthcare: 1 mentions
+  - high environmental heat strain: 1 mentions
+  - httpswwwcdcgovnioshtopicsheatstressrecommendationshtml   horie s prevention: 1 mentions
+  - heat stress exp physiol: 1 mentions
+  - indoor thermal comfort: 1 mentions
+  - heat stress limits: 1 mentions
+  - view ohstress: 1 mentions
+  - one heat stroke: 1 mentions
+  - heat stress new employees: 1 mentions
+  - significant heat stress potential: 1 mentions
+  - work and heat stress: 1 mentions
+  - exerciseheat exposures frequency: 1 mentions
+  - treatment heat exhaustion: 1 mentions
+  - k  thermal comfort: 1 mentions
+  - highheat exposure: 1 mentions
+  - heat stress  discussion: 1 mentions
+  - exhaustiontolifethreateningheat stroke: 1 mentions
+  - heat stress indi ces: 1 mentions
+  - ceived heat stress: 1 mentions
+  - heat illness issues: 1 mentions
+  - their perceived heat stress: 1 mentions
+  - heat stress guidelines lack: 1 mentions
+  - workers  stress dehydration: 1 mentions
+  - fatal heat illnesses: 1 mentions
+  - al  the association between overall health psychological distress: 1 mentions
+  - thermal stress condition: 1 mentions
+  - two heat stress metrics: 1 mentions
+  - climate change heat stress: 1 mentions
+  - higher thermal comfort: 1 mentions
+  - extra environmental heat: 1 mentions
+  - example heat stroke risk: 1 mentions
+  - heat stress injuries acclimation: 1 mentions
+  - ma environmental heat: 1 mentions
+  - stress prevention regulations: 1 mentions
+  - heat stress hris: 1 mentions
+  - mate heat stress: 1 mentions
+  - summer season heat exposures: 1 mentions
+  - socioeconomic stresses: 1 mentions
+  - thermal stress woodhead publishing: 1 mentions
+  - frequent heat waves: 1 mentions
+  - heat stress rates: 1 mentions
+  - the heat exposure indicators: 1 mentions
+  - heat stress proceedings: 1 mentions
+  - kltheepidemiology ofoccupational heat exposure: 1 mentions
+  - stress states: 1 mentions
+  - hazardous workplace environmental heat: 1 mentions
+  - occupational heat illness claims: 1 mentions
+  - heat stroke water scarcity: 1 mentions
+  - heat stress exposure limits: 1 mentions
+  - sical activity stress reduction: 1 mentions
+  - stressrelated diseases: 1 mentions
+  - postincidence heat stress estimation: 1 mentions
+  - reduced psychological distress: 1 mentions
+  - weatherrelated heat stress: 1 mentions
+  - cabanac m heat stress: 1 mentions
+  - luckily ohstress research: 1 mentions
+  - florida summer heat stress: 1 mentions
+  - external environmental heat: 1 mentions
+  - the worst heat waves: 1 mentions
+  - many heat stress indices: 1 mentions
+  - noradrenaline heat stress: 1 mentions
+  - serious heat illness: 1 mentions
+  - stress implica tions: 1 mentions
+  - rienced high heat exposure: 1 mentions
+  - the increasing heat exposure: 1 mentions
+  - excessive occupational heat exposures: 1 mentions
+  - sable heat stress: 1 mentions
+  - indoor heat stress: 1 mentions
+  - nanotechnologybased antiheatstress uniforms: 1 mentions
+  - workplace heatstress: 1 mentions
+  - external heat exposure sources: 1 mentions
+  - later heat exposure: 1 mentions
+  - l parental heat exposure: 1 mentions
+  - each thermal stress indicator: 1 mentions
+  - the thermal comfort zone: 1 mentions
+  - less severe heat illness: 1 mentions
+  - heat stress communication tools: 1 mentions
+  - increased workplace heat stress: 1 mentions
+  - testinal distress: 1 mentions
+  - them thermal stress status: 1 mentions
+  - productivity heat stress: 1 mentions
+  - addition heat stress effect: 1 mentions
+  - immediately heat stroke: 1 mentions
+  - no additional stress: 1 mentions
+  - stress  other influences: 1 mentions
+  - heat stroke medical treatment: 1 mentions
+  - outdoor heat stress: 1 mentions
+  - stress  physical exertion: 1 mentions
+  - striking heat stress effects: 1 mentions
+  - the many stress factors: 1 mentions
+  - moderate heatstress conditions: 1 mentions
+  - heat stress athletic casa: 1 mentions
+  - heat stress climate: 1 mentions
+  - heat exposure interpolate values: 1 mentions
+  - five heat stress indices: 1 mentions
+  - heat stress situations: 1 mentions
+  - all heat stroke cases: 1 mentions
+  - the longterm heat exposure: 1 mentions
+  - occupational high temperature expo: 1 mentions
+  - similar reasons heat illness: 1 mentions
+  - httpswwwtsicomproductsheatstressmonitorstsiquestques tempareaheatstressmonitors: 1 mentions
+  - occupational heat stress phe: 1 mentions
+  - sheng w thermal comfort: 1 mentions
+  - heat illness cases: 1 mentions
+  - shear stress: 1 mentions
+  - reduced stress: 1 mentions
+  - heatstress hazards: 1 mentions
+  - heatstress risks: 1 mentions
+  - heat stress industrial health: 1 mentions
+  - heat stress experiences: 1 mentions
+  - fatal occupational heat stroke: 1 mentions
+  - managing thermal stress: 1 mentions
+  - our heat stress metrics: 1 mentions
+  - cardiovascular stress dehy­ dration: 1 mentions
+  - stress prevention: 1 mentions
+  - these stress: 1 mentions
+  - heat stress thermoregulation hydration: 1 mentions
+  - medication heat stroke victims: 1 mentions
+  - land tgland extreme temperatures: 1 mentions
+  - stress comprehensive physiology wiley: 1 mentions
+  - distress headaches: 1 mentions
+  - climate changerelated heat exposure: 1 mentions
+  - introduction human heat stress: 1 mentions
+  - environmental heat measurement amer: 1 mentions
+  - heatstress  control measures: 1 mentions
+  - stress cdc: 1 mentions
+  - table  heat stress: 1 mentions
+  - stress symptoms: 1 mentions
+  - stress imaging: 1 mentions
+  - a signiﬁcant heatstress burden: 1 mentions
+  - heat stress medical workers: 1 mentions
+  - labor economics high temperatures: 1 mentions
+  - heat exhaustion symptoms: 1 mentions
+  - environmental heat stress stakeholders: 1 mentions
+  - workrelated heat stress cases: 1 mentions
+  - heat stress eg sherwood: 1 mentions
+  - stress areas: 1 mentions
+  - subjective heat stress figure: 1 mentions
+  - health heat exhaustion: 1 mentions
+  - heat stress technologies: 1 mentions
+  - climatic heat stresses: 1 mentions
+  - p  fanger thermal comfort: 1 mentions
+  - heat exposure risk concerns: 1 mentions
+  - derestimate physiological stress: 1 mentions
+  - heat stress rational indices: 1 mentions
+  - the heat stress program: 1 mentions
+  - heat illness heat disorder: 1 mentions
+  - no  september  high temperatures: 1 mentions
+  - no heat strokes: 1 mentions
+  - heat illness those: 1 mentions
+  - heat illness cincinnati: 1 mentions
+  - ‘occupational heat stress: 1 mentions
+  - different stress levels: 1 mentions
+  - heat extreme heat exposures: 1 mentions
+  - stress int j biometeorol: 1 mentions
+  - it heat exposure” painter: 1 mentions
+  - nonheat exposure: 1 mentions
+  - thermal comfort studies: 1 mentions
+  - human thermal stress: 1 mentions
+  - similar work heat exposure: 1 mentions
+  - heat stress medical surveillance: 1 mentions
+  - prior mild heat illness: 1 mentions
+  - selfreported occupational heat stress: 1 mentions
+  - thermal comfort conditions: 1 mentions
+  - hazardous heat stress: 1 mentions
+  - h  heat stress assessment: 1 mentions
+  - rateofalland heat illness compensation: 1 mentions
+  - harmful heat exposure: 1 mentions
+  - heat stress risk levels: 1 mentions
+  - seebaß  subjective heat stress: 1 mentions
+  - environmental heatillness: 1 mentions
+  - shift work thermal stresses: 1 mentions
+  - httpwwwcdcgovnioshtopics heatstress: 1 mentions
+  - stress events: 1 mentions
+  - thermal stress • brake: 1 mentions
+  - nonsweatingcaseandheat strokecases: 1 mentions
+  - heat waves occurrence: 1 mentions
+  - ie heat stroke: 1 mentions
+  - significant heat illness problems: 1 mentions
+  - the undressed heat stroke: 1 mentions
+  - industrial stresses: 1 mentions
+  - account  heat stroke: 1 mentions
+  - heat stressrelated accidents: 1 mentions
+  - the  heat illness claims: 1 mentions
+  - environment     heat stress: 1 mentions
+  - significantly higher heat exposures: 1 mentions
+  - heat exposure  heat stress: 1 mentions
+  - heat exhaustion headache dizziness: 1 mentions
+  - heat stressors programs: 1 mentions
+  - one single stressor: 1 mentions
+  - addressing heat stress: 1 mentions
+  - thermal stress risk adaptation: 1 mentions
+  - et al oxidative stress: 1 mentions
+  - heat stress standards: 1 mentions
+  - dangerously high temperatures: 1 mentions
+  - heat stress index: 1 mentions
+  - ohronic heat illnesses: 1 mentions
+  - workrelated heat exposure factors: 1 mentions
+  - bartley db heat stroke: 1 mentions
+  - heatstressrelated medical treatments: 1 mentions
+  - reported“high temperature: 1 mentions
+  - e daily heat exposure: 1 mentions
+  - analyzing heat stress: 1 mentions
+  - respiratory distress: 1 mentions
+  - male occupational heat exposure: 1 mentions
+  - to now heat stress: 1 mentions
+  - heat exposure  numerous studies: 1 mentions
+  - accumulated heat stress index: 1 mentions
+  - heat stress  perspectives: 1 mentions
+  - all heat illness claims: 1 mentions
+  - drugs heat stress: 1 mentions
+  - heat stress efforts: 1 mentions
+  - workplace heat stress control: 1 mentions
+  - heat stress projections: 1 mentions
+  - the heat stress impact: 1 mentions
+  - recog nizing heat stress: 1 mentions
+  - karjalainen s  thermal comfort: 1 mentions
+  - periodic exerciseheat exposure: 1 mentions
+  -  heat exhaustion : 1 mentions
+  - heat stress adoption strategies: 1 mentions
+  - hall sa heat stress: 1 mentions
+  - frank heat exhaustion: 1 mentions
+  - current heatstress management policies: 1 mentions
+  - heat stroke lancet: 1 mentions
+  - all heat stress: 1 mentions
+  - reduced worker heat stress: 1 mentions
+  - al  the thermal comfort: 1 mentions
+  - even heat stroke: 1 mentions
+  - heat stress   morris: 1 mentions
+  - different heat waves: 1 mentions
+  - the  heat stroke cases: 1 mentions
+  - the world bheat waves: 1 mentions
+  - r  high ambient temperature: 1 mentions
+  - nonheat stress conditions: 1 mentions
+  - heat exposure humans: 1 mentions
+  - heat stress control methods: 1 mentions
+  - gao  heat stress intensiﬁcation: 1 mentions
+  - uncompensated thermal stress: 1 mentions
+  - heat stress preventive measures: 1 mentions
+  - early heat stress research: 1 mentions
+  - hazardous heat exposure: 1 mentions
+  - no   heat stress: 1 mentions
+  - heat exposure simulation: 1 mentions
+  - outdoor heat stress levels: 1 mentions
+  - a routine heatstress measure: 1 mentions
+  - the heat stress response: 1 mentions
+  - temperature and heat exposure: 1 mentions
+  - acute heat illnesses: 1 mentions
+  - the outdoor thermal comfort: 1 mentions
+  - heat stress • effects: 1 mentions
+  - income heat stress: 1 mentions
+  - heat stress respon dents: 1 mentions
+  - heat exposure effect: 1 mentions
+  - heat waves highest risk: 1 mentions
+  - urban thermal comfort quantification: 1 mentions
+  - the heat stress indexes: 1 mentions
+  - existing heat stress indices: 1 mentions
+  - more heat exposurerelated diseases: 1 mentions
+  - annual heat stress: 1 mentions
+  - very strong heat stress: 1 mentions
+  - heat exposure earths: 1 mentions
+  - heat stress  studies: 1 mentions
+  - heat stress heat waves: 1 mentions
+  - more heat waves: 1 mentions
+  - normal baseline stress: 1 mentions
+  - appetite     early heat stress: 1 mentions
+  - occupational heat stress parsons: 1 mentions
+  - earlyseason heat waves training: 1 mentions
+  - prolonged heat exposure blood: 1 mentions
+  - ashrae  thermal comfort: 1 mentions
+  - progressive heat stress methods: 1 mentions
+  - cold lightheadedness distress panic: 1 mentions
+  - arm ergometry stress testing: 1 mentions
+  - heat stress models: 1 mentions
+  - a high temperature episode: 1 mentions
+  - heat stress miti gation: 1 mentions
+  - anti heatstress uniforms: 1 mentions
+  - occupational stress: 1 mentions
+  - haz ardous heat stress: 1 mentions
+  - daily heat illness claims: 1 mentions
+  - heat exposure heat stress: 1 mentions
+  - greater heat exposure: 1 mentions
+  - heat illness increasing temperatures: 1 mentions
+  - heat stress iso  parsons: 1 mentions
+  - subjective heat stress franck: 1 mentions
+  - theriskofoccupational heat illness: 1 mentions
+  - the heatstress incidents: 1 mentions
+  - heat stress yaglou: 1 mentions
+  - environmental heat stress indices: 1 mentions
+  - acute heat exposure: 1 mentions
+  - niosh heat stress criteria: 1 mentions
+  - heat stress  studies: 1 mentions
+  - that heat stress amplification: 1 mentions
+  - that heat illness events: 1 mentions
+  - this heat stress: 1 mentions
+  - heat stress injury control: 1 mentions
+  - heat  heat stress: 1 mentions
+  - preparation  “heat stress: 1 mentions
+  - heat stress exposure proﬁles: 1 mentions
+  - o ccupational heat stress: 1 mentions
+  - heat stress heat illness: 1 mentions
+  - heat illness protocol: 1 mentions
+  - effective treatment heat exhaustion: 1 mentions
+  - stress broad findings: 1 mentions
+  - thermal stress risks: 1 mentions
+  - severe workplace heat exposures: 1 mentions
+  - mod erate heat stress: 1 mentions
+  - the niosh  heat exposure: 1 mentions
+  - heat illness prevention knowledge: 1 mentions
+  - actual figures heat stress: 1 mentions
+  - sufficiently stressful environments: 1 mentions
+  - exertional heat stroke stacey: 1 mentions
+  - more intense heat stress: 1 mentions
+  - stress control measures: 1 mentions
+  - stress hri: 1 mentions
+  - heat stressinduced variations: 1 mentions
+  - unsafe heat exposure practices: 1 mentions
+  - past heat waves: 1 mentions
+  - thermal comfort level: 1 mentions
+  - future heat exposure: 1 mentions
+  - heat stress symp toms: 1 mentions
+  - ppe antiheatstress uniforms: 1 mentions
+  - unacclimatized workers heat stroke: 1 mentions
+  - a  h heat exposure: 1 mentions
+  - exertional heat stroke considerations: 1 mentions
+  - anhidrotiic heat exhaustion: 1 mentions
+  - • total heat exposure: 1 mentions
+  - heat stress  other effects: 1 mentions
+  - rising heat stress: 1 mentions
+  - greater stress: 1 mentions
+  - heat stress school: 1 mentions
+  - the thermal stress exposure: 1 mentions
+  - − extreme cold stress: 1 mentions
+  - heat illness casa: 1 mentions
+  - stress extreme weather events: 1 mentions
+  - several heat stress: 1 mentions
+  - their individual heat exposure: 1 mentions
+  - thermal comfort level hr: 1 mentions
+  - stress author contributions conceptualization: 1 mentions
+  - occupational heat exposure studies: 1 mentions
+  - these two heat waves: 1 mentions
+  - heat illness health systems: 1 mentions
+  - exertional heat stroke monitoring: 1 mentions
+  - better tolerate heat exposure: 1 mentions
+  - population heat exposure indicator: 1 mentions
+  - recovery heat exhaustion signs: 1 mentions
+  - theriskofoccupational heat illnesses: 1 mentions
+  - c stress category: 1 mentions
+  - cupational stress: 1 mentions
+  - ing heat waves: 1 mentions
+  - the extreme heat exhaustion: 1 mentions
+  - additionally heat exposure: 1 mentions
+  - heat stroke proc mine: 1 mentions
+  - workplace heat stress management: 1 mentions
+  - the  h heat exposure: 1 mentions
+  - demographic characteristics heat exposure: 1 mentions
+  - sci entists rising temperatures: 1 mentions
+  - stress threshold limit values: 1 mentions
+  - occupation heat stress impacts: 1 mentions
+  - heat stressrelated risks: 1 mentions
+  - sustained high temperatures: 1 mentions
+  - heat stress ä h: 1 mentions
+  - thermal comfort comfort: 1 mentions
+  - passive heat exposure: 1 mentions
+  - earlyseason heat waves: 1 mentions
+  - heat stress report: 1 mentions
+  - high temperatures heat waves: 1 mentions
+  - heat stress auton neurosci: 1 mentions
+  - no heat illness: 1 mentions
+  - andheat exposures: 1 mentions
+  - heat stress surveillance: 1 mentions
+  - creased heat stress: 1 mentions
+  - httpwwwhsegovuktemperatureheatstressmeasuringhearthtm accessed  december: 1 mentions
+  - no thermal stress  ◦c: 1 mentions
+  - heat stress injuries: 1 mentions
+  - heightened heat stress risk: 1 mentions
+  - death heat stress: 1 mentions
+  - exerciseheat stress european journal: 1 mentions
+  - heat exposure health impacts: 1 mentions
+  - figure  rising temperatures: 1 mentions
+  - relatively high temperatures: 1 mentions
+  - workload and heat stress: 1 mentions
+  - heat illness reduction: 1 mentions
+  - stress research: 1 mentions
+  - heart rate thermal comfort: 1 mentions
+  - single high temperature days: 1 mentions
+  - the best thermal comfort: 1 mentions
+  - stress hor mones cortisol: 1 mentions
+  - occupational heat stress recommendations: 1 mentions
+  - heat stress prevalence: 1 mentions
+  - thermally stressful conditions  materials: 1 mentions
+  - a heat stress initiative: 1 mentions
+  - potentially fatal heat stroke: 1 mentions
+  - thermal stress apparent temperature: 1 mentions
+  - the thermal comfort level: 1 mentions
+  - indoor heat exposure types: 1 mentions
+  - fullday heat exposure: 1 mentions
+  - acute heat illnesses table: 1 mentions
+  - stress monitors: 1 mentions
+  - wbgt beldinghatch heat stress: 1 mentions
+  - the associated heat stress: 1 mentions
+  - the heat stress equation: 1 mentions
+  - heatrelated physical stress: 1 mentions
+  - the heatstress conditions: 1 mentions
+  - chronic heat stress: 1 mentions
+  - httpwwwlniwagov safetytopicsatozheatstressdefaultasp  : 1 mentions
+  - high occupational heatstress illnesses: 1 mentions
+  - envir onmental stress: 1 mentions
+  - ◦c range stress category: 1 mentions
+  - the stressors: 1 mentions
+  - a heat stress evaluation: 1 mentions
+  - distress anxiety depression: 1 mentions
+  - httpclimatechip orgsitesdefaultﬁlespublicationstpoccupationalheatstress whopdf  ilo: 1 mentions
+  - bt  thermal comfort study: 1 mentions
+  - stressful periods phases: 1 mentions
+  - et al  high temperature: 1 mentions
+  - a  heat waves: 1 mentions
+  - increas­ ing thermal stress: 1 mentions
+  - armed fhsb update heat illness active component us armed forces: 1 mentions
+  - thermal stress development: 1 mentions
+  - human heat stress authors: 1 mentions
+  - the documented heat waves: 1 mentions
+  - empirical heat stress indices: 1 mentions
+  - urbanization heat stress: 1 mentions
+  - workplace heat exposures: 1 mentions
+  - environ mental heat stress: 1 mentions
+  - health stressors: 1 mentions
+  - table  chronic heat illnesses: 1 mentions
+  - industrial heat stress: 1 mentions
+  - acute heat illness: 1 mentions
+  - estimating heat stress: 1 mentions
+  - stress settings: 1 mentions
+  - suitable heat stress: 1 mentions
+  - fatal heat strokes: 1 mentions
+  - thermal comfort nd edn: 1 mentions
+  - thermal stress definition: 1 mentions
+  - rising heat exposure conditions: 1 mentions
+  - heat stroke government department: 1 mentions
+  - discomfort    heat stress: 1 mentions
+  - heat stress screening iso: 1 mentions
+  - utero heat exposure: 1 mentions
+  - heat stress tlv: 1 mentions
+  - thermal comfort − precooling: 1 mentions
+  - heat waves dry spells: 1 mentions
+  - heat stressrelated perceptions citation: 1 mentions
+  - greater heatrelated stress: 1 mentions
+  - high temperature events policies: 1 mentions
+  - thermal comfort observations bureau: 1 mentions
+  - the mental distress: 1 mentions
+  - more heat exhaustion symptoms: 1 mentions
+  - workload and heat exposure: 1 mentions
+  - tlv httpswwwacgihorgformsstore productformpublicheatstressandstraintlvrphysicalagentsthedition documentation: 1 mentions
+  - impending heat illness: 1 mentions
+  - thermal stressors: 1 mentions
+  - urban thermal comfort: 1 mentions
+  - proportionally more heat illness: 1 mentions
+  - a heatstress index hsi: 1 mentions
+  - ohstress warning: 1 mentions
+  - no heat stress: 1 mentions
+  - extreme environmental heat: 1 mentions
+  - higher heat stress sensitivity: 1 mentions
+  - heat stress resilience: 1 mentions
+  - observed global heat waves: 1 mentions
+  - a heatstresscontrol framework: 1 mentions
+  - temperature heat waves: 1 mentions
+  - stress management: 1 mentions
+  - the netherlands  heat stress: 1 mentions
+  - dry heat stress: 1 mentions
+  - heat stroke heat cramps: 1 mentions
+  - ‘adaptive thermal comfort models: 1 mentions
+  - passive heat stress: 1 mentions
+  - heat illness claim: 1 mentions
+  - the earth  extreme temperatures: 1 mentions
+  - biascorrected global heat stress: 1 mentions
+  - more stressful  vs       change: 1 mentions
+  - high temperature work: 1 mentions
+  - fig  heat stress conditions: 1 mentions
+  - y fatal heat stroke: 1 mentions
+  - considerable heat stress: 1 mentions
+  - several heatstress measures: 1 mentions
+  - ohstress athletes: 1 mentions
+  - heat waves plans: 1 mentions
+  - f exertional heat illness: 1 mentions
+  - multiple workers’ stress levels: 1 mentions
+  - frequent heat exposures: 1 mentions
+  - local thermal comfort criteria: 1 mentions
+  - workplace heat exposure risk: 1 mentions
+  - occupational heat‑stress: 1 mentions
+  - httpsaboutjstororgterms heat stress: 1 mentions
+  - unsustainable heat stress: 1 mentions
+  - health high temperatures: 1 mentions
+  - heat exposures health impacts: 1 mentions
+  - sufﬁcient heat stress: 1 mentions
+  - microclimate human thermal comfort: 1 mentions
+  - the same heat illness: 1 mentions
+  - the acute heat stress: 1 mentions
+  - all three heat stress: 1 mentions
+  - to heat exposure: 1 mentions
+  - effective heat stress program: 1 mentions
+  - no  high temperatures: 1 mentions
+  - risk high temperatures: 1 mentions
+  - a heat exposure study: 1 mentions
+  - multistress vulnerabilities: 1 mentions
+  - the workplace heat exposure: 1 mentions
+  - thermal stress gcms: 1 mentions
+  - stress prevention behavior: 1 mentions
+  - patients’ thermal comfort: 1 mentions
+  - heat stress metric fig: 1 mentions
+  - extremely high temperature events: 1 mentions
+  - occupational heat stroke fatalities: 1 mentions
+  - e bouzeid  heat waves: 1 mentions
+  - extreme humidheat exposure: 1 mentions
+  - numerous milder heat illnesses: 1 mentions
+  - occupational heat stress resilience: 1 mentions
+  - stress european journal: 1 mentions
+  - future heat exposures: 1 mentions
+  - stress injuries: 1 mentions
+  - tional heat stress adaptation: 1 mentions
+  - psychological thermal comfort levels: 1 mentions
+  - heat illness reduction recruitment: 1 mentions
+  - high heat stress risks: 1 mentions
+  - the ohstress: 1 mentions
+  - lowlevel humid heat exposure: 1 mentions
+  - heat stress acknowledgement: 1 mentions
+  - lm heat waves aging: 1 mentions
+  - strong afternoon heat stresses: 1 mentions
+  - occupational heat stressstrain: 1 mentions
+  - poten tial heat illness: 1 mentions
+  - peak heat stress risk: 1 mentions
+  - temperature extremes heat stress: 1 mentions
+  - higher thermal stress: 1 mentions
+  - heat stress prevention training: 1 mentions
+  - heat stress  costs: 1 mentions
+  - heat illness signs: 1 mentions
+  - effective heat stress control: 1 mentions
+  - the heat stress effects: 1 mentions
+  - which heat stroke: 1 mentions
+  - probable heat exposure zones: 1 mentions
+  - certainly high temperatures: 1 mentions
+  - signiﬁcant heatstress exposure: 1 mentions
+  - thermal comfort itis: 1 mentions
+  - how many heat illnesses: 1 mentions
+  - thermal stress resilience factors: 1 mentions
+  - progressive heat stress tests: 1 mentions
+  - hyperhydration heat stress: 1 mentions
+  - heat exposure hri: 1 mentions
+  - most thermal comfort studies: 1 mentions
+  - daylong heat exposure: 1 mentions
+  - heat stress comprehensive physiology: 1 mentions
+  - heat stress management programs: 1 mentions
+  - heat stress hazards: 1 mentions
+  - heat exposure cost: 1 mentions
+  - humid heat stress: 1 mentions
+  - internal heat exposure: 1 mentions
+  - bivariate heat waves: 1 mentions
+  - almost all heatstress conditions: 1 mentions
+  - heat stress conditions minimum: 1 mentions
+  - the stressor: 1 mentions
+  - similarly rising temperatures: 1 mentions
+  - global heat stress projections: 1 mentions
+  - thermal comfort changes: 1 mentions
+  - sistent extreme temperatures: 1 mentions
+  - climate introduction heat illness: 1 mentions
+  - the subjective heat stress: 1 mentions
+  - heat stress index conclusion: 1 mentions
+  - the heat stress situation: 1 mentions
+  - the heat waves’ characteristics: 1 mentions
+  - thermal comfort sweat accumulation: 1 mentions
+  - heat stress indhealth: 1 mentions
+  - environmental heat hypohydration: 1 mentions
+  - reference ‘high temperature: 1 mentions
+  - heat illness  update wilderness: 1 mentions
+  - high occupational heat stress: 1 mentions
+  - any associated heat stress: 1 mentions
+  - cytokine release heat stroke: 1 mentions
+  - dehydration and heat stress: 1 mentions
+  - stress eg knutson: 1 mentions
+  - heat stress events: 1 mentions
+  - clinical symptoms heat exhaustion: 1 mentions
+  - exertional heat stroke patients: 1 mentions
+  - illness heat stroke: 1 mentions
+  - personal thermal comfort management: 1 mentions
+  - heat stress management program: 1 mentions
+  - uncompensable heat stress effects: 1 mentions
+  - new antiheatstress uniform: 1 mentions
+  - the thermal comfort scales: 1 mentions
+  - other heat stress factors: 1 mentions
+  - “heat distress disorder”related articles: 1 mentions
+  - these stressors: 1 mentions
+  - an occupational heat stress: 1 mentions
+  - heat waves table: 1 mentions
+  - the heat stress perception: 1 mentions
+  - environmental heat heat stroke: 1 mentions
+  - single heat stress: 1 mentions
+  - hot environments stress: 1 mentions
+  - heat‑stress standard heat: 1 mentions
+  - the four heat waves: 1 mentions
+  - compound work stressors  workers: 1 mentions
+  - potential heat stress risk: 1 mentions
+  - ing occupational heat stress: 1 mentions
+  - realtime thermal stress monitoring: 1 mentions
+  - campbell  heat waves: 1 mentions
+  - diﬀerent heat exposure levels: 1 mentions
+  - environmental heat stress measurements: 1 mentions
+  - prior heat illness: 1 mentions
+  - heat and cold stress: 1 mentions
+  - heat illness dur ing: 1 mentions
+  - the same thermal stress: 1 mentions
+  - projected heat stress: 1 mentions
+  - esti mate heat stress: 1 mentions
+  - qatar heat exhaustion: 1 mentions
+  - suddenly rising temperatures: 1 mentions
+  - the heat stress hazard: 1 mentions
+  - heat stress evaluation: 1 mentions
+  - workplace heat stress levels: 1 mentions
+  - the distress: 1 mentions
+  - the exerciseheat stress: 1 mentions
+  - heat illness events: 1 mentions
+  - ebp and heat stress: 1 mentions
+  - heat stress dutta: 1 mentions
+  - average heat stress parameters: 1 mentions
+  - prior heat exposure: 1 mentions
+  - solar radiation  antiheatstress clothing: 1 mentions
+  - the heat stress policy: 1 mentions
+  - continual heat stress education: 1 mentions
+  - lower and thermal comfort: 1 mentions
+  - heat stress guidelines policies: 1 mentions
+  - occupational heat stress                                   synthesis: 1 mentions
+  - april   exertional heat illness: 1 mentions
+  - nilsson m heat exposure: 1 mentions
+  - thermal comfort levels: 1 mentions
+  - increased environmental heat: 1 mentions
+  - heat exhaustion diseases: 1 mentions
+  - urban extreme heat exposure: 1 mentions
+  - mild heat illnesses: 1 mentions
+  - particularly ohstress: 1 mentions
+  - environmental heat sun: 1 mentions
+  - future heat stress extremes: 1 mentions
+  - longer heat exposures  h: 1 mentions
+  - environmental heat metrics: 1 mentions
+  - abbasinia m asghari m  thermal comfort: 1 mentions
+  - the victims heat exposure: 1 mentions
+  - ofoccupational heat illness claims: 1 mentions
+  - heat stress trends: 1 mentions
+  - pro jected heat stress: 1 mentions
+  - heatstress areas: 1 mentions
+  - sm heat stress studies: 1 mentions
+  - recent heat waves: 1 mentions
+  - heat illness incidence: 1 mentions
+  - heat exposure avoidance procedures: 1 mentions
+  - heat stress annals: 1 mentions
+  - both high temperatures: 1 mentions
+  - ex tremely high temperatures: 1 mentions
+  - kcinternational heatstress standards: 1 mentions
+  - the heat stress standards: 1 mentions
+  - water availability thermal comfort: 1 mentions
+  - hajat  heat stress: 1 mentions
+  - most  heat stroke cases: 1 mentions
+  - australia heat stress: 1 mentions
+  - m gohlke heat waves: 1 mentions
+  - heat exposure heat exhaustion: 1 mentions
+  - simple high temperatures: 1 mentions
+  - their high heat exposure: 1 mentions
+  - occupational heat stress day: 1 mentions
+  - mental stress: 1 mentions
+  - the humid heat exposure: 1 mentions
+  - a heatstress marker: 1 mentions
+  - acgih heat stress: 1 mentions
+  - persistent high temperatures: 1 mentions
+  - http wwwclimatechiporgsitesdefaultﬁlespublicationstpoccupational heatstresswhopdf: 1 mentions
+  - exacerbating heat stress barreca: 1 mentions
+  - urban outdoor thermal comfort: 1 mentions
+  - other stresses: 1 mentions
+  - heat stress incidence: 1 mentions
+  - occupational heatstress interventions: 1 mentions
+  - goldman rf  heat stress: 1 mentions
+  - temperature or heat waves: 1 mentions
+  - acute occupational heat illnesses: 1 mentions
+  - heat stress criteria: 1 mentions
+  - a suspected heat illness: 1 mentions
+  - heat exposure wbgt: 1 mentions
+  - occupational heat exposure limits: 1 mentions
+  - heat stress inequities: 1 mentions
+  - chronic heat illnesses: 1 mentions
+  - thermal comfort temperature: 1 mentions
+  - danger heat stroke: 1 mentions
+  - heat stress hazard obligations: 1 mentions
+  - stress occupational health climate: 1 mentions
+  - stresses: 1 mentions
+  - other heat stress indices: 1 mentions
+  - the human thermal comfort: 1 mentions
+  - heat stroke  recommendations: 1 mentions
+  - selfassessed subjective heat stress: 1 mentions
+  - more extreme temperatures: 1 mentions
+  - different heat exposure metrics: 1 mentions
+  - frimpong k  heat exposure: 1 mentions
+  - the stressful proﬁle: 1 mentions
+  - heat waves gaffen: 1 mentions
+  - stress parsons: 1 mentions
+  - high temperatures vulnerability: 1 mentions
+  - routine heat stress monitoring: 1 mentions
+  - delhi india heat exposure: 1 mentions
+  - which heat stress: 1 mentions
+  - the least stressful tasks: 1 mentions
+  - workrelated heat illnesses: 1 mentions
+  - infrequent heat exposure: 1 mentions
+  - andor thermal comfort: 1 mentions
+  - increased extreme heat exposure: 1 mentions
+  - the heat stress impacts: 1 mentions
+  - moderate heat illness: 1 mentions
+  - heat stress work: 1 mentions
+  - thermal stress international union: 1 mentions
+  - even heat stress issues: 1 mentions
+  - the psychological stress: 1 mentions
+  - southeast heat stress grundstein: 1 mentions
+  - y heat stress prevention: 1 mentions
+  - “heat stress” nephropathy: 1 mentions
+  - al b occupational heat stress proﬁles: 1 mentions
+  - also heat stress: 1 mentions
+  - sullivan jb  environmental thermal stress: 1 mentions
+  - environmental heat table: 1 mentions
+  - extreme heat exposure himax: 1 mentions
+  - previous heat illnesses pregnancy: 1 mentions
+  - psy chological distress: 1 mentions
+  - work      moderate heat stress: 1 mentions
+  - heat stroke development: 1 mentions
+  - highly stressful environ ments: 1 mentions
+  - b extreme heat exposure: 1 mentions
+  - heat stroke builders: 1 mentions
+  - occu pational heat exposures: 1 mentions
+  - the five heat illnesses: 1 mentions
+  - heat stress b: 1 mentions
+  - heat stressheat stroke increases: 1 mentions
+  - the heatstress level: 1 mentions
+  - stress tolerance: 1 mentions
+  - sullivan jb jr  environmental thermal stress ann agric environ: 1 mentions
+  - critical heat stress: 1 mentions
+  - heat stress relief: 1 mentions
+  - outdoor environmental heat stress: 1 mentions
+  - addition occupational heat stress: 1 mentions
+  - heat exposure hyatt: 1 mentions
+  - initial heat exposures: 1 mentions
+  - work  stressful working periods: 1 mentions
+  - a signiﬁcant thermal stress: 1 mentions
+  - the stress effects: 1 mentions
+  - instance heat exposure: 1 mentions
+  - heat exposure earth: 1 mentions
+  - physical stress: 1 mentions
+  - less stress: 1 mentions
+  - stress measurement data: 1 mentions
+  - workrelated heat illness events: 1 mentions
+  - mer heat stress  data: 1 mentions
+  - how heat stress eventuates: 1 mentions
+  - heat waves heat waves: 1 mentions
+  - preventive heat stress measures: 1 mentions
+  - dessai s  heat stress: 1 mentions
+  - heat stress measurements: 1 mentions
+  - heat stress training workers: 1 mentions
+  - no june    heat stress: 1 mentions
+  - the additional thermal stress: 1 mentions
+  - heat heat stroke: 1 mentions
+  - the heat waves table: 1 mentions
+  - major human heat stress: 1 mentions
+  - ohstress accurate weather forecasting: 1 mentions
+  - the exerciseheat exposure: 1 mentions
+  - exer tional heat stroke: 1 mentions
+  - heat stressperspectives: 1 mentions
+  - their performance heat stress: 1 mentions
+  - high thermal stress: 1 mentions
+  - environmental heat stress exposure: 1 mentions
+  - dobutamine stress echocardio graphy: 1 mentions
+  - the heat stress levels: 1 mentions
+  - heat stress control strategies: 1 mentions
+  - stress heat strain: 1 mentions
+  - ohstress research: 1 mentions
+  - oxidative stress: 1 mentions
+  - so high temperatures: 1 mentions
+  - heat exposure surfaces: 1 mentions
+  - stress cluster: 1 mentions
+  - sa heat illness: 1 mentions
+  - a population’ heat waves: 1 mentions
+  - extreme heatstress conditions table: 1 mentions
+  - extreme temperatures drought: 1 mentions
+  - heat exposure acclimatization: 1 mentions
+  - heat stress illness: 1 mentions
+  - stress people: 1 mentions
+  - usg heat illness: 1 mentions
+  - human perceived thermal comfort: 1 mentions
+  - o’malley pg heat waves: 1 mentions
+  - thermal comfort iso   iso: 1 mentions
+  - more general bodily stress: 1 mentions
+  - heat stress risk management: 1 mentions
+  - heat illness risk j: 1 mentions
+  - g ed environmental stress: 1 mentions
+  - heat stress control knowledge: 1 mentions
+  - heat stress thresholds: 1 mentions
+  - such extreme heat exposures: 1 mentions
+  - construction industry heat stress: 1 mentions
+  - stress social science  medicine: 1 mentions
+  - different environmental stressors: 1 mentions
+  - wenzel h  heat stress: 1 mentions
+  - heat exposure workrelated tasks: 1 mentions
+  - heat stress ipcc: 1 mentions
+  - heat stress reduction strategies: 1 mentions
+  - these heat stress risks: 1 mentions
+  - forhigh temperatures: 1 mentions
+  - moran d s thermal comfort: 1 mentions
+  - sub jective heat stress: 1 mentions
+  - heat stroke symptoms: 1 mentions
+  - diverse heat stress technologies: 1 mentions
+  - the prevailing heat stress: 1 mentions
+  - stress ministry: 1 mentions
+  - heat stress botsford: 1 mentions
+  - heat stress fig  impacts: 1 mentions
+  - heat exposure further studies: 1 mentions
+  - children’s thermal comfort: 1 mentions
+  - pedestrian heat stress: 1 mentions
+  - heat illness claims: 1 mentions
+  - heat stress implementation: 1 mentions
+  - other acute heat illnesses: 1 mentions
+  - variables heat stress: 1 mentions
+  - stress main health issues: 1 mentions
+  - gabb gm review article environmental heatstroke: 1 mentions
+  - similarly heat exhaustion: 1 mentions
+  - wanhyung lee heat exposure: 1 mentions
+  - prevailing heat exposure levels: 1 mentions
+  - the high temperatures: 1 mentions
+  - heat exposure indicators: 1 mentions
+  - staff thermal comfort: 1 mentions
+  - gonzález ma heat stress: 1 mentions
+  - workplace environmental heat stress: 1 mentions
+  - c high heat exposure: 1 mentions
+  - no heat exposure recommendations: 1 mentions
+  - thermal stress situation: 1 mentions
+  - regional heat stress thresholds: 1 mentions
+  - the s heat waves: 1 mentions
+  - workrelated fatalities heat stroke: 1 mentions
+  - heat stress model: 1 mentions
+  - cumulative heat stress: 1 mentions
+  - thermal stress situations: 1 mentions
+  - heat stress prevention policies: 1 mentions
+  - different thermal stress indicators: 1 mentions
+  - con trolling heat stress: 1 mentions
+  - major stress: 1 mentions
+  - occupational heat exposure incidents: 1 mentions
+  - a heatstress standard: 1 mentions
+  - js occupational stress: 1 mentions
+  - workplace heat exposure parsons: 1 mentions
+  - more thermal stress: 1 mentions
+  - high temperatures fatigue: 1 mentions
+  - how high temperatures: 1 mentions
+  - shortterm heat exposure: 1 mentions
+  - heat stress safety efforts: 1 mentions
+  - heat exhaustion heat rash: 1 mentions
+  - international journal of environmental research and public health article occupational heat stress: 1 mentions
+  - occupational chronic heat stress: 1 mentions
+  - et al thermal stress: 1 mentions
+  - highheat exposures: 1 mentions
+  - sasaki  thermal comfort: 1 mentions
+  - l bell  heat waves: 1 mentions
+  - humid exertional heat stress: 1 mentions
+  - stressrelated occupational injury: 1 mentions
+  - heat waves’ impact: 1 mentions
+  - heat distress acclimatization: 1 mentions
+  - stress” social science  medicine: 1 mentions
+  - the proposed stressrecognition framework: 1 mentions
+  - productivity heat exhaustion: 1 mentions
+  - heat exposure  reviews: 1 mentions
+  - cardiorespiratory diseases heat exhaustion: 1 mentions
+  - these acute heat illnesses: 1 mentions
+  - excessive workplace heat exposure: 1 mentions
+  - their heat exposures: 1 mentions
+  - environmental high ambient temperatures: 1 mentions
+  - httpswwwhsegovukstressmentalhealthhtm sl: 1 mentions
+  - the heat stress severity: 1 mentions
+  - heat illnesses heat stress: 1 mentions
+  - heat exposure heat exposure: 1 mentions
+  - a heat stress assessment: 1 mentions
+  - their physiological stress parameters: 1 mentions
+  - heat stress  symptoms: 1 mentions
+  - pedestrianlevel outdoor thermal comfort: 1 mentions
+  - al environmental heat stress: 1 mentions
+  - occupational thermal stress: 1 mentions
+  - stress hot summers: 1 mentions
+  - thermal stress conditions: 1 mentions
+  - distressing emotions: 1 mentions
+  - two heat strokes: 1 mentions
+  - the overlapping stressors: 1 mentions
+  - urban heat exposure: 1 mentions
+  - compound work stressors  impact: 1 mentions
+  - exogenous environmental heat: 1 mentions
+  - not only heat stress: 1 mentions
+  - increased occupational heat stress: 1 mentions
+  - occupational heat exposure factors: 1 mentions
+  - symptomsofheat illnessinthepast months: 1 mentions
+  - stress hormones: 1 mentions
+  - psycho logical distress: 1 mentions
+  - extreme heat exposure tawatsupa: 1 mentions
+  - occupational heat illness cases: 1 mentions
+  - heat stress’s impacts: 1 mentions
+  - occupa tional heat stress: 1 mentions
+  - dangerous heat stress conditions: 1 mentions
+  - heat illness risk: 1 mentions
+  - heat exposure jay: 1 mentions
+  - highlevel humid heat exposure: 1 mentions
+  - hot seasons heat exposures: 1 mentions
+  - n seixas  heat exposure: 1 mentions
+  - logical distress workers: 1 mentions
+  - controlling heat stress: 1 mentions
+  - heat stress illness hsi: 1 mentions
+  - stress evaluation: 1 mentions
+  - heat related stress   individuals: 1 mentions
+  - osha’s heat illness campaign: 1 mentions
+  - heat exposure  risk: 1 mentions
+  - heat stress region: 1 mentions
+  - effective heat stress management: 1 mentions
+  - heat stress monitors: 1 mentions
+  - thermal comfort protect health: 1 mentions
+  - the  heat waves: 1 mentions
+  - the varying heat stress: 1 mentions
+  - urban thermal stress: 1 mentions
+  - the ambient thermal stress: 1 mentions
+  - florida summer heat waves: 1 mentions
+  - body heat stress: 1 mentions
+  - last heat exposure: 1 mentions
+  - heat strain heat stress: 1 mentions
+  - potential heatstresscontrol methods: 1 mentions
+  - stress adoption strat egies: 1 mentions
+  - outdoor human heat stress: 1 mentions
+  - environmental thermal stress: 1 mentions
+  - heat stress acgih  claudia: 1 mentions
+  - the most heat stress: 1 mentions
+  - antiheatstress clothing: 1 mentions
+  - heat stress exposure assessment: 1 mentions
+  - their heat exposure exposure: 1 mentions
+  - citylevel heat stress: 1 mentions
+  - heat stress agriculture construction: 1 mentions
+  - heat illness claimants: 1 mentions
+  - “heat stroke: 1 mentions
+  - that heat stress: 1 mentions
+  - occupational stresses: 1 mentions
+  - any heat exhaustion symptoms: 1 mentions
+  - most heat stress studies: 1 mentions
+  - occupational heat stress guidelines: 1 mentions
+  - prolonged humid heat exposure: 1 mentions
+  - newly heatstressed cities: 1 mentions
+  - a stress problems: 1 mentions
+  - stressrelated health: 1 mentions
+  - the lower heat stress: 1 mentions
+  - heat strokeexhaustion: 1 mentions
+  - heat stress situ ations: 1 mentions
+  - ohi occupational heat illness: 1 mentions
+  - common heat stress metrics: 1 mentions
+  - kjellstrom heat stress: 1 mentions
+  - high heat stress jobs: 1 mentions
+  - squire dl  heat illness: 1 mentions
+  - heat stress management strategies: 1 mentions
+  - the financial stress: 1 mentions
+  - heat stress pesticide application: 1 mentions
+  - stress social impact: 1 mentions
+  - the heat stresscomfort: 1 mentions
+  - thermally stressful conditions: 1 mentions
+  - the  european heat waves: 1 mentions
+  - humidity heat stress impacts: 1 mentions
+  - male heat illness claimants: 1 mentions
+  - these rising temperatures: 1 mentions
+  - heat exposure lack: 1 mentions
+  - climate stress tests: 1 mentions
+  - a nationwide heat illness: 1 mentions
+  - recorded heat illness claims: 1 mentions
+  - prior heat illness hospitalization: 1 mentions
+  - little thermal stress: 1 mentions
+  - stress responses: 1 mentions
+  - stress soc: 1 mentions
+  - the overallriskofoccupational heat illness: 1 mentions
+  - heat stress heat exhaustion: 1 mentions
+  - heat stroke sufferers responses: 1 mentions
+  - fewer occupational heat illnesses: 1 mentions
+  - heat exposure bls: 1 mentions
+  - either high ambient temperature: 1 mentions
+  - most heat stress: 1 mentions
+  - exerciseheat exposures: 1 mentions
+  - heat illness prevention: 1 mentions
+  - heat stress health factors: 1 mentions
+  - occupational heat stroke: 1 mentions
+  - workrelated heat exposures: 1 mentions
+  - very thermally stressed conditions: 1 mentions
+  - mor talityduringheat waves: 1 mentions
+  - india heat stress: 1 mentions
+  - keywords heat stress perceptions: 1 mentions
+  - heat waves energ buildings: 1 mentions
+  - ferred heat stress data: 1 mentions
+  - heat stress health risks: 1 mentions
+  - addi tional heat exposure: 1 mentions
+  - occupational heat stress studies: 1 mentions
+  - the heat stress complaints: 1 mentions
+  - consecutive exerciseheat exposure: 1 mentions
+  - different chronic heat illnesses: 1 mentions
+  - httpwwwlniwagov safetytopicsatozheatstressdefaultasp: 1 mentions
+  - particularly extreme heat exposure: 1 mentions
+  - heat stroke maike: 1 mentions
+  - high ambient temperature studies: 1 mentions
+  - more efficient antiheatstress uniforms: 1 mentions
+  - indian heat exposure guidelines: 1 mentions
+  - heat stress management ppe: 1 mentions
+  - stan dardization thermal comfort: 1 mentions
+  - stress sankar: 1 mentions
+  - envi­ ronmental heat stress: 1 mentions
+  - stress vulnerability: 1 mentions
+  - fatal heat stroke results: 1 mentions
+  - heat stress risk experiences: 1 mentions
+  - an occupational heatstress index: 1 mentions
+  - an exerciseheat exposure: 1 mentions
+  - health indoor heat exposure: 1 mentions
+  - this chapter stress: 1 mentions
+  - the epidemic   heat exposure: 1 mentions
+  - incrementally increasing heat exposure: 1 mentions
+  - participants’ personal heat exposure: 1 mentions
+  - basu high ambient temperature: 1 mentions
+  - g stressful periods phases: 1 mentions
+  - reversible heat stress: 1 mentions
+  - heat stress  one method: 1 mentions
+
+Mitigation Measures (119):
+  - acclimatization: 79 mentions
+  - air conditioning: 63 mentions
+  - shade: 62 mentions
+  - ventilation: 57 mentions
+  - protective clothing: 48 mentions
+  - fans: 38 mentions
+  - rest breaks: 28 mentions
+  - ppe: 21 mentions
+  - heat acclimation: 18 mentions
+  - heat acclimatization: 13 mentions
+  - human heat acclimation applications: 4 mentions
+  - exerciseheat acclimation: 4 mentions
+  - extra cooling ventilation: 3 mentions
+  - heating ventilation: 3 mentions
+  - et al heat acclimation: 3 mentions
+  - a heat acclimatization program: 2 mentions
+  - thermal protective clothing: 2 mentions
+  - chronic heat acclimatization: 2 mentions
+  - heat acclimatization schedules: 2 mentions
+  - shortterm heat acclimation: 2 mentions
+  - practical heat acclimation strategies: 1 mentions
+  - heat acclimationacclimatization adap tions: 1 mentions
+  - acclimatization workrest schedules: 1 mentions
+  - work severity acclimatization: 1 mentions
+  - heat acclimatization questions: 1 mentions
+  - heat acclimatization   hatvani: 1 mentions
+  - indoor work air conditioning: 1 mentions
+  - the heat acclimatization guidelines: 1 mentions
+  - “short term” heat acclimation: 1 mentions
+  - shaded air temperature: 1 mentions
+  - the upper air temperature: 1 mentions
+  - christensen el  heat acclimatization: 1 mentions
+  - httpswww govukgovernmentpublicationsguidanceon specialisedventilationforhealthcarepremisesparts: 1 mentions
+  - a heat acclimation protocol: 1 mentions
+  - appen temperature: 1 mentions
+  - heat radiation air conditioning: 1 mentions
+  - workload or acclimatization status: 1 mentions
+  - heat cooling fans: 1 mentions
+  - heat acclimationacclimatization category: 1 mentions
+  - heat acclimatization guidelines: 1 mentions
+  - work protective clothing: 1 mentions
+  - air conditioning semioutdoor workshops: 1 mentions
+  - shade and cooling rapoport: 1 mentions
+  - httpswwwoshagovheatexposurewaterrestshade preprintsorg wwwpreprintsorg: 1 mentions
+  - state  full heat acclimatization: 1 mentions
+  - heat acclimatization recommendations: 1 mentions
+  - european heating ventilation: 1 mentions
+  - worker acclimatization preexisting vulnerabilities: 1 mentions
+  - humid heat acclimation: 1 mentions
+  - the worksite acclimatization: 1 mentions
+  - temperature ventilation: 1 mentions
+  - workplace shade requirements: 1 mentions
+  - further heat acclimatization: 1 mentions
+  - cooling fans: 1 mentions
+  - heat acclimation adaptations journal: 1 mentions
+  - many heat acclimatization techniques: 1 mentions
+  - heat acclimation variations: 1 mentions
+  - third humidheat acclimation: 1 mentions
+  - work inprotective clothing: 1 mentions
+  - heat acclimation journal: 1 mentions
+  - prolonged heat acclimation: 1 mentions
+  - new workers acclimatization: 1 mentions
+  - intervention    heat acclimatization: 1 mentions
+  - short term heat acclimation: 1 mentions
+  - heat acclimatization status: 1 mentions
+  - maresh  heat acclimatization: 1 mentions
+  - al  ventilation: 1 mentions
+  - workrest breaks: 1 mentions
+  - additionally heat acclimatization: 1 mentions
+  - the natural heat acclimatization: 1 mentions
+  - the heat heat acclimation: 1 mentions
+  - a heat acclimatization plan: 1 mentions
+  - radiant heat gain ventilation: 1 mentions
+  - people’s natural heat acclimatization: 1 mentions
+  - heat acclimation responses: 1 mentions
+  - workplace shade availability: 1 mentions
+  - december  heat acclimatization: 1 mentions
+  - wbgt heat acclimation: 1 mentions
+  - t  heat acclimatization: 1 mentions
+  - ppe cooling: 1 mentions
+  - exercise and heat acclimation: 1 mentions
+  - occupational heat acclimation: 1 mentions
+  - worker acclimatization: 1 mentions
+  - protective clothing microclimate cooling: 1 mentions
+  - heat acclimatization worktorest ratios: 1 mentions
+  - physiological heat acclimatization: 1 mentions
+  - heat acclimatization level: 1 mentions
+  - protective clothing heat loss: 1 mentions
+  - work scheduling acclimatization guidelines: 1 mentions
+  - heat acclimation decay: 1 mentions
+  - qual rahimi   heat acclimation: 1 mentions
+  - christensen el heat acclimatization: 1 mentions
+  - longterm heat acclimatization: 1 mentions
+  - f heat acclimation: 1 mentions
+  - heat acclimatization plans: 1 mentions
+  - heat acclimation strategies: 1 mentions
+  - heat acclimatization heat acclimatization: 1 mentions
+  - thermal acclimatization: 1 mentions
+  - heat acclimatization investi gations: 1 mentions
+  - working people acclimatization: 1 mentions
+  - al  heat reacclimatization rha: 1 mentions
+  - ns  shortterm heat acclimation: 1 mentions
+  - temperatureresponsive protective clothing incor: 1 mentions
+  - heat and heat acclimatization: 1 mentions
+  - inter national mine ventilation: 1 mentions
+  - hydration  heat acclimatization  background: 1 mentions
+  - the problem   heat acclimation: 1 mentions
+  - temperature heat acclimatization: 1 mentions
+  - tim odempsey air conditioning: 1 mentions
+  - heat acclimation gender: 1 mentions
+  - progressive heat acclimation: 1 mentions
+  - an day heat acclimation: 1 mentions
+  - air conditioning management: 1 mentions
+  - heat acclimation   relationship: 1 mentions
+  - passive heat acclimation: 1 mentions
+  - geohealth bouskill l m  clothing ventilation: 1 mentions
+  - formal heat acclimatization procedures: 1 mentions
+  - heat acclimation j physiol: 1 mentions
+  - heatrelated disorders  general ventilation: 1 mentions
+
+
+CONDITION-MITIGATION RECOMMENDATIONS (Based on Co-occurrence):
+
+For 'stress':
+  1. ppe
+     Co-occurrence: 56, Frequency: 1, Composite Score: 173.10
+  2. protective clothing
+     Co-occurrence: 23, Frequency: 1, Composite Score: 89.51
+  3. shade
+     Co-occurrence: 15, Frequency: 1, Composite Score: 62.15
+  4. acclimatization
+     Co-occurrence: 13, Frequency: 1, Composite Score: 56.97
+  5. air conditioning
+     Co-occurrence: 8, Frequency: 1, Composite Score: 33.27
+  6. heat acclimation
+     Co-occurrence: 9, Frequency: 1, Composite Score: 26.50
+  7. rest breaks
+     Co-occurrence: 5, Frequency: 1, Composite Score: 16.84
+  8. fans
+     Co-occurrence: 4, Frequency: 1, Composite Score: 14.65
+  9. heat acclimatization
+     Co-occurrence: 5, Frequency: 1, Composite Score: 13.20
+  10. ventilation
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.12
+
+For 'heat stress':
+  1. ppe
+     Co-occurrence: 55, Frequency: 1, Composite Score: 170.01
+  2. protective clothing
+     Co-occurrence: 16, Frequency: 1, Composite Score: 62.27
+  3. shade
+     Co-occurrence: 15, Frequency: 1, Composite Score: 62.15
+  4. acclimatization
+     Co-occurrence: 11, Frequency: 1, Composite Score: 48.20
+  5. air conditioning
+     Co-occurrence: 9, Frequency: 1, Composite Score: 37.43
+  6. rest breaks
+     Co-occurrence: 5, Frequency: 1, Composite Score: 16.84
+  7. fans
+     Co-occurrence: 4, Frequency: 1, Composite Score: 14.65
+  8. heat acclimation
+     Co-occurrence: 3, Frequency: 1, Composite Score: 8.83
+  9. ventilation
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.12
+  10. heat acclimatization
+     Co-occurrence: 3, Frequency: 1, Composite Score: 7.92
+
+For 'heat illness':
+  1. acclimatization
+     Co-occurrence: 7, Frequency: 1, Composite Score: 30.67
+  2. ppe
+     Co-occurrence: 4, Frequency: 1, Composite Score: 12.36
+  3. shade
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.29
+  4. heat acclimatization
+     Co-occurrence: 3, Frequency: 1, Composite Score: 7.92
+  5. exerciseheat acclimation
+     Co-occurrence: 2, Frequency: 1, Composite Score: 3.22
+  6. heat acclimatization guidelines
+     Co-occurrence: 2, Frequency: 1, Composite Score: 1.39
+
+For 'occupational heat stress':
+  1. ppe
+     Co-occurrence: 6, Frequency: 1, Composite Score: 18.55
+  2. acclimatization
+     Co-occurrence: 3, Frequency: 1, Composite Score: 13.15
+  3. heat acclimatization
+     Co-occurrence: 3, Frequency: 1, Composite Score: 7.92
+  4. december  heat acclimatization
+     Co-occurrence: 3, Frequency: 1, Composite Score: 2.08
+
+For 'stress management':
+  1. ppe
+     Co-occurrence: 6, Frequency: 1, Composite Score: 18.55
+
+For 'heat stress management':
+  1. ppe
+     Co-occurrence: 6, Frequency: 1, Composite Score: 18.55
+
+For 'heat stress management ppe':
+  1. ppe
+     Co-occurrence: 6, Frequency: 1, Composite Score: 18.55
+
+For 'heat exposure':
+  1. acclimatization
+     Co-occurrence: 5, Frequency: 1, Composite Score: 21.91
+  2. air conditioning
+     Co-occurrence: 5, Frequency: 1, Composite Score: 20.79
+  3. heat acclimation
+     Co-occurrence: 3, Frequency: 1, Composite Score: 8.83
+  4. shade
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.29
+
+For 'heat exhaustion':
+  1. air conditioning
+     Co-occurrence: 5, Frequency: 1, Composite Score: 20.79
+
+For 'thermal stress':
+  1. protective clothing
+     Co-occurrence: 4, Frequency: 1, Composite Score: 15.57
+
+For 'managing thermal stress':
+  1. protective clothing
+     Co-occurrence: 4, Frequency: 1, Composite Score: 15.57
+
+For 'anhidrotiic heat exhaustion':
+  1. air conditioning
+     Co-occurrence: 4, Frequency: 1, Composite Score: 16.64
+
+For 'thermal comfort':
+  1. ventilation
+     Co-occurrence: 4, Frequency: 1, Composite Score: 16.24
+
+For 'environmental heat':
+  1. shade
+     Co-occurrence: 3, Frequency: 1, Composite Score: 12.43
+
+For 'heat stress factors':
+  1. ppe
+     Co-occurrence: 3, Frequency: 1, Composite Score: 9.27
+
+For 'environmental heat load':
+  1. shade
+     Co-occurrence: 3, Frequency: 1, Composite Score: 12.43
+
+For 'thermal stress woodhead publishing':
+  1. protective clothing
+     Co-occurrence: 3, Frequency: 1, Composite Score: 11.68
+
+For 'the environmental heat load':
+  1. shade
+     Co-occurrence: 3, Frequency: 1, Composite Score: 12.43
+
+For 'the environmental heat':
+  1. shade
+     Co-occurrence: 3, Frequency: 1, Composite Score: 12.43
+
+For 'heat exposures':
+  1. acclimatization
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.76
+
+For 'managing heat stress':
+  1. protective clothing
+     Co-occurrence: 2, Frequency: 1, Composite Score: 7.78
+
+For 'exertional heat stroke':
+  1. ppe
+     Co-occurrence: 2, Frequency: 1, Composite Score: 6.18
+
+For 'exertional heat illness':
+  1. acclimatization
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.76
+  2. heat acclimatization
+     Co-occurrence: 2, Frequency: 1, Composite Score: 5.28
+  3. heat acclimatization guidelines
+     Co-occurrence: 2, Frequency: 1, Composite Score: 1.39
+
+For 'heat stroke':
+  1. acclimatization
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.76
+  2. ppe
+     Co-occurrence: 2, Frequency: 1, Composite Score: 6.18
+  3. heat acclimatization
+     Co-occurrence: 2, Frequency: 1, Composite Score: 5.28
+
+For 'respiratory distress':
+  1. ventilation
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.12
+
+For 'exerciseheat stress':
+  1. heat acclimation
+     Co-occurrence: 2, Frequency: 1, Composite Score: 5.89
+
+For 'to heat exposure':
+  1. acclimatization
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.76
+
+For 'te  heat stress':
+  1. protective clothing
+     Co-occurrence: 2, Frequency: 1, Composite Score: 7.78
+
+For 'physical stress':
+  1. ppe
+     Co-occurrence: 2, Frequency: 1, Composite Score: 6.18
+
+For 'to heat stress':
+  1. acclimatization
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.76
+
+For 'heat waves':
+  1. air conditioning
+     Co-occurrence: 2, Frequency: 1, Composite Score: 8.32
+
+
+Analysis saved successfully.

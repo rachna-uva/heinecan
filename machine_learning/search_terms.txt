@@ -1,0 +1,28 @@
+JSTOR
+1.
+("heat stress" OR "thermal stress" OR "heat illness" OR "heat exhaustion" OR "heat exposure" OR "heatwave" OR "heat waves")
+AND
+("occupational health" OR "worker safety" OR "outdoor labor" OR "manual labor" OR "agricultural workers" OR "construction workers" OR "occupational exposure" OR "industrial safety")
+AND
+("adaptation" OR "acclimatization" OR "rest breaks" OR "cooling shelters" OR "hydration stations" OR "protective clothing" OR "workplace safety" OR "heat management")
+AND
+("climate change" OR "global warming" OR "extreme heat" OR "rising temperatures")
+
+
+2.
+("heat stress" OR "heat exposure" OR "thermal stress" OR "heatwave" OR "heat waves") AND "occupational"
+
+3.
+("wet bulb globe temperature" OR WBGT OR "air conditioning" OR AC OR "urban heat island" OR UHI OR "coefficient of performance" OR COP OR "relative humidity" OR RH) AND "occupational"
+
+
+Some journals from which the papers have been sourced:
+
+Science Direct
+JSTOR
+Indian Journal of Occupational & Environmental Medicine
+Springer Nature Link
+Elsevier
+American Journal of Industrial Medicine
+Frontiers
+MDPI Open Access Journals
